@@ -1,6 +1,6 @@
 Manager Acceptance Criteria
 
-<!-- Feature: Managers should be able to login to access their homepages
+Feature: Managers should be able to login to access their homepages
 
 Scenario: As a manger I want to sign in so I can view my custom homepage
 
@@ -16,9 +16,9 @@ Sceneario: As a manager I want to sign out so I can prevent others from accessin
 
 Given   the manager is on the manager homepage
 When    the manager clicks the signout button
-Then	the manager should be logged out to the login page -->
+Then	the manager should be logged out to the login page
 
-<!-- Feature: Managers should be able to view reimbursement requests 
+Feature: Managers should be able to view reimbursement requests 
 
 Scenario: As a manager I want to be able to view reimbursement requests so I can start addressing them
 
@@ -41,13 +41,13 @@ Scenario: As a manager I want to be able to deny reimbusement requests so the co
 Given   the manager is on the manager homepage
 When    the manager clicks the deny selection
 When    the manager clicks the submit button
-Then	the manager should have denied the reimbursement request -->
+Then	the manager should have denied the reimbursement request 
 
 
 
 Employee Acceptance Criteria
 
-<!-- Feature: Employee should be able tp login to access their homepages
+Feature: Employee should be able to login to access their homepages
 
 Scenario: As an employee I want to sign in so I can view my custom homepage
 
@@ -63,9 +63,9 @@ Sceneario: As an Employee I want to sign out so I can prevent others from access
 
 Given   the employee is on the employee homepage
 When    the employee clicks the signout button
-Then	the employee should be logged out to the login page -->
+Then	the employee should be logged out to the login page
 
-<!-- Feature: Employee should be able to create a reimbursement request
+Feature: Employee should be able to create a reimbursement request
 
 Sceneario: As an Employee I want to create a reimbursement request so I can get money back I sepent for the company
 
@@ -81,4 +81,4 @@ Feature: Employees should be able to view previous reimbursement requests
 Scenario: As an Employee I want to be able to view previous reimbursement requests so I can start addressing them
 
 Given   the employee is on the employee homepage
-Then	the employee should see the previous reimbersement requests -->
+Then	the employee should see the previous reimbersement requests
