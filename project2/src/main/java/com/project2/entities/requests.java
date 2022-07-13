@@ -2,34 +2,34 @@ package com.project2.entities;
 
 public class requests {
     private int id;
-    private String employee_name;
+    private String requester_username;
     private String request_reason;
     private int amount;
     private String request_status;
     private String status_reason;
-    private String manager_name;
+    private String manager_username;
 
 
     public requests(){}
 
 
-    public requests(String employee_name, String request_reason, int amount, String request_status, String status_reason, String manager_name) {
-        this.employee_name = employee_name;
+    public requests(String requester_username, String request_reason, int amount, String request_status, String status_reason, String manager_username) {
+        this.requester_username = requester_username;
         this.request_reason = request_reason;
         this.amount = amount;
         this.request_status = request_status;
         this.status_reason = status_reason;
-        this.manager_name = manager_name;
+        this.manager_username = manager_username;
     }
 
-    public requests(int id, String employee_name, String request_reason, int amount, String request_status, String status_reason, String manager_name) {
+    public requests(int id, String requester_username, String request_reason, int amount, String request_status, String status_reason, String manager_username) {
         this.id = id;
-        this.employee_name = employee_name;
+        this.requester_username = requester_username;
         this.request_reason = request_reason;
         this.amount = amount;
         this.request_status = request_status;
         this.status_reason = status_reason;
-        this.manager_name = manager_name;
+        this.manager_username = manager_username;
     }
 
     public int getId() {
@@ -40,12 +40,13 @@ public class requests {
         this.id = id;
     }
 
-    public String getEmployee_name() {
-        return employee_name;
+    public String getRequester_username() {
+        return requester_username;
     }
 
-    public void setEmployee_name(String employee_name) {
-        this.employee_name = employee_name;
+    public void setRequester_username
+    (String requester_username) {
+        this.requester_username = requester_username;
     }
 
     public String getRequest_reason() {
@@ -80,17 +81,17 @@ public class requests {
         this.status_reason = status_reason;
     }
 
-    public String getManager_name() {
-        return manager_name;
+    public String getManager_username() {
+        return manager_username;
     }
 
-    public void setManager_name(String manager_name) {
-        this.manager_name = manager_name;
+    public void setManager_username(String manager_username) {
+        this.manager_username = manager_username;
     }
 
     @Override
     public String toString() {
-        return "requests{" + "id=" + id + ", employee_name=" + employee_name + ", request_reason=" + request_reason + ", amount=" + amount + ", request_status=" + request_status + ", status_reason=" + status_reason + ", manager_name=" + manager_name + '}';
+        return "requests{" + "id=" + id + ", employee_name=" + requester_username + ", request_reason=" + request_reason + ", amount=" + amount + ", request_status=" + request_status + ", status_reason=" + status_reason + ", manager_name=" + manager_username + '}';
     }
 
     
