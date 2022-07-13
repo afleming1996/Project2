@@ -1,9 +1,13 @@
+drop table if exists requests;
+
 CREATE TABLE requests (
 	id serial PRIMARY KEY, 
-	-- requester_name from employees table
+	requester_username varchar references employees(username), 
 	request_reason varchar(500), 
-	amount int, 
-	request_status,
-	status_reason,
-	-- manager_name from employees table
+	amount integer, 
+	request_status varchar(10),
+	status_reason varchar(500),
+	manager_username varchar references employees(username)
 );
+
+select * from requests;
