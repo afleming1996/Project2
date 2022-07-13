@@ -85,4 +85,7 @@ buildNumber.properties
 #ignore hibernate.cfg.xml
 hibernate.cfg.xml
 
+# Ignore .json files
+*.json
+
 # End of https://www.toptal.com/developers/gitignore/api/java,maven,executable,visualstudiocode
