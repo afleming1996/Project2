@@ -1,6 +1,15 @@
 package com.project2.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "requests")
 public class requests {
+    @Id
+    @GeneratedValue
     private int id;
     private String requester_username;
     private String request_reason;
