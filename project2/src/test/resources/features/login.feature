@@ -1,6 +1,5 @@
 Feature: Employees should be able to login and out of their accounts
 
-# logging in
     Scenario: As an manager I want to sign in so I can view my custom homepage
 
         Given   the employee is on the login page
@@ -19,7 +18,7 @@ Feature: Employees should be able to login and out of their accounts
 
 
 
-# logging out
+
     Scenario: As a manager I want to sign out so I can prevent others from accessing my information
 
         Given   the manager is on the manager homepage

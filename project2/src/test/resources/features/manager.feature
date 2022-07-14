@@ -9,6 +9,7 @@ Feature: Managers should be able to update the status of reimbursement requests
 
         Given   the manager is on the manager homepage
         When    the manager clicks the accept selection
+        When    the manager enters a reason not exceeding 500 characters
         When    the manager clicks the submit button
         Then    the manager should have approved the reimbursement request
 
@@ -16,5 +17,6 @@ Feature: Managers should be able to update the status of reimbursement requests
 
         Given   the manager is on the manager homepage
         When    the manager clicks the deny selection
+        When    the manager enters a reason not exceeding 500 characters
         When    the manager clicks the submit button
         Then    the manager should have denied the reimbursement request
