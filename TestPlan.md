@@ -24,11 +24,8 @@
 ### User Stories and associated unit/service tests
 - As an employee I want to sign in so I can view my custom homepage
     - Positive Unit tests
-        - manager enters correct credentials
-            - method: managerLogin()
-
-        - requester enters correct crendentials
-            - method: requesterLogin()
+        - employee enters correct credentials
+            - method: employeeLogin()
 
     - Negative Unit tests
         - employee enters incorrect username || password
@@ -36,7 +33,7 @@
        
     - Service tests
         - N/A
-
+<!-- is handle on client side -->
 - As an employee I want to sign out so I can prevent others from accessing my information
     - Positive Unit tests
         - manager clicks sign out button
