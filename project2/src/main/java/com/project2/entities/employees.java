@@ -5,20 +5,23 @@ public class employees {
     private String employee_name;
     private String username; 
     private String employee_role;
+    private String user_password;
 
     public employees(){}
 
-    public employees(String employee_name, String username, String employee_role) {
+    public employees(String employee_name, String username, String employee_role, String user_password) {
         this.employee_name = employee_name;
         this.username = username;
         this.employee_role = employee_role;
+        this.user_password = user_password;
     }
     
-    public employees(int id, String employee_name, String username, String employee_role) {
+    public employees(int id, String employee_name, String username, String employee_role, String user_password) {
         this.id = id;
         this.employee_name = employee_name;
         this.username = username;
         this.employee_role = employee_role;
+        this.user_password = user_password;
     }
 
     public int getId() {
@@ -53,9 +56,17 @@ public class employees {
         this.employee_role = employee_role;
     }
 
+    public String getUser_password() {
+        return user_password;
+    }
+
+    public void setUser_password(String user_password) {
+        this.user_password = user_password;
+    }
+
     @Override
     public String toString() {
-        return "employees{" + "id=" + id + ", employee_name=" + employee_name + ", username=" + username + ", employee_role=" + employee_role + '}';
+        return "employees{" + "id=" + id + ", employee_name=" + employee_name + ", username=" + username + ", employee_role=" + employee_role + ", user_password=" + user_password + '}';
     }
 
 }
