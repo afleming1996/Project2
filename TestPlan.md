@@ -1,38 +1,106 @@
 # Test Plan
 
 ## Employee Reimbursement System
-### Introduction
-- Build Success is a software development team that is contracted to build an employee reimbursement system for a builder company called Big Builders Industeries. The development team will test and build the system from ground up. The system will have a three tiered web application that will contain an API, a service layer, and a repostiory layer.  
 
-###  Objectives and Tasks
-- Objectives: Teams will be building and testing an employee reimbursement system for Big Builders Industries.
-- Tasks: The employee reimbursement system will be built from the ground up using the Behavior Driven Development and Test Driven Development practices as a guide. The team will build the UI and write the automation tests for this system. Finally, the team will break down the high level user stories into smaller user stories where needed and the create the Acceptance Criteria for the user stories.
+### Technologies to be use
+- Java
+- Maven
+- JavaScript
+- Selenium
+- Cucumber
+- JUnit
+- HTML
+- Hibernate
+- CSS
+- AWS RDS (Postgres)
+
 ### Software Development Team / BUILD SUCCESS
-    - Austin Fleming
-    - Sherrita Coleman
-    - Richard Hensel
-    - Seble Shewaneh
-### Testing Requirements
-- Unit Testing: 
-take a single piece of the application's code logic, test it in isolation, and check if the code logic works as intended. 
-    - Repository Layer Testing: handles interacting with the database
-        - 1 Positive Test: check that the code logic is correct
-    - Service Layer Testing: handles interacting with the database
-        - 1 Negative Test: check that the business logic and common errors are handled correctly.
-            - Use Mockito to stub the methods for your tests
-- Integration Testing 
-    - API: handles HTTP requests and responses
-        - verbs
-            - GET: used when retrieving information
-            - POST: used when creating information
-            - PATCH: used when updating information or logging in
-        - routes
-        - naming convention should be consistent
-            - /reimbursements can be used for getting, creating, and updating reimbursements by changing which verb is used in the HTTP request
-            - if updating a specific reimburesement you should also add an identifier to the route to indicate which specific reimbursement is being updated
-             - /reimbursements/{id}
-                - All routes must have one positive test
-                - All routes must have a negative test for each business rule(if applicable)
-- End to End Testing: tests the entirety of the application and validates whether everything is working together as intended or not.
-    - All Acceptance criterial must be tested via Cucumber and Selenium
+- Austin Fleming
+- Sherrita Coleman
+- Richard Hensel
+- Seble Shewaneh
+
+
+### User Stories and associated unit/service tests
+- As an employee I want to sign in so I can view my custom homepage
+    - Positive Unit tests
+        - manager enters correct credentials
+            - method: managerLogin()
+
+        - requester enters correct crendentials
+            - method: requesterLogin()
+
+    - Negative Unit tests
+        - employee enters incorrect username || password
+            - method: incorrectLogin()
+       
+    - Service tests
+        - N/A
+
+- As an employee I want to sign out so I can prevent others from accessing my information
+    - Positive Unit tests
+        - manager clicks sign out button
+            - method: managerSignOut()
+        - requestor clicks sign out button
+            - method: requesterSignOut()
+
+    - Negative Unit tests
+        - manager clicks sign out button
+            - method: managerNotSignOut()
+        - requester clicks sign out button
+            - method: requesterNotSignOut()
+    - Service tests
+        - N/A
+
+- As a manager I want to be able to view reimbursement requests so I can start addressing them
+    - Positive Unit tests
+        - manager views reimbursement requests
+            - method: requestTableVisible()
+
+    - Negative Unit tests
+        - manager views reimbursement requests
+             - method: requestTableNotVisible()
+
+    - Service tests
+        - N/A
+- As a manager I want to be able to approve/deny reimbursement requests so the company know whether to pay out or not 
+    - Positive Unit tests
+        - manager update reimbursement requests status
+            - method: statusUpdated()
+
+    - Negative Unit tests
+        - manager update reimbursement requests status
+            - method: statusNotUpdated()
+        
+    - Service tests
+        - manager gives reason for status
+            - method: statusReason()
+
+- As a requester I want to create a reimbursement request so I can get money back I spent for the company
+    - Positive Unit tests
+        - requester creates reimbursement request
+            - method: createRequest()
+
+    - Negative Unit tests
+        - requester creates reimbursement request
+            - method: requestNotCreated()
+
+    - Service tests
+        - requestor gives reason for request
+            - method: requestReason()
+        - requestor enters amount 
+            - method: requestAmount()
+
+- As a requester I want to be able to view the status of reimbursement requests so I can see how much money I have been reimbursed
+    - Positive Unit tests
+        - requester views status of reimbursement requests
+            - method: myRequestVisible()
+
+    - Negative Unit tests
+        - requester views reimbursement requests
+             - method: myRequestNotVisible()
+
+    - Service tests
+        - requester views reimbursement requests
+            - method: otherRequestersNotVisible()
 ## 
