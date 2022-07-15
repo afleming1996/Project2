@@ -7,7 +7,7 @@ public class RequestsService implements RequestsServiceInterface {
     private RequestsServiceInterface RequestsService;
 
     public RequestsService(RequestsServiceInterface requestsService){
-        this.requestsService = requestsService;
+        this.RequestsService = requestsService;
     }
 
     @Override
