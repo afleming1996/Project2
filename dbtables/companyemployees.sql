@@ -1,4 +1,4 @@
-drop table if exists employees;
+--drop table if exists employees;
 
 CREATE TABLE employees(
 	id serial, 
