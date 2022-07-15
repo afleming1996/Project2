@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "employees")
-public class Employees {
+public class employees {
     @Id
     @GeneratedValue
     private int id;
@@ -16,16 +16,16 @@ public class Employees {
     private String employee_role;
     private String user_password;
 
-    public Employees(){}
+    public employees(){}
 
-    public Employees(String employee_name, String username, String employee_role, String user_password) {
+    public employees(String employee_name, String username, String employee_role, String user_password) {
         this.employee_name = employee_name;
         this.username = username;
         this.employee_role = employee_role;
         this.user_password = user_password;
     }
     
-    public Employees(int id, String employee_name, String username, String employee_role, String user_password) {
+    public employees(int id, String employee_name, String username, String employee_role, String user_password) {
         this.id = id;
         this.employee_name = employee_name;
         this.username = username;
