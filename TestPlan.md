@@ -14,11 +14,11 @@
 - CSS
 - AWS RDS (Postgres)
 
-### Software Development Team / BUILD SUCCESS
+### Software Development Team / (Fantastic) BUILD SUCCESS
 - Austin Fleming
-- Sherrita Coleman
+- Quyen Vu
 - Richard Hensel
-- Seble Shewaneh
+- Jason Sainvilus
 
 
 ### User Stories and associated unit/service tests

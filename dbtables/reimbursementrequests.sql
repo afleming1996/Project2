@@ -1,4 +1,4 @@
-drop table if exists requests;
+--drop table if exists requests;
 
 CREATE TABLE requests (
 	id serial PRIMARY KEY, 
@@ -11,3 +11,4 @@ CREATE TABLE requests (
 );
 
 select * from requests;
+
