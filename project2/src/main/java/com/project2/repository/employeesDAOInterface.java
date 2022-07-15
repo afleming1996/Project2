@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.project2.entities.employees;
 
-public interface employeesDAOInterface {
+public interface EmployeesDAOInterface {
     List<employees> getEmployees();
     
     

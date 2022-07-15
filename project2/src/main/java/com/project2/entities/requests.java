@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "requests")
-public class requests {
+public class Requests {
     @Id
     @GeneratedValue
     private int id;
@@ -19,10 +19,10 @@ public class requests {
     private String manager_username;
 
 
-    public requests(){}
+    public Requests(){}
 
 
-    public requests(String requester_username, String request_reason, int amount, String request_status, String status_reason, String manager_username) {
+    public Requests(String requester_username, String request_reason, int amount, String request_status, String status_reason, String manager_username) {
         this.requester_username = requester_username;
         this.request_reason = request_reason;
         this.amount = amount;
@@ -31,7 +31,7 @@ public class requests {
         this.manager_username = manager_username;
     }
 
-    public requests(int id, String requester_username, String request_reason, int amount, String request_status, String status_reason, String manager_username) {
+    public Requests(int id, String requester_username, String request_reason, int amount, String request_status, String status_reason, String manager_username) {
         this.id = id;
         this.requester_username = requester_username;
         this.request_reason = request_reason;

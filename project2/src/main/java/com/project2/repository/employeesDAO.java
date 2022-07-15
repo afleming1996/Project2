@@ -5,7 +5,7 @@ import java.util.List;
 import com.project2.Utils.HibernateUtil;
 import com.project2.entities.employees;
 
-public class employeesDAO implements employeesDAOInterface {
+public class EmployeesDAO implements EmployeesDAOInterface {
 
     @Override
     public List<employees> getEmployees() {
