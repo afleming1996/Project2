@@ -3,17 +3,17 @@ package com.project2.service;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.project2.repository.requestsDAO;
-import com.project2.repository.requestsDAOInterface;
+import com.project2.repository.RequestsDAO;
+import com.project2.repository.RequestsDAOInterface;
 
 public class RequestsServiceTests {
-    public static requestsDAOInterface requestsDao;
-    public static requestsServiceInterface requestsService;
+    public static RequestsDAOInterface requestsDao;
+    public static RequestsServiceInterface requestsService;
 
     @BeforeClass
     public static void setup(){
-        requestsDao = new requestsDAO();
-        requestsService = new requestsService(requestsDao); 
+        requestsDao = new RequestsDAO();
+        requestsService = new RequestsService(requestsDao); 
     }
 
 

@@ -3,7 +3,7 @@ package com.project2.repository;
 import com.project2.Utils.HibernateUtil;
 import com.project2.entities.requests;
 
-public class requestsDAO implements requestsDAOInterface {
+public class RequestsDAO implements RequestsDAOInterface {
 
     @Override
     public requests creatRequests(requests newRequests) {

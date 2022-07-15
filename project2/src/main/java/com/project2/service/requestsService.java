@@ -2,11 +2,11 @@ package com.project2.service;
 
 import com.project2.entities.requests;
 
-public class requestsService implements requestsServiceInterface {
+public class RequestsService implements RequestsServiceInterface {
 
-    private requestsServiceInterface requestsService;
+    private RequestsServiceInterface RequestsService;
 
-    public requestsService(requestsServiceInterface requestsService){
+    public RequestsService(RequestsServiceInterface requestsService){
         this.requestsService = requestsService;
     }
 
