@@ -19,8 +19,8 @@ public class RequestsTest {
     @Test
     public void creatRequests()
     {
-         requests testRequests= new requests("quyen6",
-         "personal",500,"pending","pending","Quyen");
+         requests testRequests= new requests("porkbellies",
+         "personal",500,"Pending","pending","dodgeball");
          requests result = requestsDao.creatRequests(testRequests);
          Assert.assertNotNull(result.getId());
     }
