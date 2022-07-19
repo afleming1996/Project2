@@ -1,5 +1,7 @@
 package com.project2.repository;
 
+import java.util.List;
+
 import com.project2.Utils.HibernateUtil;
 import com.project2.entities.requests;
 
@@ -19,6 +21,22 @@ public class RequestsDAO implements RequestsDAOInterface {
         HibernateUtil.getSession().update(statusUpdated);
         HibernateUtil.endTransaction();
         return statusUpdated;
+    }
+    @Override
+    public List<requests> getAllRequests() {
+        HibernateUtil.beginTransaction();
+        
+        List<requests> requestsList = HibernateUtil.getSession().createQuery("from requests",
+         requests.class).getResultList();
+        HibernateUtil.endTransaction();       
+         return requestsList;
+    }
+
+    @Override
+    public boolean removeRequest(requests requestsToBeDeleted) {
+        HibernateUtil.beginTransaction();
+        HibernateUtil.getSession().delete(requestsToBeDeleted);
+        return true;
     }
 
 }
