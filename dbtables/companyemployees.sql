@@ -1,4 +1,4 @@
---drop table if exists employees;
+drop table if exists employees;
 
 CREATE TABLE employees(
 	id serial, 
@@ -16,3 +16,6 @@ insert into employees values(default, 'Cotton McKnight', 'Manager', 'dodgeball',
 insert into employees values(default, 'Clarance Beeks', 'Requester', 'porkbellies', 'password');
 
 select * from employees;
+
+alter table employees
+add constraint employee_role check (employee_role in ('Requester', 'Manager'));
