@@ -63,6 +63,22 @@ public class RequestsController {
             ctx.status(400);
         }
     };
+    public Handler createRequests = ctx -> {
+        try{
+            String json = ctx.body();
+            requests newRequest = this.gson.fromJson(json, requests.class);
+            requests result = this.requestsService.creatRequest(newRequest);
+            String resultJson = this.gson.toJson(result);
+            ctx.result(resultJson);
+            ctx.status(201);
+        }catch(InvalidRequests e){
+            Map<String, String> message = new HashMap<>();
+            message.put("message", e.getMessage());
+            String messageJson = this.gson.toJson(message);
+            ctx.result(messageJson);
+            ctx.status(400);
+        }
+    };
 
    
 
