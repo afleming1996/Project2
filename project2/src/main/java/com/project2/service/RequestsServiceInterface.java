@@ -21,6 +21,7 @@ public interface RequestsServiceInterface {
     //both
    // boolean uniqueUsername(requests uniqueUsername);
 
-   requests serviceUpdateRequests(requests requestToBeUpdated);
+    requests serviceUpdateRequests(requests requestToBeUpdated);
     
+    requests creatRequest(requests newRequest);
 }

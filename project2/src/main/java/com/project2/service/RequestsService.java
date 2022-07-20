@@ -65,6 +65,17 @@ public class RequestsService implements RequestsServiceInterface {
             throw new InvalidRequests("invalid Request: please try again");
         }
     }
+
+    @Override
+    public requests creatRequest(requests newRequest) {
+        if(this.businessRules.requestAmount(newRequest) && 
+        this.businessRules.requestReason(newRequest) &&
+        this.businessRules.statusReason(newRequest)){
+            return this.requestsDao.createRequests(newRequest);
+        }else {
+            throw new InvalidRequests("invalid Request: please try again");
+        }
+    }
    
     
 }

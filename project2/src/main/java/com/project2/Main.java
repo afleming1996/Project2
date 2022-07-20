@@ -49,12 +49,12 @@ public class Main {
         app.get("/requests", RequestsController.getAllRequests); // this is fine, does not need an identifier
 
         // the id inside the {} is called a path parameter: I can use the ctx in the controller to access it
-  //      app.delete("/book/{id}", bookController.deleteBook); 
+        //      app.delete("/book/{id}", bookController.deleteBook); 
 
-         app.patch("/requests/{id}", RequestsController.updateRequest); 
+        app.patch("/requests/{id}", RequestsController.updateRequest); 
 
         // despite working with an individual resource, this route does not need an identifier because the identifier will be created in the course of this endpoint being consumed
-  //      app.post("/book", bookController.createBook)
+              app.post("/requests", RequestsController.createRequests);
         app.start(); // this actually starts our web server so it can listen for http requests
 
     }
