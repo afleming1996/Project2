@@ -47,6 +47,4 @@ public class RequestsTest {
         requests result = requestsDao.ManagerstatusUpdated(updatedRequests);
         Assert.assertEquals("Approved", result.getRequest_status());
     }
-
-
 }
