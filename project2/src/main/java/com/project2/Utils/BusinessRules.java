@@ -27,4 +27,16 @@ public class BusinessRules {
             return false;
         }
     }
+
+    public boolean getMyRequest(requests seeRequests, String username){
+
+        if(seeRequests.getRequester_username().equals(username)){
+             return true;
+        }
+        else{
+            return false;
+
+        }
+    }
+
 }
