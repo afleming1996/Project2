@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.project2.Utils.BusinessRules;
 import com.project2.entities.requests;
+import com.project2.exceptions.InvalidRequests;
 import com.project2.repository.RequestsDAOInterface;
 
 
@@ -42,5 +43,15 @@ public class RequestsService implements RequestsServiceInterface {
         // TODO Auto-generated method stub
         return this.requestsDao.getAllRequests();
     }
+
+    @Override
+    public requests serviceUpdateRequests(requests requestToBeUpdated) {
+        if(this.businessRules.doBusinessRulesPass(requestToBeUpdated)){
+            return this.requestsDao.statusUpdated(requestToBeUpdated);
+        }else {
+            throw new InvalidRequests("invalid Request: please try again");
+        }
+    }
    
+    
 }
