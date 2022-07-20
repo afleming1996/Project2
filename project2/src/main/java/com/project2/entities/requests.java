@@ -53,8 +53,7 @@ public class requests {
         return requester_username;
     }
 
-    public void setRequester_username
-    (String requester_username) {
+    public void setRequester_username(String requester_username) {
         this.requester_username = requester_username;
     }
 
@@ -100,7 +99,8 @@ public class requests {
 
     @Override
     public String toString() {
-        return "requests{" + "id=" + id + ", employee_name=" + requester_username + ", request_reason=" + request_reason + ", amount=" + amount + ", request_status=" + request_status + ", status_reason=" + status_reason + ", manager_name=" + manager_username + '}';
+        return "requests{" + "id=" + id + ", employee_name=" + requester_username + ", request_reason=" + request_reason + ", amount=" + 
+        amount + ", request_status=" + request_status + ", status_reason=" + status_reason + ", manager_name=" + manager_username + '}';
     }
 
     

@@ -38,9 +38,4 @@ public class RequestsServiceTests {
 
     }
 
-    // @Test
-    // ...log in with correct credentials
-
-    // @Test
-    // ...check for unique usernames?
 }
