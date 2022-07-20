@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Manager</title>
+</head>
+<body>
+    <h1>Manager Page Placeholder Name / Request Approval (or Denial) Page</h1>
+    <h3>Requests Table</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Request id | </th><th>Employee name | </th><th>Requested amount | </th><th>Reason given | </th><th>Request status | </th><th>Reason for approval/denial* | </th><th>Update status</th>
+                <!-- *some kind of popup on mouseover that explains no more than 500 chars -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+<script>
+    // make request object
+    // configure request (and convert to json)
+    // make request
+    // handle response
+    async function getAllRequests(){
+        let httpResponse = await(fetch(`${baseURL}requests`));
+        if(httpResponse.status === 200){
+            /*
+                convert httpResponse body into an array of objects
+                for each request in an array of request objects
+                    create a new row element
+                    set innerHTML of the new row with the information of the record
+                    append child row to the table body
+            */
+            const requests = await httpResponse.json();
+            for(let request of requests){
+                let newRow = document.createElement("tr");
+                newRow.innerHTML = `
+                    <td>${requestid}</td>
+                    <td>${requestername}</td>
+                    <td>${requestamount}</td>
+                    <td>${requestreason}</td>
+                    <td><select id = "${status["requestId"]}"> 
+                        <option id = "pending">Pending</option>
+                        <option id = "approved">Approved</option>
+                        <option id = "denied">Denied</option>
+                    </select></td>
+                    <td><input type="text"></td>
+                    <button onclick="updateStatus(${updatedStatus["requestId"]})">Update</button>
+                `;
+                tbody.appendChild(newRow)
+            }
+        } else {
+            alert("you done messed up");
+        }
+    }
+
+
+</script>
+</html>

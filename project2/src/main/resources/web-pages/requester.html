@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Reimbursement Requests Page</title>
+</head>
+<body>
+    <h1>Reimbursement Requests Page</h1>
+    <h2>My Requests</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Request id | </th><th>Request amount | </th><th>Reason for request | </th><th>Request status | </th><th>Reason given</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>New Requests</h2>
+    <h3>Please enter a request amount:</h3>
+    <input type="number" id="amountInput">
+    <p>(REQUESTS MUST NOT EXCEED $1000)</p>
+    <h3>Please enter a reason for this request:</h3>
+    <input type="text" id="requestReasonInput">
+    <button id="requestButton">Submit</button>
+</body>
+<script>
+async function getMyRequests(){
+        let httpResponse = await(fetch(`${baseURL}requests`));
+        if(httpResponse.status === 200){
+            /*
+                convert httpResponse body into an array of objects
+                for each request in an array of request objects
+                    create a new row element
+                    set innerHTML of the new row with the information of the record
+                    append child row to the table body
+            */
+            const requests = await httpResponse.json();
+            for(let request of requests){
+                let newRow = document.createElement("tr");
+                newRow.innerHTML = `
+                    <td>${requestid}</td>
+                    <td>${requestamount}</td>
+                    <td>${requestreason}</td>
+                    <td>${status}></td>
+                    <td>${statusReason}</td>
+                `;
+                tbody.appendChild(newRow)
+            }
+        } else {
+            alert("you done messed up");
+        }
+    }
+</script>
+</html>
