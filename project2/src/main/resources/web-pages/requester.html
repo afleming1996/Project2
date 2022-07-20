@@ -3,13 +3,14 @@
 <head>
     <title>Reimbursement Requests Page</title>
 </head>
+<link rel="stylesheet" href="requester.css">
 <body>
     <h1>Reimbursement Requests Page</h1>
     <h2>My Requests</h2>
     <table>
         <thead>
             <tr>
-                <th>Request id | </th><th>Request amount | </th><th>Reason for request | </th><th>Request status | </th><th>Reason given</th>
+                <th>Request id | </th><th>Requested amount | </th><th>Reason for request | </th><th>Request status | </th><th>Reason given</th>
             </tr>
         </thead>
         <tbody>
@@ -18,39 +19,73 @@
             </tr>
         </tbody>
     </table>
+
+    <!-- styling: should have the new requests part of the page off to the right side -->
     <h2>New Requests</h2>
     <h3>Please enter a request amount:</h3>
-    <input type="number" id="amountInput">
-    <p>(REQUESTS MUST NOT EXCEED $1000)</p>
+    <input type="number" id="amountInput" max="1000">
+    <p>(Requests must not exceed $1000)</p>
     <h3>Please enter a reason for this request:</h3>
-    <input type="text" id="requestReasonInput">
-    <button id="requestButton">Submit</button>
+    <input type="text" id="inputReason" maxlength="500"> <!-- styling: fit content with a max width (field extends below once width-limit reached) -->
+    <p>(Reason must not exceed 500 characters)</p>
+    <button id="requestButton" onclick="createRequest()">Submit</button>
 </body>
 <script>
-async function getMyRequests(){
-        let httpResponse = await(fetch(`${baseURL}requests`));
+async function getMyRequests(){ // somewhere here the request or filtering the responseBody will need to take place to only display username's results
+    let config = {
+            method: "GET",
+            headers:{"Content-Type":"application/json"},
+        }
+
+        let httpResponse = await fetch(`${baseURL}requests`,config);
+        
         if(httpResponse.status === 200){
-            /*
-                convert httpResponse body into an array of objects
-                for each request in an array of request objects
-                    create a new row element
-                    set innerHTML of the new row with the information of the record
-                    append child row to the table body
-            */
             const requests = await httpResponse.json();
             for(let request of requests){
+                let submittedRequests = requests[i];
                 let newRow = document.createElement("tr");
+
+
                 newRow.innerHTML = `
-                    <td>${requestid}</td>
-                    <td>${requestamount}</td>
-                    <td>${requestreason}</td>
-                    <td>${status}></td>
-                    <td>${statusReason}</td>
+                    <td>${submittedRequests[~requestid]}</td>
+                    <td>${submittedRequests[~requestamount]}</td>
+                    <td>${submittedRequests[~requestreason]}</td>
+                    <td>${submittedRequests[~status]}></td>
+                    <td>${submittedRequests[~statusReason]}</td>
                 `;
-                tbody.appendChild(newRow)
+                tbody.appendChild(newRow);
             }
         } else {
             alert("you done messed up");
+        }
+    }    
+
+async function createRequest(){
+    let submitNewRequest = {
+            // defectId: 0,
+            // assignedTo: document.getElementById("testerNames").value,
+            // dateReported: 0,
+            // status: "Pending",
+            // desc: document.getElementById("defectInput").value,
+            // stepsToReproduce: "string",
+            // severity: "Low",
+            // priority: "Low"
+        }
+
+        let config = {
+            method:"POST", 
+            headers:{'Content-Type':"application/json"},
+            body: JSON.stringify(submitNewRequest)
+        }
+
+        let httpResponse = await fetch(`${baseURL}x`,config);
+
+        if(httpResponse.status === 201){
+            let responseBody = await httpResponse.json();
+            alert(`${responseBody.id} has been successfully submitted.`)
+        } else {
+        let responseBody = await httpResponse.json();
+        alert(responseBody.detail);
         }
     }
 </script>
