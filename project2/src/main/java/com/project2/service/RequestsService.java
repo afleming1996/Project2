@@ -40,6 +40,5 @@ public class RequestsService implements RequestsServiceInterface {
         // TODO Auto-generated method stub
         return false;
     }
-
-    
+   
 }
