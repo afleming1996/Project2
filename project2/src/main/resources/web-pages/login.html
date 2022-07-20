@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Please log in to proceed</h1>
+    <h3>Please enter your username:</h3>
+    <input type="text" id="userInput">
+    <h3>Please enter your password:</h3>
+    <input type="password" id="passInput">
+    <br><br>
+    <button onclick="login()">Log in</button>
+</body>
+<script>
+    async function login(){
+        let loginInfo = {
+            username: document.getElementById("userInput").value,
+            password: document.getElementById("passInput").value,
+        }
+
+        let config = {
+            method:"PATCH", 
+            headers:{'Content-Type':"application/json"},
+            body:JSON.stringify(loginInfo)
+        }
+
+        let httpResponse = await fetch(`${baseURL}`,config);
+
+        if(httpResponse.status === 200){
+            let responseBody = await httpResponse.json();
+
+            if(responseBody.role === "Manager"){
+                window.location.href = "manager.html"
+            } else {
+                window.location.href = "requester.html"
+            }
+        } else {
+            let responseBody = await httpResponse.json();
+            alert(responseBody.detail);
+        }
+    }
+</script>
+</html>
