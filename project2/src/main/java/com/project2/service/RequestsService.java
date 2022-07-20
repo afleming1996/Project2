@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.project2.Utils.BusinessRules;
 import com.project2.entities.requests;
+import com.project2.exceptions.InvalidRequests;
 import com.project2.repository.RequestsDAOInterface;
 
 
@@ -53,5 +54,17 @@ public class RequestsService implements RequestsServiceInterface {
     public List<requests> getMyRequests() {
         return requestsDao.getAllRequests();
     }
+
+    @Override
+    public requests serviceUpdateRequests(requests requestToBeUpdated) {
+        if(this.businessRules.requestAmount(requestToBeUpdated) && 
+        this.businessRules.requestReason(requestToBeUpdated) &&
+        this.businessRules.statusReason(requestToBeUpdated)){
+            return this.requestsDao.statusUpdated(requestToBeUpdated);
+        }else {
+            throw new InvalidRequests("invalid Request: please try again");
+        }
+    }
    
+    
 }

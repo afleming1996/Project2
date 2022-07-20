@@ -51,7 +51,7 @@ public class Main {
         // the id inside the {} is called a path parameter: I can use the ctx in the controller to access it
   //      app.delete("/book/{id}", bookController.deleteBook); 
 
-  //      app.patch("/book/{id}", bookController.updateBook); 
+         app.patch("/requests/{id}", RequestsController.updateRequest); 
 
         // despite working with an individual resource, this route does not need an identifier because the identifier will be created in the course of this endpoint being consumed
   //      app.post("/book", bookController.createBook)
