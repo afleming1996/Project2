@@ -41,4 +41,12 @@ public class RequestsTest {
         boolean result = requestsDao.removeRequest(requestsToBeDeleted);
         Assert.assertTrue(result);
     }
+
+    public void ManagerstatusUpdated(){
+        requests updatedRequests = new requests(5, "tester2.0", "test again", 250, "Approved", "I can", "philip");
+        requests result = requestsDao.ManagerstatusUpdated(updatedRequests);
+        Assert.assertEquals("Approved", result.getRequest_status());
+    }
+
+
 }
