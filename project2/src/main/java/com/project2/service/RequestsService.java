@@ -1,13 +1,20 @@
 package com.project2.service;
 
+import com.project2.Utils.BusinessRules;
 import com.project2.entities.requests;
+import com.project2.repository.RequestsDAOInterface;
+
 
 public class RequestsService implements RequestsServiceInterface {
 
     private RequestsServiceInterface RequestsService;
 
-    public RequestsService(RequestsServiceInterface requestsService){
-        this.RequestsService = requestsService;
+    private RequestsDAOInterface requestsDao;
+    private BusinessRules businessRules;
+
+    public RequestsService(RequestsDAOInterface requestsDao, BusinessRules businessRules){
+        this.requestsDao = requestsDao;
+        this.businessRules=businessRules;
     }
 
     @Override
@@ -18,8 +25,8 @@ public class RequestsService implements RequestsServiceInterface {
 
     @Override
     public boolean requestReason(requests requestReason) {
-        // TODO Auto-generated method stub
-        return false;
+       // TODO Auto-generated method stub
+       return false;
     }
 
     @Override
@@ -27,5 +34,12 @@ public class RequestsService implements RequestsServiceInterface {
         // TODO Auto-generated method stub
         return false;
     }
+
+    @Override
+    public boolean getMyRequests(requests getMyRequests) {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
     
 }
