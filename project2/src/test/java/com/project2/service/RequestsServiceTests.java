@@ -38,11 +38,10 @@ public class RequestsServiceTests {
 
     @Test 
     public void statusReasonNegativeTest(){
-            requests badStatusRequest = new requests("porkbellies",
-                    "personal",500,"Pending","Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus","dodgeball");
-            boolean result = businessRules.statusReason(badStatusRequest);
-
-            Assert.assertFalse(result);
+        requests badStatusRequest = new requests("porkbellies",
+                "personal",500,"Pending","Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus","dodgeball");
+        boolean result = businessRules.statusReason(badStatusRequest);
+        Assert.assertFalse(result);
         }
     
 
@@ -57,7 +56,7 @@ public class RequestsServiceTests {
     @Test
     public void requestReasonNegativeTest(){ 
             requests badRequestReason = new requests("porkbellies",
-                    "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus",500,"Pending","pending","dodgeball");
+                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus",500,"Pending","pending","dodgeball");
             boolean result = businessRules.requestReason(badRequestReason);
             Assert.assertFalse(result);
     }
@@ -74,7 +73,7 @@ public class RequestsServiceTests {
     public void requestAmountNegativeTest(){ 
         
             requests badRequestAmount = new requests("porkbellies",
-                    "personal",1001,"Pending","pending","dodgeball");
+                "personal",1001,"Pending","pending","dodgeball");
             boolean result = businessRules.requestAmount(badRequestAmount);
             Assert.assertFalse(result);
         }
