@@ -57,7 +57,9 @@ public class RequestsService implements RequestsServiceInterface {
 
     @Override
     public requests serviceUpdateRequests(requests requestToBeUpdated) {
-        if(this.businessRules.doBusinessRulesPass(requestToBeUpdated)){
+        if(this.businessRules.requestAmount(requestToBeUpdated) && 
+        this.businessRules.requestReason(requestToBeUpdated) &&
+        this.businessRules.statusReason(requestToBeUpdated)){
             return this.requestsDao.statusUpdated(requestToBeUpdated);
         }else {
             throw new InvalidRequests("invalid Request: please try again");
