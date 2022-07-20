@@ -1,5 +1,7 @@
 package com.project2.service;
 
+import java.util.List;
+
 import com.project2.Utils.BusinessRules;
 import com.project2.entities.requests;
 import com.project2.repository.RequestsDAOInterface;
@@ -36,9 +38,9 @@ public class RequestsService implements RequestsServiceInterface {
     }
 
     @Override
-    public boolean getMyRequests(requests getMyRequests) {
+    public List<requests> getMyRequests() {
         // TODO Auto-generated method stub
-        return false;
+        return this.requestsDao.getAllRequests();
     }
    
 }

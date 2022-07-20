@@ -1,5 +1,7 @@
 package com.project2.service;
 
+import java.util.List;
+
 import com.project2.entities.requests;
 
 public interface RequestsServiceInterface {
@@ -14,7 +16,7 @@ public interface RequestsServiceInterface {
 
     boolean requestAmount(requests requestAmount);
 
-    boolean getMyRequests(requests getMyRequests);
+    List<requests> getMyRequests();
 
     //both
    // boolean uniqueUsername(requests uniqueUsername);
