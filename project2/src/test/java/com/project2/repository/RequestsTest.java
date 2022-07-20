@@ -43,7 +43,8 @@ public class RequestsTest {
     }
     @Test
     public void statusUpdated(){
-        requests updatedRequests = new requests(8, "porkbellies", "personal", 500, "Approved", "Approved", "dodgeball");
+        requests updatedRequests = new requests(8, "porkbellies", "personal", 500, "Approved", 
+        "Approved", "dodgeball");
         requests result = requestsDao.statusUpdated(updatedRequests);
         Assert.assertEquals("Approved", result.getRequest_status());
     }
