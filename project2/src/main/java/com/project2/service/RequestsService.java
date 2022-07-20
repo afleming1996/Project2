@@ -22,26 +22,37 @@ public class RequestsService implements RequestsServiceInterface {
 
     @Override
     public boolean statusReason(requests statusReason) {
-        // TODO Auto-generated method stub
-        return false;
+        if(businessRules.statusReason(statusReason)){
+            requestsDao.statusUpdated(statusReason);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
     public boolean requestReason(requests requestReason) {
-       // TODO Auto-generated method stub
-       return false;
+        if(businessRules.requestReason(requestReason)){
+            requestsDao.createRequests(requestReason);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
     public boolean requestAmount(requests requestAmount) {
-        // TODO Auto-generated method stub
-        return false;
+        if(businessRules.requestAmount(requestAmount)){
+            requestsDao.createRequests(requestAmount);
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
     public List<requests> getMyRequests() {
-        // TODO Auto-generated method stub
-        return this.requestsDao.getAllRequests();
+        return requestsDao.getAllRequests();
     }
 
     @Override
