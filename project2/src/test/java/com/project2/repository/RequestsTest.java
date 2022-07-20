@@ -17,11 +17,11 @@ public class RequestsTest {
     }
      //testing Requests 
     @Test
-    public void creatRequests()
+    public void createRequests()
     {
          requests testRequests= new requests("porkbellies",
          "personal",500,"Pending","pending","dodgeball");
-         requests result = requestsDao.creatRequests(testRequests);
+         requests result = requestsDao.createRequests(testRequests);
          Assert.assertNotNull(result.getId());
     }
 
@@ -41,10 +41,10 @@ public class RequestsTest {
         boolean result = requestsDao.removeRequest(requestsToBeDeleted);
         Assert.assertTrue(result);
     }
-
-    public void ManagerstatusUpdated(){
-        requests updatedRequests = new requests(5, "tester2.0", "test again", 250, "Approved", "I can", "philip");
-        requests result = requestsDao.ManagerstatusUpdated(updatedRequests);
+    @Test
+    public void statusUpdated(){
+        requests updatedRequests = new requests(8, "porkbellies", "personal", 500, "Approved", "Approved", "dodgeball");
+        requests result = requestsDao.statusUpdated(updatedRequests);
         Assert.assertEquals("Approved", result.getRequest_status());
     }
 }

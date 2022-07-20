@@ -8,7 +8,7 @@ import com.project2.entities.requests;
 public class RequestsDAO implements RequestsDAOInterface {
 
     @Override
-    public requests creatRequests(requests newRequests) {
+    public requests createRequests(requests newRequests) {
         HibernateUtil.beginTransaction();
         HibernateUtil.getSession().save(newRequests);
         HibernateUtil.endTransaction();
