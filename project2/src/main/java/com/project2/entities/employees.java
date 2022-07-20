@@ -12,24 +12,24 @@ public class employees {
     @GeneratedValue
     private int id;
     private String employee_name;
-    private String username; 
     private String employee_role;
+    private String username; 
     private String user_password;
 
     public employees(){}
 
     public employees(String employee_name, String username, String employee_role, String user_password) {
         this.employee_name = employee_name;
-        this.username = username;
         this.employee_role = employee_role;
+        this.username = username;
         this.user_password = user_password;
     }
     
     public employees(int id, String employee_name, String username, String employee_role, String user_password) {
         this.id = id;
         this.employee_name = employee_name;
-        this.username = username;
         this.employee_role = employee_role;
+        this.username = username;
         this.user_password = user_password;
     }
 
@@ -48,6 +48,14 @@ public class employees {
     public void setEmployee_name(String employee_name) {
         this.employee_name = employee_name;
     }
+    
+    public String getEmployee_role() {
+        return employee_role;
+    }
+
+    public void setEmployee_role(String employee_role) {
+        this.employee_role = employee_role;
+    }
 
     public String getUsername() {
         return username;
@@ -55,14 +63,6 @@ public class employees {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getEmployee_role() {
-        return employee_role;
-    }
-
-    public void setEmployee_role(String employee_role) {
-        this.employee_role = employee_role;
     }
 
     public String getUser_password() {
@@ -75,7 +75,7 @@ public class employees {
 
     @Override
     public String toString() {
-        return "employees{" + "id=" + id + ", employee_name=" + employee_name + ", username=" + username + ", employee_role=" + employee_role + ", user_password=" + user_password + '}';
+        return "employees{" + "id=" + id + ", employee_name=" + employee_name + ", employee_role=" + employee_role + ", username=" + username + ", user_password=" + user_password + '}';
     }
 
 }
