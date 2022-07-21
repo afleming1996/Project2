@@ -14,8 +14,10 @@ insert into employees values(default, 'Marcus Auralius', 'Requester', 'themedita
 insert into employees values(default, 'William Riker', 'Requester', 'maneuver', 'password');
 insert into employees values(default, 'Cotton McKnight', 'Manager', 'dodgeball', 'password');
 insert into employees values(default, 'Clarance Beeks', 'Requester', 'porkbellies', 'password');
+insert into employees values(default, 'Mana Ger', 'Manager', 'mana', 'password');
 
 select * from employees;
 
 alter table employees
 add constraint employee_role check (employee_role in ('Requester', 'Manager'));
+
