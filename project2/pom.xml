@@ -25,14 +25,13 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
-      <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
-      <dependency>
+    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+    <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-core</artifactId>
         <version>5.6.1.Final</version>
-      </dependency>
-
-      <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
     <dependency>
         <groupId>org.postgresql</groupId>
         <artifactId>postgresql</artifactId>
@@ -56,6 +55,25 @@
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
       <version>2.9.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+    <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-java</artifactId>
+        <version>6.1.1</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
+    <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-junit</artifactId>
+        <version>6.1.1</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>3.141.59</version>
     </dependency>
   </dependencies>
   
