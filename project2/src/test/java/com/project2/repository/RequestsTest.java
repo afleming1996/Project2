@@ -27,7 +27,7 @@ public class RequestsTest {
 
      // Test Get all requests
      @Test
-     public void getAllEmployees()
+     public void getAllRequests()
      {
          List<requests> requestsList = requestsDao.getAllRequests();
          Assert.assertTrue(requestsList.size()>=2);
