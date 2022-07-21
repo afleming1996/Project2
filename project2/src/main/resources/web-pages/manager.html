@@ -9,7 +9,7 @@
     <table>
         <thead>
             <tr>
-                <th>Request id | </th><th>Employee name | </th><th>Reason given | </th><th>Requested amount | </th><th>Request status | </th>
+                <th>Request id | </th><th>Employee name | </th><th>Reason given | </th><th>Requested amount | </th><th>Requested status | </th><th>action | </th>
                 <th title="Reason must not exceed 500 characters." onmouseover="style.color='red'" onmouseleave="style.color='black'">Reason for approval/denial* | </th>
                 <th></th>
             </tr>
@@ -47,22 +47,25 @@
                     append child row to the table body
             */
             const requests = await httpResponse.json();
+            console.log(requests)
             for(let request of requests){
-                let submittedRequests = requests[request];
+                console.log(request.request_reason, `requester_reason${request.id}`)
                 let newRow = document.createElement("tr");
                 newRow.innerHTML = `
                     <td id="${request.id}">${request.id}</td>
-                    <td id="requester${request.id}">${request.requester_username}</td>
-                    <td id="requester_reason${request.id}">${request.request_reason}</td>
+                    <td id="requester${request.id}" >${request.requester_username}</td>
+                    <td id="requester_reason${request.id}" value="${request.request_reason}">${request.request_reason}</td>
                     <td id="amount${request.id}">${request.amount}</td>
+                    <td id="requester_status${request.id}">${request.request_status}</td>
                     <td><select id = "status${request.id}"> 
                         <option id = "pending">Pending</option>
                         <option id = "approved">Approved</option>
                         <option id = "denied">Denied</option>
                     </select></td>
                     <td><input type="text" id="status_reason${request.id}"></td>
-                    <button onclick="updateStatus(${request.id}, requester${request.id}, requester_reason${request.id}, ${request.amount}, status${request.id}, status_reason${request.id})">Update</button>
-                `;
+                    <button onclick="updateStatus(${request.id})">Update</button>
+              
+                    `;
                 let tbody = document.getElementById("tbody");
                 tbody.appendChild(newRow);
             }
@@ -70,19 +73,27 @@
             alert("you done messed up");
         }
     }
+
+ 
+    
     getAllRequests();
 
-    async function updateStatus(requester_username, requester_reason, amount, status, status_reason){
+    async function updateStatus(id){
+      let UpdatedStatus = document.getElementById(`status${id}`); 
+      let username = document.getElementById(`requester${id}`);
+      let reason = document.getElementById(`requester_reason${id}`);
+      let status_reason = document.getElementById(`status_reason${id}`);
+      let amount = document.getElementById(`amount${id}`);
         let requestStatus = {
-            requester_username: requester_username,
-            request_reason: requester_reason,
-            amount: amount,
-            request_status: document.getElementById(status), // doesn't like .value
-            status_reason: status_reason,
+            requester_username: username.innerText,
+            request_reason: reason.innerText,
+            amount: amount.innerText,
+            request_status: UpdatedStatus.value, // doesn't like .value
+            status_reason: status_reason.innerText,
             manager_username: "dodgeball"
         }
 
-        // console.log(id, requester, requester_reason, amount, status, status_reason);
+       
 
         let config = {
             method: "PATCH",
@@ -91,9 +102,9 @@
         }
 
         // in current state, get 500 error
-        let httpResponse = await fetch(`${baseURL}27`, config);
+        let httpResponse = await fetch(`${baseURL}${id}`, config);
 
-        if(httpResponse.status === 204){
+        if(httpResponse.status === 200){
             alert(`Request status has been ${document.getElementById(status).value}.`);
         } else {
             console.log("everything is not supposed to be like this")
