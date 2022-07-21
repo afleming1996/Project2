@@ -65,7 +65,7 @@
             requester_username: requester_username,
             request_reason: requester_reason,
             amount: amount,
-            request_status: document.getElementById(status),
+            request_status: document.getElementById(status), // doesn't like .value
             status_reason: status_reason,
             manager_username: "dodgeball"
         }
@@ -78,6 +78,7 @@
             body: JSON.stringify(requestStatus)
         }
 
+        // in current state, get 500 error
         let httpResponse = await fetch(`${baseURL}27`, config);
 
         if(httpResponse.status === 204){
