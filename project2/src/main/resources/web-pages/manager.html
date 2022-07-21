@@ -20,6 +20,13 @@
             </tr>
         </tbody>
     </table>
+    <select name="" id=""></select>
+    <input type="text" id="" placeholder="Reason given">
+    <select name="" id="">
+        <option value="Accepted">Accepted</option>
+        <option value="Denied">Denied</option>
+    </select>
+    <button>Update Button</button>
 </body>
 <script>
     let baseURL = "http://localhost:8080/requests/"
@@ -32,12 +39,17 @@
         let httpResponse = await fetch(`${baseURL}`,config);
         
         if(httpResponse.status === 200){
+            /*
+                convert httpResponse body into an array of objects
+                for each request in an array of request objects
+                    create a new row element
+                    set innerHTML of the new row with the information of the record
+                    append child row to the table body
+            */
             const requests = await httpResponse.json();
             for(let request of requests){
                 let submittedRequests = requests[request];
                 let newRow = document.createElement("tr");
-
-                // currently, the table column is for employee name, but that might require extra steps...if deemed too much hassle, can just change to username and call it good
                 newRow.innerHTML = `
                     <td>${request.id}</td>
                     <td>${request.requester_username}</td>

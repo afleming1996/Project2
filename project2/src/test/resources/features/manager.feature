@@ -5,10 +5,10 @@ Feature: Managers should be able to update the status of reimbursement requests
         Given   the manager is on the manager homepage
         Then    the manager should see the pending reimbersement requests
 
-    Scenario: As a manager I want to be able to approve reimbusement requests so the company knowns whether to pay out or not
+    Scenario: As a manager I want to be able to approve or deny reimbusement requests so the company knowns whether to pay out or not
 
         Given   the manager is on the manager homepage
-        When    the manager clicks the accept selection
+        When    the manager clicks the accept or deny selection
         When    the manager enters a reason not exceeding 500 characters
         When    the manager clicks the submit button
         Then    the manager should have approved the reimbursement request

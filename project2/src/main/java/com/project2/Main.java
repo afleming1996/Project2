@@ -1,7 +1,10 @@
 package com.project2;
 
 
+import org.hibernate.Hibernate;
+
 import com.project2.Utils.BusinessRules;
+import com.project2.Utils.HibernateUtil;
 import com.project2.controllers.RequestsController;
 import com.project2.repository.RequestsDAO;
 import com.project2.repository.RequestsDAOInterface;
@@ -13,7 +16,9 @@ import io.javalin.Javalin;
 public class Main {
 
     public static void main(String[] args) {
-        
+
+            HibernateUtil.getSession();
+            
         // inside of the create method we call a lambda that Javalin can use to configure our web server
         Javalin app = Javalin.create(config ->{
             config.enableCorsForAllOrigins();
