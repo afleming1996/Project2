@@ -9,7 +9,7 @@
     <table>
         <thead>
             <tr>
-                <th>Request id | </th><th>Employee name | </th><th>Requested amount | </th><th>Reason given | </th><th>Request status | </th>
+                <th>Request id | </th><th>Employee name | </th><th>Reason given | </th><th>Requested amount | </th><th>Request status | </th>
                 <th title="Reason must not exceed 500 characters." onmouseover="style.color='red'" onmouseleave="style.color='black'">Reason for approval/denial* | </th>
                 <th></th>
             </tr>
@@ -51,17 +51,17 @@
                 let submittedRequests = requests[request];
                 let newRow = document.createElement("tr");
                 newRow.innerHTML = `
-                    <td>${request.id}</td>
-                    <td>${request.requester_username}</td>
-                    <td>${request.amount}</td>
-                    <td>${request.request_reason}</td>
-                    <td><select id = "${request.id}"> 
+                    <td id="${request.id}">${request.id}</td>
+                    <td id="requester${request.id}">${request.requester_username}</td>
+                    <td id="requester_reason${request.id}">${request.request_reason}</td>
+                    <td id="amount${request.id}">${request.amount}</td>
+                    <td><select id = "status${request.id}"> 
                         <option id = "pending">Pending</option>
                         <option id = "approved">Approved</option>
                         <option id = "denied">Denied</option>
                     </select></td>
-                    <td><input type="text"></td>
-                    <button onclick="updateStatus(${request.id})">Update</button>
+                    <td><input type="text" id="status_reason${request.id}"></td>
+                    <button onclick="updateStatus(${request.id}, requester${request.id}, requester_reason${request.id}, ${request.amount}, status${request.id}, status_reason${request.id})">Update</button>
                 `;
                 let tbody = document.getElementById("tbody");
                 tbody.appendChild(newRow);
@@ -72,47 +72,34 @@
     }
     getAllRequests();
 
-    async function updateStatus(requestIdParameter){
-        let config = {
-            method: "GET",
-            headers:{"Content-Type":"application/json"},
+    async function updateStatus(requester_username, requester_reason, amount, status, status_reason){
+        let requestStatus = {
+            requester_username: requester_username,
+            request_reason: requester_reason,
+            amount: amount,
+            request_status: document.getElementById(status), // doesn't like .value
+            status_reason: status_reason,
+            manager_username: "dodgeball"
         }
 
-        let httpResponse = await fetch(`${baseURL}`,config);
-        
-        if(httpResponse.status === 200){
-            const requests = await httpResponse.json();
-            for(let request of requests){
-                if (request.id === requestIdParameter) {
-        
-                    let requestStatus = {
-                        requester_username: request.requester_username,
-                        request_reason: request.request_reason,
-                        amount: request.amount,
-                        request_status: request.request_status,
-                        status_reason: request.status_reason,
-                        manager_username: request.manager_username
-                    }
+        // console.log(id, requester, requester_reason, amount, status, status_reason);
 
-                    let config = {
-                        method: "PATCH",
-                        headers: {"Content-Type":"application/json"},
-                        body: JSON.stringify(requestStatus)
-                    }
+        let config = {
+            method: "PATCH",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify(requestStatus)
+        }
 
-                    let httpResponse = await fetch(`${baseURL}${requestIdParameter}`, config);
+        // in current state, get 500 error
+        let httpResponse = await fetch(`${baseURL}27`, config);
 
-                    if(httpResponse.status === 204){
-                        alert(`Request status has been ${document.getElementById(requestIdParameter).value}.`);
-                    } else {
-                        console.log("everything is not supposed to be like this");
-                    }
-                } 
-            }
+        if(httpResponse.status === 204){
+            alert(`Request status has been ${document.getElementById(status).value}.`);
         } else {
-            alert("so messed up");
+            console.log("everything is not supposed to be like this")
         }
     }
+
 
 </script>
 </html>
