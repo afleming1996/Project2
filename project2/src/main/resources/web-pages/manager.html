@@ -11,10 +11,10 @@
             <tr>
                 <th>Request id | </th><th>Employee name | </th><th>Requested amount | </th><th>Reason given | </th><th>Request status | </th>
                 <th title="Reason must not exceed 500 characters." onmouseover="style.color='red'" onmouseleave="style.color='black'">Reason for approval/denial* | </th>
-                <th>Update status</th>
+                <th></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="tbody">
             <tr>
                 <td></td>
             </tr>
@@ -22,34 +22,36 @@
     </table>
 </body>
 <script>
+    let baseURL = "http://localhost:8080/requests/"
     async function getAllRequests(){
         let config = {
             method: "GET",
             headers:{"Content-Type":"application/json"},
         }
 
-        let httpResponse = await fetch(`${baseURL}requests`,config);
+        let httpResponse = await fetch(`${baseURL}`,config);
         
         if(httpResponse.status === 200){
             const requests = await httpResponse.json();
             for(let request of requests){
-                let submittedRequests = requests[i];
+                let submittedRequests = requests[request];
                 let newRow = document.createElement("tr");
 
                 // currently, the table column is for employee name, but that might require extra steps...if deemed too much hassle, can just change to username and call it good
                 newRow.innerHTML = `
-                    <td>${submittedRequests["~id"]}</td>
-                    <td>${submittedRequests["~name"]}</td>
-                    <td>${submittedRequests["~amount"]}</td>
-                    <td>${submittedRequests["~requestReason"]}</td>
-                    <td><select id = "${submittedRequests["~id"]}"> 
+                    <td>${request.id}</td>
+                    <td>${request.requester_username}</td>
+                    <td>${request.amount}</td>
+                    <td>${request.request_reason}</td>
+                    <td><select id = "${request.id}"> 
                         <option id = "pending">Pending</option>
                         <option id = "approved">Approved</option>
                         <option id = "denied">Denied</option>
                     </select></td>
                     <td><input type="text"></td>
-                    <button onclick="updateStatus(${submittedRequests["~id"]})">Update</button>
+                    <button onclick="updateStatus(${request.id})">Update</button>
                 `;
+                let tbody = document.getElementById("tbody");
                 tbody.appendChild(newRow);
             }
         } else {
@@ -59,25 +61,46 @@
     getAllRequests();
 
     async function updateStatus(requestIdParameter){
-        let requestStatus = {
-            status: document.getElementById(requestIdParameter).value
-        }
-
         let config = {
-            method: "PATCH",
-            headers: {"Content-Type":"application/json"},
-            body: JSON.stringify(requestStatus)
+            method: "GET",
+            headers:{"Content-Type":"application/json"},
         }
 
-        let httpResponse = await fetch(`${baseURL}${requestIdParameter}`, config);
+        let httpResponse = await fetch(`${baseURL}`,config);
+        
+        if(httpResponse.status === 200){
+            const requests = await httpResponse.json();
+            for(let request of requests){
+                if (request.id === requestIdParameter) {
+        
+                    let requestStatus = {
+                        requester_username: request.requester_username,
+                        request_reason: request.request_reason,
+                        amount: request.amount,
+                        request_status: request.request_status,
+                        status_reason: request.status_reason,
+                        manager_username: request.manager_username
+                    }
 
-        if(httpResponse.status === 204){
-            alert(`Request status has been ${document.getElementById(requestIdParameter).value}.`);
+                    let config = {
+                        method: "PATCH",
+                        headers: {"Content-Type":"application/json"},
+                        body: JSON.stringify(requestStatus)
+                    }
+
+                    let httpResponse = await fetch(`${baseURL}${requestIdParameter}`, config);
+
+                    if(httpResponse.status === 204){
+                        alert(`Request status has been ${document.getElementById(requestIdParameter).value}.`);
+                    } else {
+                        console.log("everything is not supposed to be like this");
+                    }
+                } 
+            }
         } else {
-            console.log("everything is not supposed to be like this")
+            alert("so messed up");
         }
     }
-
 
 </script>
 </html>
