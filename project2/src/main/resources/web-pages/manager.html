@@ -39,13 +39,6 @@
         let httpResponse = await fetch(`${baseURL}`,config);
         
         if(httpResponse.status === 200){
-            /*
-                convert httpResponse body into an array of objects
-                for each request in an array of request objects
-                    create a new row element
-                    set innerHTML of the new row with the information of the record
-                    append child row to the table body
-            */
             const requests = await httpResponse.json();
             console.log(requests)
             for(let request of requests){
@@ -78,22 +71,17 @@
     
     getAllRequests();
 
-    async function updateStatus(id){
-      let UpdatedStatus = document.getElementById(`status${id}`); 
-      let username = document.getElementById(`requester${id}`);
-      let reason = document.getElementById(`requester_reason${id}`);
-      let status_reason = document.getElementById(`status_reason${id}`);
-      let amount = document.getElementById(`amount${id}`);
-        let requestStatus = {
-            requester_username: username.innerText,
-            request_reason: reason.innerText,
-            amount: amount.innerText,
-            request_status: UpdatedStatus.value, // doesn't like .value
-            status_reason: status_reason.innerText,
-            manager_username: "dodgeball"
-        }
+    async function updateStatus(id, requester_username, requester_reason, amount, status, status_reason){
 
-       
+        console.log(id, requester_username.innerText, requester_reason.innerText, amount, status.value, status_reason.value);
+        let requestStatus = {
+            requester_username: requester_username.innerText,
+            request_reason: requester_reason.innerText,
+            amount: amount,
+            request_status: status.value,
+            status_reason: status_reason.value,
+            manager_username: "dodgeball" // let's connect this to the credentials from the login page
+        }
 
         let config = {
             method: "PATCH",
@@ -101,7 +89,6 @@
             body: JSON.stringify(requestStatus)
         }
 
-        // in current state, get 500 error
         let httpResponse = await fetch(`${baseURL}${id}`, config);
 
         if(httpResponse.status === 200){
@@ -110,7 +97,6 @@
             console.log("everything is not supposed to be like this")
         }
     }
-
 
 </script>
 </html>
