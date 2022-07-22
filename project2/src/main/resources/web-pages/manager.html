@@ -11,6 +11,7 @@
             <tr>
                 <th>Request id</th><th>Employee name</th><th>Reason given</th><th>Requested amount</th><th>Status</th><th>action</th>
                 <th title="Reason must not exceed 500 characters." onmouseover="style.color='aquamarine'" onmouseleave="style.color='white'">Reason for status change*</th>
+
                 <th></th>
                 <!-- preference is to remove status column if stretch goals result in approve and deny tables -->
             </tr>
@@ -39,15 +40,17 @@
                 let newRow = document.createElement("tr");
                 newRow.innerHTML = `
                     <td id="${request.id}">${request.id}</td>
-                    <td id="requester${request.id}" >${request.requester_username}</td>
-                    <td id="requester_reason${request.id}" value="${request.request_reason}">${request.request_reason}</td>
+                    <td id="requester${request.id}">${request.requester_username}</td>
+                    <td id="requester_reason${request.id}">${request.request_reason}</td>
                     <td id="amount${request.id}">${request.amount}</td>
                     <td id="requester_status${request.id}">${request.request_status}</td>
-                    <td><select id = "status${request.id}"> 
-                        <option id = "pending">Pending</option>
-                        <option id = "approved">Approved</option>
-                        <option id = "denied">Denied</option>
-                    </select></td>
+                    <td>
+                        <select id = "status${request.id}"> 
+                            <option id = "pending">Pending</option>
+                            <option id = "approved">Approved</option>
+                            <option id = "denied">Denied</option>
+                        </select>
+                    </td>
                     <td><input type="text" id="status_reason${request.id}"></td>
                     <button onclick="updateStatus(${request.id})">Update</button>
                 `;
@@ -92,5 +95,6 @@
             console.log("The updateStatus function does not function.")
         }
     }
+
 </script>
 </html>
