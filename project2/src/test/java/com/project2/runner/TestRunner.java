@@ -28,7 +28,7 @@ public class TestRunner {
 
     @BeforeClass
     public static void setup(){
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/test/resources/chromedriver.exe");
         driver=new ChromeDriver();
         login=new Login(driver);
         logout=new LogOut(driver);

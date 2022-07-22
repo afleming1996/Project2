@@ -5,9 +5,14 @@ import org.hibernate.Hibernate;
 
 import com.project2.Utils.BusinessRules;
 import com.project2.Utils.HibernateUtil;
+import com.project2.controllers.EmployeesController;
 import com.project2.controllers.RequestsController;
+import com.project2.repository.EmployeesDAO;
+import com.project2.repository.EmployeesDAOInterface;
 import com.project2.repository.RequestsDAO;
 import com.project2.repository.RequestsDAOInterface;
+import com.project2.service.EmployeesService;
+import com.project2.service.EmployeesServiceInterface;
 import com.project2.service.RequestsService;
 import com.project2.service.RequestsServiceInterface;
 
@@ -30,12 +35,16 @@ public class Main {
             must be given a service object. However, that service object requires its own dependencies to work
             correctly, so this is where we create our official objects for our repository and service layers so
             that our API can correctly send information where it needs to go
-        */
+        */ 
+        BusinessRules businessRules = new BusinessRules();
 
         RequestsDAOInterface RequestsDao = new RequestsDAO();
-        BusinessRules businessRules = new BusinessRules();
-        RequestsServiceInterface bookService = new RequestsService(RequestsDao, businessRules);
-        RequestsController RequestsController = new RequestsController(bookService);
+        RequestsServiceInterface RequestsService = new RequestsService(RequestsDao, businessRules);
+        RequestsController RequestsController = new RequestsController(RequestsService);
+
+        EmployeesDAOInterface employeesDAO = new EmployeesDAO();
+        EmployeesServiceInterface employeesService = new EmployeesService(employeesDAO);
+        EmployeesController EmployeesController = new EmployeesController(employeesService);
 
         /*
             the code below is used to "expose" these endpoints so that users can "consume" them. Any hhtp
@@ -49,6 +58,8 @@ public class Main {
             notice that my path strings all include book in them: this is part of creating a restful web service, something we will talk
             more about tomorrow
         */
+
+        app.patch("/employees", EmployeesController.getAllEmployees);
 
         // book here indicates the resource this http request works with
         app.get("/requests", RequestsController.getAllRequests); // this is fine, does not need an identifier

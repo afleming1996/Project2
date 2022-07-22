@@ -13,28 +13,32 @@
     <button onclick="login()" id="btn">Log in</button>
 </body>
 <script>
+    let baseURL = "http://localhost:8080/employees"
+    const    username = document.getElementById("userInput").value;
+    const    password = document.getElementById("passInput").value;
+    
     async function login(){
-        let loginInfo = {
-            username: document.getElementById("userInput").value,
-            password: document.getElementById("passInput").value,
-        }
-
         let config = {
-            method:"PATCH", 
-            headers:{'Content-Type':"application/json"},
-            body:JSON.stringify(loginInfo)
+            method: "GET",
+            headers:{"Content-Type":"application/json"},
         }
 
+        // Working on a method in MAIN to handling the Username and Password
         let httpResponse = await fetch(`${baseURL}`,config);
-
+        console.log(httpResponse)
         if(httpResponse.status === 200){
             let responseBody = await httpResponse.json();
-
-            if(responseBody.role === "Manager"){
-                window.location.href = "manager.html"
-            } else {
-                window.location.href = "requester.html"
+            console.log(responseBody)
+            for(let i of responseBody){
+                if(username == i.username && password == i.user_password){
+                    if(i.employee_role === "Manager"){
+                        window.location.href = "manager.html"
+                    } else {
+                        window.location.href = "requester.html"
+                    }   
+                } 
             }
+           
         } else {
             let responseBody = await httpResponse.json();
             alert(responseBody.detail);
