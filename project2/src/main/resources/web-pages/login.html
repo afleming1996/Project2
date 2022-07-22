@@ -14,10 +14,11 @@
 </body>
 <script>
     let baseURL = "http://localhost:8080/employees"
-    const    username = document.getElementById("userInput").value;
-    const    password = document.getElementById("passInput").value;
+    const    usernameInput = document.getElementById("userInput");
+    const    passwordInput = document.getElementById("passInput");
     
     async function login(){
+        console.log(passwordInput.value,usernameInput.value);
         let config = {
             method: "GET",
             headers:{"Content-Type":"application/json"},
@@ -30,7 +31,8 @@
             let responseBody = await httpResponse.json();
             console.log(responseBody)
             for(let i of responseBody){
-                if(username == i.username && password == i.user_password){
+              
+                if(usernameInput.value === i.username && passwordInput.value === i.user_password){
                     if(i.employee_role === "Manager"){
                         window.location.href = "manager.html"
                     } else {

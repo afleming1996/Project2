@@ -15,5 +15,14 @@ public class EmployeesDAO implements EmployeesDAOInterface {
         return employeesList;
     }
 
+    @Override
+    public employees CheckUserCridential() {
+        HibernateUtil.beginTransaction();
+        employees checkEmployeesInfo = HibernateUtil.getSession().createQuery("from employees",employees.class).uniqueResult();
+        HibernateUtil.getSession().delete(checkEmployeesInfo);
+        HibernateUtil.endTransaction();
+        return checkEmployeesInfo;
+    }
+
     
 }
