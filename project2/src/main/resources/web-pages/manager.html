@@ -88,7 +88,7 @@
             amount: amount.innerText,
             request_status: UpdatedStatus.value, // doesn't like .value
             status_reason: status_reason.innerText,
-            manager_username: "dodgeball"
+            manager_username: "TBD"
      }
 
        
@@ -103,7 +103,7 @@
         let httpResponse = await fetch(`${baseURL}${id}`, config);
 
         if(httpResponse.status === 200){
-            alert(`Request status has been ${document.getElementById(status).value}.`);
+            alert(`Request${id} status has been ${UpdatedStatus.value}.`);
         } else {
             console.log("everything is not supposed to be like this")
         }
