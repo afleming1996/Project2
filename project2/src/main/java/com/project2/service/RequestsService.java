@@ -10,8 +10,6 @@ import com.project2.repository.RequestsDAOInterface;
 
 public class RequestsService implements RequestsServiceInterface {
 
-    private RequestsServiceInterface RequestsService;
-
     private RequestsDAOInterface requestsDao;
     private BusinessRules businessRules;
 

@@ -14,12 +14,12 @@ public class LoginSteps {
     //Manager Login Steps
     @Given("the manager is on the login page")
     public void the_manager_is_on_the_login_page() {
-        TestRunner.driver.get("File://C:/Users/sain4/Desktop/Project2/project2/src/main/resources/web-pages/login.html");
+        TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/login.html");
     }
 
     @When("the manager enters his correct username")
     public void the_manager_enters_his_correct_username() {
-        TestRunner.login.enterUsername("username");
+        TestRunner.login.enterUsername("Mana");
     }
 
     @When("the manager enters his correct password")
@@ -43,13 +43,13 @@ public class LoginSteps {
    
     @Given("the employee is on the login page")
     public void the_employee_is_on_the_login_page() {
-        TestRunner.driver.get("File://C:/Users/sain4/Desktop/Project2/project2/src/main/resources/web-pages/login.html");
+        TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/login.html");
 
     }
 
     @When("the employee enters his correct username")
     public void the_employee_enters_his_correct_username() {
-        TestRunner.login.enterUsername("username");
+        TestRunner.login.enterUsername("themeditationking");
     }
     @When("the employee enters his correct password")
     public void the_employee_enters_his_correct_password() {

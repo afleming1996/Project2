@@ -18,7 +18,7 @@ public class EmployeesTest {
 
     @Test
     public void getEmployees() {
-        List<employees> employeesList = employeeDAO.getEmployees();
+        List<employees> employeesList = employeeDAO.getAllEmployees();
         Assert.assertTrue(employeesList.size()>=2);
     }
 }

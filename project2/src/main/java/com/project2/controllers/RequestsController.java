@@ -5,14 +5,17 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
+import com.project2.entities.employees;
 import com.project2.entities.requests;
 import com.project2.exceptions.InvalidRequests;
+import com.project2.service.EmployeesServiceInterface;
 import com.project2.service.RequestsServiceInterface;
 
 import io.javalin.http.Handler;
 
 public class RequestsController {
     private RequestsServiceInterface requestsService;
+    private EmployeesServiceInterface employeesService;
     private Gson gson;
 
     public RequestsController(RequestsServiceInterface requestsService)
@@ -80,6 +83,6 @@ public class RequestsController {
         }
     };
 
-   
+  
 
 }
