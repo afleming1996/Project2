@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Manager</title>
+    <title>Determine Reimbursement Status</title>
 </head>
 <body>
-    <h1>Manager Page Placeholder Name / Request Approval (or Denial) Page</h1>
+    <h1 style="text-align:center">Determine Reimbursement Status</h1>
     <h3>Requests Table</h3>
-    <table>
+    <table style="background-color:#741B52; color:white">
         <thead>
             <tr>
                 <th>Request id | </th><th>Employee name | </th><th>Reason given | </th><th>Requested amount | </th><th>Requested status | </th><th>action | </th>
-                <th title="Reason must not exceed 500 characters." onmouseover="style.color='red'" onmouseleave="style.color='black'">Reason for approval/denial* | </th>
+                <th title="Reason must not exceed 500 characters." onmouseover="style.color='aquamarine'" onmouseleave="style.color='white'">Reason for approval/denial* | </th>
+                <!-- could use some styling here - a border? -->
                 <th></th>
             </tr>
         </thead>
@@ -20,13 +21,6 @@
             </tr>
         </tbody>
     </table>
-    <select name="" id=""></select>
-    <input type="text" id="" placeholder="Reason given">
-    <select name="" id="">
-        <option value="Accepted">Accepted</option>
-        <option value="Denied">Denied</option>
-    </select>
-    <button>Update Button</button>
 </body>
 <script>
     let baseURL = "http://localhost:8080/requests/"
@@ -40,21 +34,22 @@
         
         if(httpResponse.status === 200){
             const requests = await httpResponse.json();
-            console.log(requests)
             for(let request of requests){
                 console.log(request.request_reason, `requester_reason${request.id}`)
                 let newRow = document.createElement("tr");
                 newRow.innerHTML = `
                     <td id="${request.id}">${request.id}</td>
-                    <td id="requester${request.id}" >${request.requester_username}</td>
-                    <td id="requester_reason${request.id}" value="${request.request_reason}">${request.request_reason}</td>
+                    <td id="requester${request.id}">${request.requester_username}</td>
+                    <td id="requester_reason${request.id}">${request.request_reason}</td>
                     <td id="amount${request.id}">${request.amount}</td>
                     <td id="requester_status${request.id}">${request.request_status}</td>
-                    <td><select id = "status${request.id}"> 
-                        <option id = "pending">Pending</option>
-                        <option id = "approved">Approved</option>
-                        <option id = "denied">Denied</option>
-                    </select></td>
+                    <td>
+                        <select id = "status${request.id}"> 
+                            <option id = "pending">Pending</option>
+                            <option id = "approved">Approved</option>
+                            <option id = "denied">Denied</option>
+                        </select>
+                    </td>
                     <td><input type="text" id="status_reason${request.id}"></td>
                     <button onclick="updateStatus(${request.id})">Update</button>
               
@@ -63,23 +58,20 @@
                 tbody.appendChild(newRow);
             }
         } else {
-            alert("you done messed up");
+            alert("the getAllRequests function does not ...function");
         }
     }
 
- 
-    
     getAllRequests();
 
-    async function updateStatus(id, requester_username, requester_reason, amount, status, status_reason){
 
-        console.log(id, requester_username.innerText, requester_reason.innerText, amount, status.value, status_reason.value);
+    async function updateStatus(id, requester_username, requester_reason, amount, status, status_reason){
         let requestStatus = {
             requester_username: requester_username.innerText,
             request_reason: requester_reason.innerText,
             amount: amount,
             request_status: status.value,
-            status_reason: status_reason.value,
+            status_reason: status_reason.value, // styling to auto-fit length to content
             manager_username: "dodgeball" // let's connect this to the credentials from the login page
         }
 
@@ -91,10 +83,10 @@
 
         let httpResponse = await fetch(`${baseURL}${id}`, config);
 
-        if(httpResponse.status === 200){
+        if(httpResponse.status === 204){
             alert(`Request status has been ${document.getElementById(status).value}.`);
         } else {
-            console.log("everything is not supposed to be like this")
+            console.log("the updateStatus function does not...function")
         }
     }
 
