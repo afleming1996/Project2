@@ -39,13 +39,6 @@
         let httpResponse = await fetch(`${baseURL}`,config);
         
         if(httpResponse.status === 200){
-            /*
-                convert httpResponse body into an array of objects
-                for each request in an array of request objects
-                    create a new row element
-                    set innerHTML of the new row with the information of the record
-                    append child row to the table body
-            */
             const requests = await httpResponse.json();
             for(let request of requests){
                 let submittedRequests = requests[request];
@@ -72,17 +65,17 @@
     }
     getAllRequests();
 
-    async function updateStatus(requester_username, requester_reason, amount, status, status_reason){
-        let requestStatus = {
-            requester_username: requester_username,
-            request_reason: requester_reason,
-            amount: amount,
-            request_status: document.getElementById(status), // doesn't like .value
-            status_reason: status_reason,
-            manager_username: "dodgeball"
-        }
+    async function updateStatus(id, requester_username, requester_reason, amount, status, status_reason){
 
-        // console.log(id, requester, requester_reason, amount, status, status_reason);
+        console.log(id, requester_username.innerText, requester_reason.innerText, amount, status.value, status_reason.value);
+        let requestStatus = {
+            requester_username: requester_username.innerText,
+            request_reason: requester_reason.innerText,
+            amount: amount,
+            request_status: status.value,
+            status_reason: status_reason.value,
+            manager_username: "dodgeball" // let's connect this to the credentials from the login page
+        }
 
         let config = {
             method: "PATCH",
@@ -90,8 +83,7 @@
             body: JSON.stringify(requestStatus)
         }
 
-        // in current state, get 500 error
-        let httpResponse = await fetch(`${baseURL}27`, config);
+        let httpResponse = await fetch(`${baseURL}${id}`, config);
 
         if(httpResponse.status === 204){
             alert(`Request status has been ${document.getElementById(status).value}.`);
@@ -99,7 +91,6 @@
             console.log("everything is not supposed to be like this")
         }
     }
-
 
 </script>
 </html>
