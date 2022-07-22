@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Manager</title>
+    <title>Determine Reimbursement Status</title>
 </head>
 <body>
-    <h1>Manager Page Placeholder Name / Request Approval (or Denial) Page</h1>
+    <h1 style="text-align:center">Determine Reimbursement Status</h1>
     <h3>Requests Table</h3>
-    <table>
+    <table style="background-color:#741B52; color:white">
         <thead>
             <tr>
-                <th>Request id | </th><th>Employee name | </th><th>Reason given | </th><th>Requested amount | </th><th>Requested status | </th><th>action | </th>
-                <th title="Reason must not exceed 500 characters." onmouseover="style.color='red'" onmouseleave="style.color='black'">Reason for approval/denial* | </th>
+                <th>Request id</th><th>Employee name</th><th>Reason given</th><th>Requested amount</th><th>Status</th><th>action</th>
+                <th title="Reason must not exceed 500 characters." onmouseover="style.color='aquamarine'" onmouseleave="style.color='white'">Reason for status change*</th>
                 <th></th>
+                <!-- preference is to remove status column if stretch goals result in approve and deny tables -->
             </tr>
         </thead>
         <tbody id="tbody">
@@ -20,16 +21,10 @@
             </tr>
         </tbody>
     </table>
-    <select name="" id=""></select>
-    <input type="text" id="" placeholder="Reason given">
-    <select name="" id="">
-        <option value="Accepted">Accepted</option>
-        <option value="Denied">Denied</option>
-    </select>
-    <button>Update Button</button>
 </body>
 <script>
     let baseURL = "http://localhost:8080/requests/"
+
     async function getAllRequests(){
         let config = {
             method: "GET",
@@ -37,18 +32,10 @@
         }
 
         let httpResponse = await fetch(`${baseURL}`,config);
-        
+        // need styling to auto-fit content to length for reason input field
         if(httpResponse.status === 200){
-            /*
-                convert httpResponse body into an array of objects
-                for each request in an array of request objects
-                    create a new row element
-                    set innerHTML of the new row with the information of the record
-                    append child row to the table body
-            */
             const requests = await httpResponse.json();
             for(let request of requests){
-                
                 let newRow = document.createElement("tr");
                 newRow.innerHTML = `
                     <td id="${request.id}">${request.id}</td>
@@ -68,30 +55,28 @@
                 tbody.appendChild(newRow);
             }
         } else {
-            alert("you done messed up");
+            alert("The getAllRequests function does not function.");
         }
     }
 
- 
-    
     getAllRequests();
 
+
     async function updateStatus(id){
-      let UpdatedStatus = document.getElementById(`status${id}`); 
+      let updatedStatus = document.getElementById(`status${id}`); 
       let username = document.getElementById(`requester${id}`);
       let reason = document.getElementById(`requester_reason${id}`);
       let status_reason = document.getElementById(`status_reason${id}`);
       let amount = document.getElementById(`amount${id}`);
+
       let requestStatus = {
             requester_username: username.innerText,
             request_reason: reason.innerText,
             amount: amount.innerText,
-            request_status: UpdatedStatus.value, // doesn't like .value
-            status_reason: status_reason.innerText,
+            request_status: updatedStatus.value,
+            status_reason: status_reason.value,
             manager_username: "TBD"
-     }
-
-       
+        }
 
         let config = {
             method: "PATCH",
@@ -99,16 +84,13 @@
             body: JSON.stringify(requestStatus)
         }
 
-        // in current state, get 500 error
         let httpResponse = await fetch(`${baseURL}${id}`, config);
 
         if(httpResponse.status === 200){
-            alert(`Request${id} status has been ${UpdatedStatus.value}.`);
+            alert(`Status for request ${id} has been changed to ${updatedStatus.value}.`);
         } else {
-            console.log("everything is not supposed to be like this")
+            console.log("The updateStatus function does not function.")
         }
     }
-
-
 </script>
 </html>
