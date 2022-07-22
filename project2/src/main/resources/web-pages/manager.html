@@ -5,18 +5,45 @@
 </head>
 <body>
     <h1 style="text-align:center">Determine Reimbursement Status</h1>
-    <h3>Requests Table</h3>
-    <table style="background-color:#741B52; color:white">
+    <h3>Pending Requests</h3>
+    <table id="tab-pending" style="background-color:#741B52; color:white">
         <thead>
             <tr>
-                <th>Request id</th><th>Employee name</th><th>Reason given</th><th>Requested amount</th><th>Status</th><th>action</th>
-                <th title="Reason must not exceed 500 characters." onmouseover="style.color='aquamarine'" onmouseleave="style.color='white'">Reason for status change*</th>
-
-                <th></th>
-                <!-- preference is to remove status column if stretch goals result in approve and deny tables -->
+                <th>Request id</th><th>Employee username</th><th>Reason given</th><th>Requested amount</th><th>Status</th>
+                <th title="Reason must not exceed 500 characters." onmouseover="style.color='aquamarine'" onmouseleave="style.color='white'">Reason for approval/denial*</th>
             </tr>
         </thead>
-        <tbody id="tbody">
+        <tbody id="tbody-pending">
+            <tr>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br>
+    <h2 style="text-align:center">Closed Requests</h2>
+    <h3>Approved Requests</h3>
+    <table id="tab-approved" style="background-color:#741B52; color:white">
+        <thead>
+            <tr>
+                <th>Request id</th><th>Employee username</th><th>Reason given</th><th>Requested amount</th>
+                <th title="Reason must not exceed 500 characters." onmouseover="style.color='aquamarine'" onmouseleave="style.color='white'">Reason for status</th>
+            </tr>
+        </thead>
+        <tbody id="tbody-approved">
+            <tr>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>Denied Requests</h3>
+    <table id="tab-denied" style="background-color:#741B52; color:white">
+        <thead>
+            <tr>
+                <th>Request id</th><th>Employee username</th><th>Reason given</th><th>Requested amount</th>
+                <th title="Reason must not exceed 500 characters." onmouseover="style.color='aquamarine'" onmouseleave="style.color='white'">Reason for status</th>
+            </tr>
+        </thead>
+        <tbody id="tbody-denied">
             <tr>
                 <td></td>
             </tr>
@@ -25,7 +52,10 @@
 </body>
 <script>
     let baseURL = "http://localhost:8080/requests/"
-
+    let tbodyPending = document.getElementById("tbody-pending");
+    let tbodyDenied = document.getElementById("tbody-denied");
+    let tbodyApproved = document.getElementById("tbody-approved");
+    
     async function getAllRequests(){
         let config = {
             method: "GET",
@@ -39,11 +69,10 @@
             for(let request of requests){
                 let newRow = document.createElement("tr");
                 newRow.innerHTML = `
-                    <td id="${request.id}">${request.id}</td>
-                    <td id="requester${request.id}">${request.requester_username}</td>
+                    <td style="text-align:right" id="${request.id}">${request.id}</td>
+                    <td style="text-align:center" id="requester${request.id}">${request.requester_username}</td>
                     <td id="requester_reason${request.id}">${request.request_reason}</td>
-                    <td id="amount${request.id}">${request.amount}</td>
-                    <td id="requester_status${request.id}">${request.request_status}</td>
+                    <td style="text-align:center" id="amount${request.id}">${request.amount}</td>
                     <td>
                         <select id = "status${request.id}"> 
                             <option id = "pending">Pending</option>
@@ -54,8 +83,23 @@
                     <td><input type="text" id="status_reason${request.id}"></td>
                     <button onclick="updateStatus(${request.id})">Update</button>
                 `;
-                let tbody = document.getElementById("tbody");
-                tbody.appendChild(newRow);
+
+                let closedRequestRow = document.createElement("tr");
+                closedRequestRow.innerHTML = `
+                    <td style="text-align:right" id="${request.id}">${request.id}</td>
+                    <td style="text-align:center" id="requester${request.id}">${request.requester_username}</td>
+                    <td id="requester_reason${request.id}">${request.request_reason}</td>
+                    <td style="text-align:center" id="amount${request.id}">${request.amount}</td>
+                    <td id="status_reason${request.id}">${request.status_reason}</td>
+                `;
+                
+                if(request.request_status === "Approved"){
+                    tbodyApproved.appendChild(closedRequestRow);
+                } else if (request.request_status === "Denied"){
+                    tbodyDenied.appendChild(closedRequestRow);
+                } else {
+                    tbodyPending.appendChild(newRow);
+                }
             }
         } else {
             alert("The getAllRequests function does not function.");
@@ -66,13 +110,13 @@
 
 
     async function updateStatus(id){
-      let updatedStatus = document.getElementById(`status${id}`); 
-      let username = document.getElementById(`requester${id}`);
-      let reason = document.getElementById(`requester_reason${id}`);
-      let status_reason = document.getElementById(`status_reason${id}`);
-      let amount = document.getElementById(`amount${id}`);
-
-      let requestStatus = {
+        let updatedStatus = document.getElementById(`status${id}`); 
+        let username = document.getElementById(`requester${id}`);
+        let reason = document.getElementById(`requester_reason${id}`);
+        let status_reason = document.getElementById(`status_reason${id}`);
+        let amount = document.getElementById(`amount${id}`);
+        let newRow = document.createElement(`tr${id}`);
+        let requestStatus = {
             requester_username: username.innerText,
             request_reason: reason.innerText,
             amount: amount.innerText,
@@ -91,9 +135,12 @@
 
         if(httpResponse.status === 200){
             alert(`Status for request ${id} has been changed to ${updatedStatus.value}.`);
+            tbodyPending.deleteRow(newRow);
+            window.location.reload();
         } else {
             console.log("The updateStatus function does not function.")
         }
+
     }
 
 </script>
