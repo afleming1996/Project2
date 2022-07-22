@@ -2,91 +2,112 @@
 <html lang="en">
 <head>
     <title>Reimbursement Requests Page</title>
+    <style>
+        .column {
+        float: left;
+        width: 50%;
+        }
+    
+        .row:after {
+        content: "";
+        display: table;
+        clear: both;
+        }
+    </style>
+</head>
 </head>
 <link rel="stylesheet" href="requester.css">
 <body>
-    <h1>Reimbursement Requests Page</h1>
-    <h2>My Requests</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Request id | </th><th>Requested amount | </th><th>Reason for request | </th><th>Request status | </th><th>Reason given</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- styling: should have the new requests part of the page off to the right side -->
-    <h2>New Requests</h2>
-    <h3>Please enter a request amount:</h3>
-    <input type="number" id="amountInput" max="1000">
-    <p>(Requests must not exceed $1000)</p>
-    <h3>Please enter a reason for this request:</h3>
-    <input type="text" id="inputReason" maxlength="500"> <!-- styling: fit content with a max width (field extends below once width-limit reached) -->
-    <p>(Reason must not exceed 500 characters)</p>
-    <button id="requestButton" onclick="createRequest()">Submit</button>
+    <h1 style="text-align:center">Reimbursement Requests Page</h1>
+    <div class="row">
+        <div class="column" style="background-color:#96D1CD">
+            <h2 style="text-align:center">My Requests</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Request id</th><th>Requested amount</th><th>Reason for request</th><th>Request status</th><th>Reason given</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                    <tr>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+    <div class="column" style="background-color:#96D1CD; text-align:center">
+        <!-- style="" -->
+        <h2>New Requests</h2>
+        <h3>Please enter a request amount:</h3>
+        <input type="number" id="amountInput" max="1000">
+        <p>(Requests must not exceed $1000)</p>
+        <h3>Please enter a reason for this request:</h3>
+        <input type="text" id="inputReason" maxlength="500"> <!-- styling: fit content with a max width (field extends below once width-limit reached) -->
+        <p>(Reason must not exceed 500 characters)</p>
+        <button id="requestButton" onclick="createRequest()">Submit</button>
+    </div>
 </body>
 <script>
-async function getMyRequests(){ // somewhere here the request or filtering the responseBody will need to take place to only display username's results
-    let config = {
+    // somewhere here the request or filtering the responseBody will need to take place to only display username's results
+    let baseURL = "http://localhost:8080/requests/"
+    async function getMyRequests(){
+        let config = {
             method: "GET",
             headers:{"Content-Type":"application/json"},
         }
 
-        let httpResponse = await fetch(`${baseURL}requests`,config);
+        let httpResponse = await fetch(`${baseURL}`,config);
         
         if(httpResponse.status === 200){
             const requests = await httpResponse.json();
+            console.log(requests)
             for(let request of requests){
-                let submittedRequests = requests[i];
                 let newRow = document.createElement("tr");
-
-
                 newRow.innerHTML = `
-                    <td>${submittedRequests[~requestid]}</td>
-                    <td>${submittedRequests[~requestamount]}</td>
-                    <td>${submittedRequests[~requestreason]}</td>
-                    <td>${submittedRequests[~status]}></td>
-                    <td>${submittedRequests[~statusReason]}</td>
-                `;
+                    <td id="${request.id}">${request.id}</td>
+                    <td id="requester_reason${request.id}">${request.request_reason}</td>
+                    <td id="amount${request.id}">${request.amount}</td>
+                    <td id="requester_status${request.id}">${request.request_status}</td>
+                    <td id="status_reason${request.id}">${request.status_reason}</td>          
+                    `;
+                let tbody = document.getElementById("tbody");
                 tbody.appendChild(newRow);
             }
         } else {
-            alert("you done messed up");
-        }
-    }    
-
-async function createRequest(){
-    let submitNewRequest = {
-            // defectId: 0,
-            // assignedTo: document.getElementById("testerNames").value,
-            // dateReported: 0,
-            // status: "Pending",
-            // desc: document.getElementById("defectInput").value,
-            // stepsToReproduce: "string",
-            // severity: "Low",
-            // priority: "Low"
-        }
-
-        let config = {
-            method:"POST", 
-            headers:{'Content-Type':"application/json"},
-            body: JSON.stringify(submitNewRequest)
-        }
-
-        let httpResponse = await fetch(`${baseURL}x`,config);
-
-        if(httpResponse.status === 201){
-            let responseBody = await httpResponse.json();
-            alert(`${responseBody.id} has been successfully submitted.`)
-        } else {
-        let responseBody = await httpResponse.json();
-        alert(responseBody.detail);
+            alert("the getMyRequests function does not...function");
         }
     }
+
+    getMyRequests();
+
+
+    async function createRequest(){
+        let submitNewRequest = {
+                // defectId: 0,
+                // assignedTo: document.getElementById("testerNames").value,
+                // dateReported: 0,
+                // status: "Pending",
+                // desc: document.getElementById("defectInput").value,
+                // stepsToReproduce: "string",
+                // severity: "Low",
+                // priority: "Low"
+            }
+
+            let config = {
+                method:"POST", 
+                headers:{'Content-Type':"application/json"},
+                body: JSON.stringify(submitNewRequest)
+            }
+
+            let httpResponse = await fetch(`${baseURL}${id}`,config);
+
+            if(httpResponse.status === 201){
+                let responseBody = await httpResponse.json();
+                alert(`${responseBody.id} has been successfully submitted.`)
+            } else {
+            let responseBody = await httpResponse.json();
+            alert(responseBody.detail);
+            }
+        }
 </script>
 </html>
