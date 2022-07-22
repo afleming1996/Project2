@@ -47,9 +47,8 @@
                     append child row to the table body
             */
             const requests = await httpResponse.json();
-            console.log(requests)
             for(let request of requests){
-                console.log(request.request_reason, `requester_reason${request.id}`)
+                
                 let newRow = document.createElement("tr");
                 newRow.innerHTML = `
                     <td id="${request.id}">${request.id}</td>
@@ -64,8 +63,7 @@
                     </select></td>
                     <td><input type="text" id="status_reason${request.id}"></td>
                     <button onclick="updateStatus(${request.id})">Update</button>
-              
-                    `;
+                `;
                 let tbody = document.getElementById("tbody");
                 tbody.appendChild(newRow);
             }
@@ -84,14 +82,14 @@
       let reason = document.getElementById(`requester_reason${id}`);
       let status_reason = document.getElementById(`status_reason${id}`);
       let amount = document.getElementById(`amount${id}`);
-        let requestStatus = {
+      let requestStatus = {
             requester_username: username.innerText,
             request_reason: reason.innerText,
             amount: amount.innerText,
             request_status: UpdatedStatus.value, // doesn't like .value
             status_reason: status_reason.innerText,
             manager_username: "dodgeball"
-        }
+     }
 
        
 
