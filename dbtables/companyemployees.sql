@@ -15,6 +15,7 @@ insert into employees values(default, 'William Riker', 'Requester', 'maneuver', 
 insert into employees values(default, 'Cotton McKnight', 'Manager', 'dodgeball', 'password');
 insert into employees values(default, 'Clarance Beeks', 'Requester', 'porkbellies', 'password');
 insert into employees values(default, 'Mana Ger', 'Manager', 'mana', 'password');
+insert into employees values(default, 'Default', 'Manager', 'TBD', 'default');
 
 select * from employees;
 
