@@ -49,7 +49,7 @@
 </body>
 <script>
     // somewhere here the request or filtering the responseBody will need to take place to only display username's results
-    let baseURL = "http://localhost:8080/requests/"
+    let baseURL = "http://localhost:8080/requests"
     async function getMyRequests(){
         let config = {
             method: "GET",
@@ -80,30 +80,34 @@
 
     getMyRequests();
 
+    let request_reason = document.getElementById("inputReason");
+    let amount = document.getElementById("amountInput");
 
     async function createRequest(){
         let submitNewRequest = {
-                // defectId: 0,
-                // assignedTo: document.getElementById("testerNames").value,
-                // dateReported: 0,
-                // status: "Pending",
-                // desc: document.getElementById("defectInput").value,
-                // stepsToReproduce: "string",
-                // severity: "Low",
-                // priority: "Low"
-            }
-
+            
+                requester_username: "porkbellies",
+                request_reason: request_reason.value,
+                amount: amount.value,
+                request_status: "Pending",
+                status_reason: " ",
+                manager_username: "TBD",
+            };
+            console.log(submitNewRequest)
+            let submitNewRequestJSON = JSON.stringify(submitNewRequest);
             let config = {
                 method:"POST", 
                 headers:{'Content-Type':"application/json"},
-                body: JSON.stringify(submitNewRequest)
+                body: submitNewRequestJSON,
             }
+            
+            let httpResponse = await fetch(`${baseURL}`,config);
 
-            let httpResponse = await fetch(`${baseURL}${id}`,config);
 
             if(httpResponse.status === 201){
                 let responseBody = await httpResponse.json();
                 alert(`${responseBody.id} has been successfully submitted.`)
+                window.location.reload();
             } else {
             let responseBody = await httpResponse.json();
             alert(responseBody.detail);
