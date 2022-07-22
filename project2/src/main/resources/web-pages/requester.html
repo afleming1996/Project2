@@ -61,7 +61,10 @@
         if(httpResponse.status === 200){
             const requests = await httpResponse.json();
             console.log(requests)
+            console.log(requests.requester_username)
             for(let request of requests){
+            
+            if(request.requester_username === 'porkbellies'){
                 let newRow = document.createElement("tr");
                 newRow.innerHTML = `
                     <td id="${request.id}">${request.id}</td>
@@ -72,12 +75,13 @@
                     `;
                 let tbody = document.getElementById("tbody");
                 tbody.appendChild(newRow);
-            }
-        } else {
+            
+        }else if(httpResponse.status === 400){
             alert("the getMyRequests function does not...function");
         }
     }
-
+}
+    }
     getMyRequests();
 
     let request_reason = document.getElementById("inputReason");
@@ -109,6 +113,7 @@
                 alert(`${responseBody.id} has been successfully submitted.`)
                 window.location.reload();
             } else {
+                alert("Something went wrong. Please try again.");
             let responseBody = await httpResponse.json();
             alert(responseBody.detail);
             }
