@@ -1,10 +1,13 @@
 package com.project2.runner;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.project2.pom.LogOut;
@@ -19,7 +22,7 @@ public class TestRunner {
 
     public static WebDriver driver;
     public static WebDriverWait wait;
-
+    
 
     public static Login login;
     public static LogOut logout;
@@ -28,13 +31,13 @@ public class TestRunner {
 
     @BeforeClass
     public static void setup(){
-        System.setProperty("webdriver.chrome.driver", "C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/test/resources/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver=new ChromeDriver();
         login=new Login(driver);
         logout=new LogOut(driver);
 
-        wait=new WebDriverWait(driver, 6);
-       
+        wait=new WebDriverWait(driver, 5);
+        
 
 
         

@@ -1,5 +1,7 @@
 package com.project2.steps;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.Assert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -13,12 +15,16 @@ public class LoginSteps {
 
     //Manager Login Steps
     @Given("the manager is on the login page")
-    public void the_manager_is_on_the_login_page() {
-        TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/login.html");
+    public void the_manager_is_on_the_login_page(){
+        
+        TestRunner.driver.get("login.html");
+        TestRunner.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        
     }
 
     @When("the manager enters his correct username")
     public void the_manager_enters_his_correct_username() {
+        
         TestRunner.login.enterUsername("Mana");
     }
 
@@ -43,7 +49,7 @@ public class LoginSteps {
    
     @Given("the employee is on the login page")
     public void the_employee_is_on_the_login_page() {
-        TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/login.html");
+        TestRunner.driver.get("login.html");
 
     }
 
