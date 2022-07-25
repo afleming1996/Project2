@@ -44,17 +44,42 @@ public class RequestsTest {
     
     @Test(expected = NullPointerException.class)
     public void createRequestsNegative(){
+        String s = "";
+        for(int i=0; i<50; i++){ 
+            s+= "jjjjjjjjjjjjjjjjjjjjjj";
+
+        }
          try{
             requests badTestRequests= new requests("porkbellies",
-            "personal",5000,"Pending","oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo00000000000000000000000000000000000000000000000000000000000000000000000000000000000llllllllllllllllllllllllooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo","dodgeball");
+            "personal",5000,"Pending",s,"dodgeball");
             requests result = requestsService.creatRequest(badTestRequests);
             Assert.fail("invalid request: please try again");
         } catch( InvalidRequests e) {
             assertNotNull(e);
 //this test is now expecting null pointer exception i think so
         }
-
     }
+
+    @Test(expected = NullPointerException.class)
+    public void createRequestsNegativeAmount(){
+        String s = "";
+        int a = 10000;
+        for(int i=0; i<50; i++){ 
+            s+= "jjjjjjjjjjjjjjjjjjjjjj";
+
+        }
+         try{
+            requests badTestRequests= new requests("porkbellies",
+            "personal",a,"Pending",s,"dodgeball");
+            requests result = requestsService.creatRequest(badTestRequests);
+            Assert.fail("invalid request: please try again");
+        } catch( InvalidRequests e) {
+            assertNotNull(e);
+//this test is now expecting null pointer exception i think so
+        }
+    }
+
+
 
 
      // Test Get all requests
@@ -65,16 +90,16 @@ public class RequestsTest {
          Assert.assertTrue(requestsList.size()>=2);
      }
 
+
      @Test
      public void getAllRequestsNegative(){
 
-try {
-    
-} catch (Exception e) {
-    //TODO: handle exception
-}
-
-
+    try {
+        List<requests> requestsList = requestsDao.getAllRequests();
+         Assert.assertTrue(requestsList.size()>=2);
+    } catch (InvalidRequests e) {
+        assertNotNull(e);
+    }
      }
     
      @Test
