@@ -52,7 +52,7 @@ public class RequestsTest {
          try{
             requests badTestRequests= new requests("porkbellies",
             "personal",5000,"Pending",s,"dodgeball");
-            requests result = requestsService.creatRequest(badTestRequests);
+            requests result = requestsService.createRequest(badTestRequests);
             Assert.fail("invalid request: please try again");
         } catch( InvalidRequests e) {
             assertNotNull(e);
@@ -71,7 +71,7 @@ public class RequestsTest {
          try{
             requests badTestRequests= new requests("porkbellies",
             "personal",a,"Pending",s,"dodgeball");
-            requests result = requestsService.creatRequest(badTestRequests);
+            requests result = requestsService.createRequest(badTestRequests);
             Assert.fail("invalid request: please try again");
         } catch( InvalidRequests e) {
             assertNotNull(e);

@@ -65,7 +65,7 @@ public class RequestsService implements RequestsServiceInterface {
     }
 
     @Override
-    public requests creatRequest(requests newRequest) {
+    public requests createRequest(requests newRequest) {
         if(this.businessRules.requestAmount(newRequest) && 
         this.businessRules.requestReason(newRequest) &&
         this.businessRules.statusReason(newRequest)){
