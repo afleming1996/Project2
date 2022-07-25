@@ -68,7 +68,11 @@ public class RequestsTest {
      @Test
      public void getAllRequestsNegative(){
 
-
+try {
+    
+} catch (Exception e) {
+    //TODO: handle exception
+}
 
 
      }
@@ -91,7 +95,7 @@ public class RequestsTest {
             Assert.fail("invalid request: please try again");
         } catch( InvalidRequests e) {
             assertNotNull(e);
-//this test is now expecting null pointer exception i think so
+//this test is now expecting null pointer exception i think so.
         }
 
     }
