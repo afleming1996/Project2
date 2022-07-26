@@ -6,5 +6,5 @@ import com.project2.entities.employees;
 
 public interface EmployeesDAOInterface {
     List<employees> getAllEmployees();
-    employees CheckUserCridential();
+    List<employees> CheckUserCridential(String InputUsername, String InputPassword);
 }

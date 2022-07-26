@@ -22,10 +22,10 @@ public class EmployeesService implements EmployeesServiceInterface{
         return employeesDao.getAllEmployees();
     }
 
+ 
 
     @Override
-    public employees CheckUserCridential() {
-        
-        return employeesDao.CheckUserCridential();
+    public List<employees> CheckUserCridential(String InputUsername, String InputPassword) {
+        return this.CheckUserCridential(InputUsername, InputPassword);
     }
 }

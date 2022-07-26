@@ -44,6 +44,8 @@ public class RequestsTest {
     
     @Test(expected = NullPointerException.class)
     public void createRequestsNegative(){
+
+
         String s = "";
         for(int i=0; i<50; i++){ 
             s+= "jjjjjjjjjjjjjjjjjjjjjj";
@@ -53,6 +55,7 @@ public class RequestsTest {
             requests badTestRequests= new requests("porkbellies",
             "personal",5000,"Pending",s,"dodgeball");
             requests result = requestsService.createRequest(badTestRequests);
+ main
             Assert.fail("invalid request: please try again");
         } catch( InvalidRequests e) {
             assertNotNull(e);
@@ -120,7 +123,7 @@ public class RequestsTest {
             Assert.fail("invalid request: please try again");
         } catch( InvalidRequests e) {
             assertNotNull(e);
-//this test is now expecting null pointer exception i think so.
+        //this test is now expecting null pointer exception i think so.
         }
 
     }
