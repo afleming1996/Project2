@@ -1,11 +1,19 @@
 package com.project2.pom;
 
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import com.project2.runner.TestRunner;
+
+import io.cucumber.java.an.E;
 
 public class Requester {
 
@@ -41,10 +49,10 @@ public class Requester {
     }
 
     public void alert(){
-        Alert alert = this.driver.switchTo().alert();
+        this.alert = this.driver.switchTo().alert();
         Assert.assertTrue(alert.getText().contains("testing"));
-        alert.accept();
-
+        alert.accept();    
+        
     }
 
     public void clickButton(){
