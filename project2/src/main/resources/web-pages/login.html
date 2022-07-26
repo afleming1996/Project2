@@ -53,6 +53,7 @@
                     if(i.employee_role === "Manager"){
                         window.location.href = "manager.html"
                     } else {
+                        localStorage.setItem("username",usernameInput.value)
                         window.location.href = "requester.html"
                     }   
                 } 

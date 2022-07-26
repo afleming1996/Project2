@@ -48,6 +48,7 @@
     </div>
 </body>
 <script>
+    const result = `${localStorage.getItem("username")}`;
     // somewhere here the request or filtering the responseBody will need to take place to only display username's results
     let baseURL = "http://localhost:8080/requests"
     async function getMyRequests(){
@@ -64,7 +65,7 @@
             console.log(requests.requester_username)
             for(let request of requests){
             
-            if(request.requester_username === 'porkbellies'){
+            if(request.requester_username === result){
                 let newRow = document.createElement("tr");
                 newRow.innerHTML = `
                     <td id="${request.id}">${request.id}</td>
