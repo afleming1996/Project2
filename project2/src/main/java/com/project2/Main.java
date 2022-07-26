@@ -61,7 +61,7 @@ public class Main {
 
         app.get("/employees", EmployeesController.getAllEmployees);
 
-        app.patch("/employees/{username}", EmployeesController.CheckUserCridential);
+        app.patch("/employees/{username}/{password}", EmployeesController.CheckUserCridential);
 
         // book here indicates the resource this http request works with
         app.get("/requests", RequestsController.getAllRequests); // this is fine, does not need an identifier
