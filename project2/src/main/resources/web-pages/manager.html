@@ -47,6 +47,7 @@
             </tr>
         </tbody>
     </table>
+    <button id="logout" onclick="logOut()">log out</button>
 </body>
 <script>
     let baseURL = "http://localhost:8080/requests/"
@@ -139,6 +140,10 @@
             console.log("The updateStatus function does not function.")
         }
 
+    }
+
+    function logOut(){
+        window.location.replace("login.html")
     }
 
 </script>

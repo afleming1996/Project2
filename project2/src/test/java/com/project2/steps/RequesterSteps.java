@@ -25,9 +25,9 @@ public class RequesterSteps {
     public void the_requester_clicks_the_submit_button() {
         TestRunner.requester.clickButton();
 }
-    @Then("the requester should have created a reimbursement request")
-    public void the_requester_should_have_created_a_reimbursement_request() {
-    TestRunner.requester.clickButton();
-}
-    
+   
+    @Then("the requester should have recieved an alert of created reimbursement request")
+    public void the_requester_should_have_recieved_an_alert_of_created_reimbursement_request() {
+        TestRunner.requester.alert();
+    }
 }
