@@ -1,7 +1,6 @@
 package com.project2.pom;
 
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
+
 
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
@@ -9,11 +8,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.project2.runner.TestRunner;
 
-import io.cucumber.java.an.E;
+
+
+
 
 public class Requester {
 
@@ -27,6 +26,9 @@ public class Requester {
 
     @FindBy(id = "requestButton")
     public WebElement button;
+
+    @FindBy(id = "logout")
+    public WebElement logoutButton;
 
     public Alert alert;
 
@@ -52,12 +54,13 @@ public class Requester {
         this.alert = this.driver.switchTo().alert();
         Assert.assertTrue(alert.getText().contains("testing"));
         alert.accept();    
-        
     }
 
     public void clickButton(){
         this.button.click();
     }
 
-    {}
+    public void clickLogOutBtn(){
+        this.logoutButton.click();
+    }
 }

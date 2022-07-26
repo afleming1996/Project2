@@ -7,8 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.project2.pom.LogOut;
+// import com.project2.pom.LogOut;
 import com.project2.pom.Login;
+import com.project2.pom.Manager;
 import com.project2.pom.Requester;
 
 import io.cucumber.junit.Cucumber;
@@ -23,8 +24,8 @@ public class TestRunner {
     
 
     public static Login login;
-    public static LogOut logout;
-
+    // public static LogOut logout;
+    public static Manager manager;
     public static Requester requester;
     
    
@@ -34,7 +35,8 @@ public class TestRunner {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         driver=new ChromeDriver();
         login=new Login(driver);
-        logout=new LogOut(driver);
+        // logout=new LogOut(driver);
+        manager=new Manager(driver);
         requester=new Requester(driver);
 
         wait=new WebDriverWait(driver, 5);

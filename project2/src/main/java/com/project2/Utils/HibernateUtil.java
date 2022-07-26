@@ -11,7 +11,7 @@ public class HibernateUtil {
     private static Transaction transaction;
     private static SessionFactory sessionFactory;
 
-    private static SessionFactory getSessionFactory() {
+    public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             Configuration cfg = new Configuration();
             cfg.configure("hibernate.cfg.xml");

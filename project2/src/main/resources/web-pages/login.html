@@ -17,23 +17,6 @@
     let baseURL = "http://localhost:8080/employees"
     const    usernameInput = document.getElementById("userInput");
     const    passwordInput = document.getElementById("passInput");
-    async function loading(){
-        let config = {
-            method: "GET",
-            headers:{"Content-Type":"application/json"},
-        }
-
-        // Working on a method in MAIN to handling the Username and Password
-        let httpResponse = await fetch(`${baseURL}`,config);
-        console.log(httpResponse)
-        if(httpResponse.status === 200){
-            let httpResponse = await fetch(`${baseURL}`,config);
-        } else {
-            let responseBody = await httpResponse.json();
-            alert(responseBody.detail);
-        }
-    }
-    loading()
     async function login(){
         console.log(passwordInput.value,usernameInput.value);
         let config = {
@@ -53,6 +36,7 @@
                     if(i.employee_role === "Manager"){
                         window.location.href = "manager.html"
                     } else {
+                        localStorage.setItem("username",usernameInput.value)
                         window.location.href = "requester.html"
                     }   
                 } 
