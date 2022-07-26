@@ -1,4 +1,4 @@
-Feature: Employees should be able to login and out of their accounts
+Feature: Employees should be able to logout of their accounts
 
        Scenario: As a manager I want to sign out so I can prevent others from accessing my information
 

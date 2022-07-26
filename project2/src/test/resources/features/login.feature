@@ -1,4 +1,4 @@
-Feature: Employees should be able to login and out of their accounts
+Feature: Employees should be able to login to their accounts
 
     Scenario: As an manager I want to sign in so I can view my custom homepage
 
