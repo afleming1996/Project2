@@ -17,7 +17,7 @@ public class LoginSteps {
     @Given("the manager is on the login page")
     public void the_manager_is_on_the_login_page(){
         
-        TestRunner.driver.get("login.html");
+        TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/login.html");
         TestRunner.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         
     }
@@ -49,7 +49,7 @@ public class LoginSteps {
    
     @Given("the employee is on the login page")
     public void the_employee_is_on_the_login_page() {
-        TestRunner.driver.get("login.html");
+        TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/login.html");
 
     }
 
