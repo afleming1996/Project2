@@ -21,7 +21,7 @@ public class Manager {
         @FindBy(id = "status_reason102")
         public WebElement ReasonDeny;
 
-        @FindBy(id = "update_status_button148")
+        @FindBy(id = "update_status_button151")
         public WebElement ButtonApprove;
 
         @FindBy(id = "update_status_button102")

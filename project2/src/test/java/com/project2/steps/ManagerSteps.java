@@ -17,7 +17,7 @@ public class ManagerSteps {
     @Given("the manager is on the manager page")
     public void the_manager_is_on_the_manager_page(){
 
-        TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/manager.html");
+        TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/manager.html");
         TestRunner.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
     @When("the manager enters a reason not exceeding 500 characters")
@@ -40,7 +40,7 @@ public class ManagerSteps {
     //Manager accepts a request
     @When("the manager clicks the accept selection")
     public void the_manager_clicks_the_accept_selection() {
-        Select dropdown = new Select(TestRunner.driver.findElement(By.id("status_reason148")));  
+        Select dropdown = new Select(TestRunner.driver.findElement(By.id("status_reason151")));  
         dropdown.selectByVisibleText("Approved");
         
     }
@@ -54,7 +54,7 @@ public class ManagerSteps {
     public void the_manager_should_have_approved_the_reimbursement_request() {
         TestRunner.wait.until(ExpectedConditions.alertIsPresent());
         String alert= TestRunner.driver.switchTo().alert().getText();
-        Assert.assertEquals("`Status for request 148 has been changed to Approved.`", alert);
+        Assert.assertEquals("`Status for request 151 has been changed to Approved.`", alert);
         TestRunner.driver.switchTo().alert().accept();
     }
 
@@ -73,4 +73,11 @@ public class ManagerSteps {
         TestRunner.driver.switchTo().alert().accept();
     }
 
+    
+    @Then("the manager should see the pending reimbersement requests")
+        public void the_manager_should_see_the_pending_reimbersement_requests() {
+        TestRunner.wait.until(ExpectedConditions.titleIs("Determine Reimbursement Status"));
+        String title= TestRunner.driver.getTitle();
+        Assert.assertEquals("Determine Reimbursement Status", title);
+    }
 }
