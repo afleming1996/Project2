@@ -1,8 +1,5 @@
 package com.project2;
 
-
-import org.hibernate.Hibernate;
-
 import com.project2.Utils.BusinessRules;
 import com.project2.Utils.HibernateUtil;
 import com.project2.controllers.EmployeesController;
@@ -61,7 +58,7 @@ public class Main {
 
         app.get("/employees", EmployeesController.getAllEmployees);
 
-        app.patch("/employees/{username}", EmployeesController.CheckUserCridential);
+        app.patch("/employees/{username}/{password}", EmployeesController.CheckUserCridential);
 
         // book here indicates the resource this http request works with
         app.get("/requests", RequestsController.getAllRequests); // this is fine, does not need an identifier

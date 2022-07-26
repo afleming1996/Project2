@@ -1,5 +1,7 @@
 package com.project2.steps;
 
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import com.project2.runner.TestRunner;
 
 import io.cucumber.java.en.Given;
@@ -10,7 +12,7 @@ public class RequesterSteps {
 
     @Given("the requester is on the requester page")
     public void the_requester_is_on_the_requester_page() {
-        TestRunner.driver.get("File://C:/Users/sain4/Desktop/Project2/project2/src/main/resources/web-pages/requester.html");
+        TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/Requester.html");
     }
 
     @When("the requester enters their reimbursement request description not exceeding {int} characters")
@@ -28,6 +30,23 @@ public class RequesterSteps {
    
     @Then("the requester should have recieved an alert of created reimbursement request")
     public void the_requester_should_have_recieved_an_alert_of_created_reimbursement_request() {
+        TestRunner.wait.until(ExpectedConditions.alertIsPresent());
         TestRunner.requester.alert();
     }
+
+    //view reimbursement request
+
+    @Given("the requester is on the requester homepage")
+    public void the_requester_is_on_the_requester_homepage() {
+        TestRunner.driver.get("File://C:/Users/sain4/Desktop/Project2/project2/src/main/resources/web-pages/requester.html");
+
+}
+
+    @Then("the requester should see the pending reimbersement requests")
+    public void the_requester_should_see_the_pending_reimbersement_requests() {
+        TestRunner.driver.get("File://C:/Users/sain4/Desktop/Project2/project2/src/main/resources/web-pages/requester.html");
+
+}
+
+
 }

@@ -23,5 +23,5 @@ public interface RequestsServiceInterface {
 
     requests serviceUpdateRequests(requests requestToBeUpdated);
     
-    requests creatRequest(requests newRequest);
+    requests createRequest(requests newRequest);
 }

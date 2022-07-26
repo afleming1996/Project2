@@ -15,8 +15,6 @@ import com.project2.exceptions.InvalidRequests;
 import com.project2.service.RequestsService;
 import com.project2.service.RequestsServiceInterface;
 
-import io.cucumber.plugin.event.Result;
-
 public class RequestsTest {
     public static RequestsDAO requestsDao;
     public static RequestsService requestsService;
@@ -44,6 +42,8 @@ public class RequestsTest {
     
     @Test(expected = NullPointerException.class)
     public void createRequestsNegative(){
+
+
         String s = "";
         for(int i=0; i<50; i++){ 
             s+= "jjjjjjjjjjjjjjjjjjjjjj";
@@ -52,7 +52,7 @@ public class RequestsTest {
          try{
             requests badTestRequests= new requests("porkbellies",
             "personal",5000,"Pending",s,"dodgeball");
-            requests result = requestsService.creatRequest(badTestRequests);
+            requests result = requestsService.createRequest(badTestRequests);
             Assert.fail("invalid request: please try again");
         } catch( InvalidRequests e) {
             assertNotNull(e);
@@ -71,7 +71,7 @@ public class RequestsTest {
          try{
             requests badTestRequests= new requests("porkbellies",
             "personal",a,"Pending",s,"dodgeball");
-            requests result = requestsService.creatRequest(badTestRequests);
+            requests result = requestsService.createRequest(badTestRequests);
             Assert.fail("invalid request: please try again");
         } catch( InvalidRequests e) {
             assertNotNull(e);
@@ -120,7 +120,7 @@ public class RequestsTest {
             Assert.fail("invalid request: please try again");
         } catch( InvalidRequests e) {
             assertNotNull(e);
-//this test is now expecting null pointer exception i think so.
+        //this test is now expecting null pointer exception i think so.
         }
 
     }
