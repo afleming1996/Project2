@@ -15,8 +15,6 @@ import com.project2.exceptions.InvalidRequests;
 import com.project2.service.RequestsService;
 import com.project2.service.RequestsServiceInterface;
 
-import io.cucumber.plugin.event.Result;
-
 public class RequestsTest {
     public static RequestsDAO requestsDao;
     public static RequestsService requestsService;
@@ -55,7 +53,6 @@ public class RequestsTest {
             requests badTestRequests= new requests("porkbellies",
             "personal",5000,"Pending",s,"dodgeball");
             requests result = requestsService.createRequest(badTestRequests);
- main
             Assert.fail("invalid request: please try again");
         } catch( InvalidRequests e) {
             assertNotNull(e);
