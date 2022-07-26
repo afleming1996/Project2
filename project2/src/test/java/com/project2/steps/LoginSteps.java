@@ -36,9 +36,9 @@ public class LoginSteps {
     }
     @Then("the manager should be logged in the manager page")
     public void the_manager_should_be_logged_in_the_manager_page() {
-        TestRunner.wait.until(ExpectedConditions.titleIs("Manager"));
+        TestRunner.wait.until(ExpectedConditions.titleIs("Determine Reimbursement Status"));
         String title= TestRunner.driver.getTitle();
-        Assert.assertEquals("Manager", title);
+        Assert.assertEquals("Determine Reimbursement Status", title);
     }
     
     // Employee login Steps

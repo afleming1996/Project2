@@ -80,7 +80,7 @@
                         </select>
                     </td>
                     <td><input type="text" id="status_reason${request.id}"></td>
-                    <button onclick="updateStatus(${request.id})">Update</button>
+                    <button onclick="updateStatus(${request.id})" id="update_status_button${request.id}">Update</button>
                 `;
 
                 let closedRequestRow = document.createElement("tr");
