@@ -7,5 +7,5 @@ import com.project2.entities.employees;
 public interface EmployeesServiceInterface {
     
     List<employees> getAllEmployees();
-    employees CheckUserCridential();
+    List<employees> CheckUserCridential(String InputUsername, String InputPassword);
 }

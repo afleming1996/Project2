@@ -2,6 +2,8 @@ package com.project2.repository;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
 import com.project2.Utils.HibernateUtil;
 import com.project2.entities.employees;
 
@@ -16,12 +18,15 @@ public class EmployeesDAO implements EmployeesDAOInterface {
     }
 
     @Override
-    public employees CheckUserCridential() {
+    public List<employees> CheckUserCridential(String InputUsername, String InputPassword) {
         HibernateUtil.beginTransaction();
-        employees checkEmployeesInfo = HibernateUtil.getSession().createQuery("from employees",employees.class).uniqueResult();
-        HibernateUtil.getSession().delete(checkEmployeesInfo);
+        String SQLReq= "From employees where username=: username and user_password=:user_password";
+        Query query = HibernateUtil.getSession().createQuery(SQLReq);
+        query.setParameter("username", InputUsername);
+        query.setParameter("user_password", InputPassword);
+        List<employees> employeesList = query.getResultList();
         HibernateUtil.endTransaction();
-        return checkEmployeesInfo;
+        return employeesList;
     }
 
     
