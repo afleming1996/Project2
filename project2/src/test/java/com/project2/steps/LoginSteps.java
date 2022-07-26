@@ -76,7 +76,7 @@ public class LoginSteps {
     }
     @When("the manager clicks the sign out button")
     public void the_manager_clicks_the_sign_out_button() {
-        TestRunner.logout.clickLogOutBtn();
+        TestRunner.manager.clickLogOutBtn();
     }
 
     // Requester Log out
@@ -86,7 +86,7 @@ public class LoginSteps {
     }
     @When("the employee clicks the sign out button")
     public void the_employee_clicks_the_sign_out_button() {
-        TestRunner.logout.clickLogOutBtn();
+        TestRunner.requester.clickLogOutBtn();
     }
 
     //both
