@@ -42,7 +42,7 @@ public class ManagerSteps {
     //Manager accepts a request
     @When("the manager clicks the accept selection")
     public void the_manager_clicks_the_accept_selection() {
-        TestRunner.manager.clickAcceptSelection();
+        TestRunner.manager.clickStatus();
     }
     
     @Then("the manager should have approved the reimbursement request")
@@ -55,7 +55,7 @@ public class ManagerSteps {
     //Manager rejects a request
     @When("the manager clicks the deny selection")
     public void the_manager_clicks_the_deny_selection() {
-        TestRunner.manager.clickRejectSelection();
+        TestRunner.manager.clickStatus();
     }
     @Then("the manager should have rejected the reimbursement request")
     public void the_manager_should_have_rejected_the_reimbursement_request() {
