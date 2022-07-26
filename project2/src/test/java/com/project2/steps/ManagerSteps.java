@@ -15,7 +15,7 @@ public class ManagerSteps {
     @Given("the manager is on the manager page")
     public void the_manager_is_on_the_manager_page(){
 
-        TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/manager.html");
+        TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/manager.html");
         TestRunner.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
     @When("the manager enters a reason not exceeding 500 characters")
@@ -31,13 +31,13 @@ public class ManagerSteps {
 
 
 
-    //Manager Login Steps
-    @Then("the manager should be logged in the manager page")
-    public void the_manager_should_be_logged_in_the_manager_page() {
-        TestRunner.wait.until(ExpectedConditions.titleIs("Manager"));
-        String title= TestRunner.driver.getTitle();
-        Assert.assertEquals("Manager", title);
-    }
+    // //Manager Login Steps
+    // @Then("the manager should be logged in the manager page")
+    // public void the_manager_should_be_logged_in_the_manager_page() {
+    //     TestRunner.wait.until(ExpectedConditions.titleIs("Determine Reimbursement Status"));
+    //     String title= TestRunner.driver.getTitle();
+    //     Assert.assertEquals("Determine Reimbursement Status", title);
+    // }
 
     //Manager accepts a request
     @When("the manager clicks the accept selection")
@@ -50,6 +50,7 @@ public class ManagerSteps {
         TestRunner.wait.until(ExpectedConditions.alertIsPresent());
         String alert= TestRunner.driver.switchTo().alert().getText();
         Assert.assertEquals("`Status for request ${id} has been changed to ${updatedStatus.value}.`", alert);
+        TestRunner.driver.switchTo().alert().accept();
     }
 
     //Manager rejects a request
@@ -62,6 +63,7 @@ public class ManagerSteps {
         TestRunner.wait.until(ExpectedConditions.alertIsPresent());
         String alert= TestRunner.driver.switchTo().alert().getText();
         Assert.assertEquals("`Status for request ${id} has been changed to ${updatedStatus.value}.`", alert);
+        TestRunner.driver.switchTo().alert().accept();
     }
 
 }

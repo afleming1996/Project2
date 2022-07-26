@@ -46,6 +46,7 @@
         <p>(Reason must not exceed 500 characters)</p>
         <button id="requestButton" onclick="createRequest()">Submit</button>
     </div>
+    <button id="logout" onclick="logOut()">log out</button>
 </body>
 <script>
     const result = `${localStorage.getItem("username")}`;
@@ -118,6 +119,10 @@
             let responseBody = await httpResponse.json();
             alert(responseBody.detail);
             }
+        }
+            function logOut(){
+        window.location.replace("login.html")
+    
         }
 </script>
 </html>

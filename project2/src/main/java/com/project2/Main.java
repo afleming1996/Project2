@@ -19,7 +19,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-            HibernateUtil.getSession();
+            HibernateUtil.getSessionFactory();
             
         // inside of the create method we call a lambda that Javalin can use to configure our web server
         Javalin app = Javalin.create(config ->{
