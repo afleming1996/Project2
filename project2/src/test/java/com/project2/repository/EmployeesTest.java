@@ -1,7 +1,5 @@
 package com.project2.repository;
 
-
-import java.io.Console;
 import java.util.List;
 
 import org.junit.Assert;

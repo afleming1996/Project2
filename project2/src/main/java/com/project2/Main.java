@@ -1,8 +1,5 @@
 package com.project2;
 
-
-import org.hibernate.Hibernate;
-
 import com.project2.Utils.BusinessRules;
 import com.project2.Utils.HibernateUtil;
 import com.project2.controllers.EmployeesController;
