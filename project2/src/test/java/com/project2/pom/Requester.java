@@ -28,6 +28,9 @@ public class Requester {
     @FindBy(id = "requestButton")
     public WebElement button;
 
+    @FindBy(id = "logout")
+    public WebElement logoutButton;
+
     public Alert alert;
 
     public Requester(WebDriver driver){
@@ -52,12 +55,13 @@ public class Requester {
         this.alert = this.driver.switchTo().alert();
         Assert.assertTrue(alert.getText().contains("testing"));
         alert.accept();    
-        
     }
 
     public void clickButton(){
         this.button.click();
     }
 
-    {}
+    public void clickLogOutBtn(){
+        this.logoutButton.click();
+    }
 }
