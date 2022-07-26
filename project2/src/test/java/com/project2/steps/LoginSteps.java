@@ -17,7 +17,7 @@ public class LoginSteps {
     @Given("the manager is on the login page")
     public void the_manager_is_on_the_login_page(){
         
-        TestRunner.driver.get("login.html");
+        TestRunner.driver.get("File://C:/Users/sain4/Desktop/Project2/project2/src/main/resources/web-pages/login.html");
         TestRunner.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         
     }
@@ -40,16 +40,16 @@ public class LoginSteps {
 
     @Then("the manager should be logged in the manager page")
     public void the_manager_should_be_logged_in_the_manager_page() {
-        TestRunner.wait.until(ExpectedConditions.titleIs("Manager"));
+        TestRunner.wait.until(ExpectedConditions.titleIs("Determine Reimbursement Status"));
         String title= TestRunner.driver.getTitle();
-        Assert.assertEquals("Manager", title);
+        Assert.assertEquals("Determine Reimbursement Status", title);
     }
     
     // Employee login Steps
    
     @Given("the employee is on the login page")
     public void the_employee_is_on_the_login_page() {
-        TestRunner.driver.get("login.html");
+        TestRunner.driver.get("File://C:/Users/sain4/Desktop/Project2/project2/src/main/resources/web-pages/login.html");
 
     }
 
