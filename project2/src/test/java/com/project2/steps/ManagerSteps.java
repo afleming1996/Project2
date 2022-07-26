@@ -3,7 +3,9 @@ package com.project2.steps;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
 import com.project2.runner.TestRunner;
 
@@ -15,20 +17,16 @@ public class ManagerSteps {
     @Given("the manager is on the manager page")
     public void the_manager_is_on_the_manager_page(){
 
-        TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/manager.html");
+        TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/manager.html");
         TestRunner.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
     @When("the manager enters a reason not exceeding 500 characters")
     public void the_manager_enters_a_reason_not_exceeding_500_characters() {
-        TestRunner.manager.enterReason("This is a test");
+        TestRunner.manager.ReasonAccept("This is a test");
     }
-    @When("the manager clicks the submit button")
-    public void the_manager_clicks_the_submit_button() {
-        TestRunner.manager.clickSubmit();
-    }
-
-
-
+   
+    //C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/manager.html
+    //"File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/manager.html"
 
 
     // //Manager Login Steps
@@ -42,27 +40,36 @@ public class ManagerSteps {
     //Manager accepts a request
     @When("the manager clicks the accept selection")
     public void the_manager_clicks_the_accept_selection() {
-        TestRunner.manager.clickStatus();
+        Select dropdown = new Select(TestRunner.driver.findElement(By.id("status_reason148")));  
+        dropdown.selectByVisibleText("Approved");
+        
     }
+    @When("the manager clicks the submit button")
+    public void the_manager_clicks_the_submit_button() {
+        TestRunner.manager.ButtonApprove();
+    }
+
     
     @Then("the manager should have approved the reimbursement request")
     public void the_manager_should_have_approved_the_reimbursement_request() {
         TestRunner.wait.until(ExpectedConditions.alertIsPresent());
         String alert= TestRunner.driver.switchTo().alert().getText();
-        Assert.assertEquals("`Status for request ${id} has been changed to ${updatedStatus.value}.`", alert);
+        Assert.assertEquals("`Status for request 148 has been changed to Approved.`", alert);
         TestRunner.driver.switchTo().alert().accept();
     }
 
     //Manager rejects a request
     @When("the manager clicks the deny selection")
     public void the_manager_clicks_the_deny_selection() {
-        TestRunner.manager.clickStatus();
+        Select dropdown = new Select(TestRunner.driver.findElement(By.id("status_reason102")));  
+        dropdown.selectByVisibleText("Denied");
     }
+    
     @Then("the manager should have rejected the reimbursement request")
     public void the_manager_should_have_rejected_the_reimbursement_request() {
         TestRunner.wait.until(ExpectedConditions.alertIsPresent());
         String alert= TestRunner.driver.switchTo().alert().getText();
-        Assert.assertEquals("`Status for request ${id} has been changed to ${updatedStatus.value}.`", alert);
+        Assert.assertEquals("`Status for request 102 has been changed to Denied.`", alert);
         TestRunner.driver.switchTo().alert().accept();
     }
 

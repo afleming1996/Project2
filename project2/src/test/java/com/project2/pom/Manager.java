@@ -10,14 +10,22 @@ public class Manager {
 
     private WebDriver driver;
 
-        @FindBy(id = "status${request.id}")
-        public WebElement status;
+        @FindBy(id = "status148")
+        public WebElement statusAccept;
+        @FindBy(id = "status102")
+        public WebElement statusDeny;
 
-        @FindBy(id = "status_reason${request.id}")
-        public WebElement enterReason;
+        @FindBy(id = "status_reason148")
+        public WebElement ReasonAccept;
 
-        @FindBy(id = "update_status_button${request.id}")
-        public WebElement updateStatusButton;
+        @FindBy(id = "status_reason102")
+        public WebElement ReasonDeny;
+
+        @FindBy(id = "update_status_button148")
+        public WebElement ButtonApprove;
+
+        @FindBy(id = "update_status_button102")
+        public WebElement ButtonDeny;
 
         @FindBy(id = "logout")
         public WebElement logoutButton;
@@ -26,19 +34,23 @@ public class Manager {
         public Manager(WebDriver driver){
             this.driver= driver;        
             PageFactory.initElements(driver, this);
-    }
+        }
 
-        public void enterReason(String text){
-            this.enterReason.sendKeys(text);
-    }
+        public void ReasonAccept(String text){
+            this.statusAccept.sendKeys(text);
+        }
+        public void ReasonDeny(String text){
+        this.statusDeny.sendKeys(text);
+        }   
 
-        public void clickStatus(){
-            this.status.click();
-    }
+       
 
-        public void clickSubmit(){
-            this.updateStatusButton.click();
-    }
+        public void ButtonApprove(){
+            this.ButtonApprove.click();
+        }
+        public void ButtonDeny(){
+        this.ButtonDeny.click();
+     }
 
         public void clickLogOutBtn(){
             this.logoutButton.click();
