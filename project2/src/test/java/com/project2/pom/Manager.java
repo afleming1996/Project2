@@ -19,6 +19,9 @@ public class Manager {
         @FindBy(id = "update_status_button${request.id}")
         public WebElement updateStatusButton;
 
+        @FindBy(id = "logout")
+        public WebElement logoutButton;
+
 
         public Manager(WebDriver driver){
             this.driver= driver;        
@@ -36,4 +39,9 @@ public class Manager {
         public void clickSubmit(){
             this.updateStatusButton.click();
     }
+
+        public void clickLogOutBtn(){
+            this.logoutButton.click();
+    }
+
 }
