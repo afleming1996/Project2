@@ -4,7 +4,9 @@
     <title>Determine Reimbursement Status</title>
 </head>
 <body onload="getAllRequests()">
+   
     <h1 style="text-align:center">Determine Reimbursement Status</h1>
+    
     <h3>Pending Requests</h3>
     <table id="tablePending" style="background-color:#741B52; color:white">
         <thead>
@@ -34,6 +36,8 @@
             </tr>
         </tbody>
     </table>
+    <h2>the company has given <span id="total"></span>$ in reimburesments </h1>
+        <br>
     <h3>Denied Requests</h3>
     <table id="tab-denied" style="background-color:#741B52; color:white">
         <thead>
@@ -47,6 +51,7 @@
             </tr>
         </tbody>
     </table>
+
     <button id="logout" onclick="logOut()">log out</button>
 </body>
 <script>
@@ -54,7 +59,7 @@
     let tbodyPending = document.getElementById("tbody-pending");
     let tbodyDenied = document.getElementById("tbody-denied");
     let tbodyApproved = document.getElementById("tbody-approved");
-    
+    let total = document.getElementById("total");
     async function getAllRequests(){
         let config = {
             method: "GET",
@@ -65,6 +70,8 @@
         // need styling to auto-fit content to length for reason input field
         if(httpResponse.status === 200){
             const requests = await httpResponse.json();
+            console.log(requests)
+            let totalPaid =0;
             for(let request of requests){
                 let newRow = document.createElement("tr");
                 newRow.innerHTML = `
@@ -93,20 +100,48 @@
                 `;
                 
                 if(request.request_status === "Approved"){
-                    tbodyApproved.appendChild(closedRequestRow);
+                    addApprovedToTable(request.id,request.requester_username,request.request_reason,request.amount,request.status_reason);
+                    totalPaid +=request.amount;
+                    //   tbodyApproved.appendChild(closedRequestRow);
                 } else if (request.request_status === "Denied"){
-                    tbodyDenied.appendChild(closedRequestRow);
+                    addDeniedToTable(request.id,request.requester_username,request.request_reason,request.amount,request.status_reason);
+              //  tbodyDenied.appendChild(closedRequestRow);
                 } else {
                     tbodyPending.appendChild(newRow);
                 }
             }
+            console.log(totalPaid)
+            total.innerText = totalPaid;
         } else {
-            // alert("The getAllRequests function does not function.");
-            console.log(httpResponse.json().detail);
+
+            console.log("The getAllRequests function does not function.",httpResponse.json().detail);
         }
     }
 
-    // getAllRequests();
+    function addDeniedToTable(id,requester_username,request_reason,amount,status_reason){
+        let tbodyId = document.getElementById("tbody-denied")
+        let closedRequestRow = document.createElement("tr");
+                closedRequestRow.innerHTML = `
+                    <td style="text-align:right" id="${id}">${id}</td>
+                    <td style="text-align:center" id="requester${id}">${requester_username}</td>
+                    <td id="requester_reason${id}">${request_reason}</td>
+                    <td style="text-align:center" id="amount${id}">${amount}</td>
+                    <td id="status_reason${id}">${status_reason}</td>
+                `;
+        tbodyDenied.appendChild(closedRequestRow);        
+    };
+    function addApprovedToTable(id,requester_username,request_reason,amount,status_reason){
+        let tbodyId = document.getElementById("tbody-denied")
+        let closedRequestRow = document.createElement("tr");
+                closedRequestRow.innerHTML = `
+                    <td style="text-align:right" id="${id}">${id}</td>
+                    <td style="text-align:center" id="requester${id}">${requester_username}</td>
+                    <td id="requester_reason${id}">${request_reason}</td>
+                    <td style="text-align:center" id="amount${id}">${amount}</td>
+                    <td id="status_reason${id}">${status_reason}</td>
+                `;
+        tbodyApproved.appendChild(closedRequestRow);        
+    };
 
 
     async function updateStatus(id){
@@ -136,7 +171,7 @@
         if(httpResponse.status === 200){
             alert(`Status has been changed to ${updatedStatus.value}.`);
             tbodyPending.deleteRow(newRow);
-            window.location.reload();
+        //    window.location.reload();
         } else {
             console.log("The updateStatus function does not function.")
         }

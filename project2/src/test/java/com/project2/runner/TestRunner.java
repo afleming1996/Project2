@@ -1,5 +1,7 @@
 package com.project2.runner;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
@@ -37,7 +39,7 @@ public class TestRunner {
         requester=new Requester(driver);
 
         wait=new WebDriverWait(driver, 5);
-        
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 
         
