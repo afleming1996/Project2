@@ -17,3 +17,6 @@ Feature: Requesters should be able to create a reimbursement request
         Given   the requester is on the requester page
         When    the requester clicks the show amount recieved button
         Then    the total amount approved reimbursement money showed
+
+        Then    the requester should have recieved an alert of created reimbursement request
+

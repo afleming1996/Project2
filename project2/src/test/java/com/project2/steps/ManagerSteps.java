@@ -17,7 +17,7 @@ public class ManagerSteps {
     @Given("the manager is on the manager page")
     public void the_manager_is_on_the_manager_page(){
 
-        TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/manager.html");
+        TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/manager.html");
 
         //C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/manager.html
         //"File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/manager.html"
@@ -70,7 +70,6 @@ public class ManagerSteps {
     public void the_manager_is_still_on_the_manager_homepage() {
         TestRunner.driver.get("File://C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/manager.html");
     }
-
     @When("the manager clicks the deny selection")
     public void the_manager_clicks_the_deny_selection() {
         TestRunner.wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("tablePending")));
@@ -88,6 +87,7 @@ public class ManagerSteps {
         Assert.assertEquals("Status has been changed to Denied.", alert);
         TestRunner.driver.switchTo().alert().accept();
     }
+
 
     ////////////////////////// Stretch Goals /////////////////////////////////////////////
     @When("the manager clicks the show globalreimbursement button")
@@ -107,9 +107,31 @@ public class ManagerSteps {
     @Then("the total amount approved reimbursement by manager should be showed")
     public void the_total_amount_approved_reimbursement_by_manager_should_be_showed() {
     Assert.assertEquals("0", TestRunner.manager.ApproveByMe.getText());
-}\
+}
 
 
+
+
+    @Given("the manager is on  the manager homepage")
+    public void the_manager_is_on_the_manager_homepage() {
+        TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/manager.html");
+    }
+    @When("the manager enters a reason exceeding {int} characters")
+    public void the_manager_enters_a_reason_exceeding_characters(Integer int1) {
+        TestRunner.manager.statusReason("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus");
+
+    }
+    @When("the manager clicks the submit button for negative test")
+    public void the_manager_clicks_the_submit_button_for_negative_test() {
+        TestRunner.manager.updateStatus();
+    }
+    @Then("the manager should see an error message")
+    public void the_manager_should_see_an_error_message() {
+        TestRunner.wait.until(ExpectedConditions.alertIsPresent());
+        String alert= TestRunner.driver.switchTo().alert().getText();
+        Assert.assertEquals("Too many Characters.", alert);
+        TestRunner.driver.switchTo().alert().accept();
+    }
 
 }
 

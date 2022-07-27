@@ -54,7 +54,6 @@ public class RequesterSteps {
 
     @Then("the requester should see the pending reimbersement requests")
     public void the_requester_should_see_the_pending_reimbersement_requests() {
-
         TestRunner.driver.get("File:/C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/requester.html");
 
 }
