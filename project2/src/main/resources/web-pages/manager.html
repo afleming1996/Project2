@@ -3,10 +3,10 @@
 <head>
     <title>Determine Reimbursement Status</title>
 </head>
-<body>
+<body onload="getAllRequests()">
     <h1 style="text-align:center">Determine Reimbursement Status</h1>
     <h3>Pending Requests</h3>
-    <table id="tab-pending" style="background-color:#741B52; color:white">
+    <table id="tablePending" style="background-color:#741B52; color:white">
         <thead>
             <tr>
                 <th>Request id</th><th>Employee username</th><th>Reason given</th><th>Requested amount</th><th>Status</th>
@@ -73,7 +73,7 @@
                     <td id="requester_reason${request.id}">${request.request_reason}</td>
                     <td style="text-align:center" id="amount${request.id}">${request.amount}</td>
                     <td>
-                        <select id = "status${request.id}"> 
+                        <select class="selection" id = "status${request.id}"> 
                             <option id = "pending">Pending</option>
                             <option id = "approved">Approved</option>
                             <option id = "denied">Denied</option>
@@ -101,11 +101,12 @@
                 }
             }
         } else {
-            alert("The getAllRequests function does not function.");
+            // alert("The getAllRequests function does not function.");
+            console.log(httpResponse.json().detail);
         }
     }
 
-    getAllRequests();
+    // getAllRequests();
 
 
     async function updateStatus(id){
@@ -133,7 +134,7 @@
         let httpResponse = await fetch(`${baseURL}${id}`, config);
 
         if(httpResponse.status === 200){
-            alert(`Status for request ${id} has been changed to ${updatedStatus.value}.`);
+            alert(`Status has been changed to ${updatedStatus.value}.`);
             tbodyPending.deleteRow(newRow);
             window.location.reload();
         } else {
