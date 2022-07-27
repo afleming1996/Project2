@@ -19,6 +19,12 @@
     </div>
 </body>
 <script>
+    let input = document.getElementById("passInput");
+    input.addEventListener("keypress", function(event){
+        if(event.key === "Enter"){
+            login();
+        }
+    });
  
     let baseURL = "http://localhost:8080/employees"
     const    usernameInput = document.getElementById("userInput");
@@ -32,25 +38,25 @@
 
         // Working on a method in MAIN to handling the Username and Password
         let httpResponse = await fetch(`${baseURL}`,config);
-        console.log(httpResponse)
+        //console.log(httpResponse)
         if(httpResponse.status === 200){
             let responseBody = await httpResponse.json();
-            console.log(responseBody)
+            //console.log(responseBody)
             for(let i of responseBody){
               
                 if(usernameInput.value === i.username && passwordInput.value === i.user_password){
                     if(i.employee_role === "Manager"){
+                        localStorage.setItem("username",usernameInput.value);
                         window.location.href = "manager.html"
                     } else {
-                        localStorage.setItem("username",usernameInput.value)
+                        localStorage.setItem("username",usernameInput.value);
                         window.location.href = "requester.html"
                     }   
                 } 
             }
-           
         } else {
             let responseBody = await httpResponse.json();
-            alert(responseBody.detail);
+            alert("responseBody.detail");
         }
     }
 </script>
