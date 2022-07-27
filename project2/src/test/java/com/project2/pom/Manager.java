@@ -34,8 +34,6 @@ public class Manager {
         @FindBy(id = "tablePending")
         public WebElement tablePending;
 
-        @FindBy(tagName = "input")
-        public WebElement reasonInput;
 
         @FindBy(tagName = "alert")
         public WebElement alert;
