@@ -10,21 +10,7 @@ public class Manager {
 
     private WebDriver driver;
 
-        // @FindBy(id = "status180")
-        // public WebElement statusAccept;
-        // @FindBy(id = "status181")
-        // public WebElement statusDeny;
-
-        // @FindBy(id = "status180")
-        // public WebElement ReasonAccept;
-        // @FindBy(id = "status181")
-        // public WebElement ReasonDeny;
-
-        // @FindBy(id = "update_status_button180")
-        // public WebElement ButtonApprove;
-        // @FindBy(id = "update_status_button181")
-        // public WebElement ButtonDeny;
-        //
+        
         @FindBy(tagName = "button")
         public WebElement updateButton;
 
@@ -38,27 +24,14 @@ public class Manager {
         @FindBy(tagName = "alert")
         public WebElement alert;
 
-        // @FindBy(className = "selection")
-        // public WebElement selectionDropdown;
+        @FindBy(tagName = "input")
+        public WebElement reasonInput;
+
 
         public Manager(WebDriver driver){
             this.driver= driver;        
             PageFactory.initElements(driver, this);
         }
-
-        // public void ReasonAccept(String text){
-        //     this.statusAccept.sendKeys(text);
-        // }
-        // public void ReasonDeny(String text){
-        // this.statusDeny.sendKeys(text);
-        // }   
-
-    //     public void ButtonApprove(){
-    //         this.ButtonApprove.click();
-    //     }
-    //     public void ButtonDeny(){
-    //     this.ButtonDeny.click();
-    //  }
 
         public void updateStatus(){
             this.updateButton.click();
