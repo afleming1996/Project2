@@ -88,6 +88,31 @@ public class ManagerSteps {
         Assert.assertEquals("Status has been changed to Denied.", alert);
         TestRunner.driver.switchTo().alert().accept();
     }
+
+
+    ////////////////////////// Stretch Goals /////////////////////////////////////////////
+    @When("the manager clicks the show globalreimbursement button")
+    public void the_manager_clicks_the_show_globalreimbursement_button() {
+        TestRunner.manager.globalbtn.click();
+    }
+    @Then("the global reimbursement company has given should be showed")
+    public void the_global_reimbursement_company_has_given_should_be_showed() {
+        Assert.assertEquals("0", TestRunner.manager.global.getText());
+    }
+
+    @When("the manager clicks the show myApprovedreimbursement button")
+    public void the_manager_clicks_the_show_myApprovedreimbursement_button() {
+        TestRunner.manager.byMebtn.click();
+}
+    
+    @Then("the total amount approved reimbursement by manager should be showed")
+    public void the_total_amount_approved_reimbursement_by_manager_should_be_showed() {
+    Assert.assertEquals("0", TestRunner.manager.ApproveByMe.getText());
+}
+
+
+
+
     @Given("the manager is on  the manager homepage")
     public void the_manager_is_on_the_manager_homepage() {
         TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/manager.html");
@@ -108,5 +133,6 @@ public class ManagerSteps {
         Assert.assertEquals("Too many Characters.", alert);
         TestRunner.driver.switchTo().alert().accept();
     }
+
 }
 
