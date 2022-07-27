@@ -128,9 +128,11 @@
             if(httpResponse.status === 201){
                 let responseBody = await httpResponse.json();
                 alert(`${responseBody.id} has been successfully submitted.`)
+
                 window.location.reload();
             } else if(httpResponse.status === 400){
                 alert("You are request is invalid.  Please ensure you are following the request instructions.");
+
             } else {
                 alert("Something went wrong. Please try again.");
                 let responseBody = await httpResponse.json();

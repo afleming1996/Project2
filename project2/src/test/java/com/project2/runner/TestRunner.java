@@ -38,8 +38,8 @@ public class TestRunner {
         manager=new Manager(driver);
         requester=new Requester(driver);
 
-        wait=new WebDriverWait(driver, 5);
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        wait=new WebDriverWait(driver, 50);
+        driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
 
 
         

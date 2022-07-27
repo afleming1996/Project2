@@ -191,8 +191,9 @@
             alert(`Status has been changed to ${updatedStatus.value}.`);
             tbodyPending.deleteRow(newRow);
         //   window.location.reload();
-        } else {
-
+        } else if(httpResponse.status === 400){
+            alert(`Too many Characters.`);
+       
             console.log("The updateStatus function does not function.")
         }
         
