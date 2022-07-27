@@ -22,10 +22,12 @@ public class LoginSteps {
 
 
     @Given("the manager is on the login page")
-    public void the_manager_is_on_the_login_page()
+    public void the_manager_is_on_the_login_page(){
+        
         TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/login.html");
         
         TestRunner.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        
     }
     @When("the manager enters his correct username")
     public void the_manager_enters_his_correct_username() {
@@ -47,21 +49,20 @@ public class LoginSteps {
         Assert.assertEquals("Determine Reimbursement Status", title);
     }
     // Manager log out
-    // @Given("the manager is on the manager homepage")
-    // public void the_manager_is_on_the_manager_homepage() {
-    //     TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/manager.html");
-    // }
-    // @When("the manager clicks the sign out button")
-    // public void the_manager_clicks_the_sign_out_button() {
-    //     TestRunner.manager.clickLogOutBtn();
-    // }
-    // @Then("the manager should be logged out to the login page")
-    // public void the_manager_should_be_logged_out_to_the_login_page() {
-    //     TestRunner.wait.until(ExpectedConditions.titleIs("Login"));
-    //     String title = TestRunner.driver.getTitle();
-    //     Assert.assertEquals("Login", title);
-    // }
-    
+    @Given("the manager is on the manager homepage")
+    public void the_manager_is_on_the_manager_homepage() {
+        TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/manager.html");
+    }
+    @When("the manager clicks the sign out button")
+    public void the_manager_clicks_the_sign_out_button() {
+        TestRunner.manager.clickLogOutBtn();
+    }
+    @Then("the manager should be logged out to the login page")
+    public void the_manager_should_be_logged_out_to_the_login_page() {
+        TestRunner.wait.until(ExpectedConditions.titleIs("Login"));
+        String title = TestRunner.driver.getTitle();
+        Assert.assertEquals("Login", title);
+    }
  
     // @Given("the manager is on the manager homepage")
     // public void the_manager_is_on_the_manager_homepage() {
@@ -79,8 +80,6 @@ public class LoginSteps {
     //     String title = TestRunner.driver.getTitle();
     //     Assert.assertEquals("Login", title);
     //}
-
-    //////////////////////////////////////////////////// Employee login Steps /////////////////////////////////////////////////////////
     @Given("the employee is on the login page")
     public void the_employee_is_on_the_login_page() {
         TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/login.html");
@@ -116,6 +115,7 @@ public class LoginSteps {
     public void the_employee_clicks_the_sign_out_button() {
         TestRunner.requester.clickLogOutBtn();
     }
+
     @Then("the employee should be logged out to the login page")
     public void the_employee_should_be_logged_out_to_the_login_page() {
         TestRunner.wait.until(ExpectedConditions.titleIs("Login"));
@@ -123,4 +123,5 @@ public class LoginSteps {
         Assert.assertEquals("Login", title);
     }
 }
+    
 
