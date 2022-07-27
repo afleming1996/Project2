@@ -54,7 +54,6 @@ public class RequesterSteps {
 
         TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/requester.html");
 
-
 }
 
 
