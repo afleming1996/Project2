@@ -129,11 +129,11 @@
             if(httpResponse.status === 201){
                 let responseBody = await httpResponse.json();
                 alert(`${responseBody.id} has been successfully submitted.`)
-                window.location.reload();
+             //   window.location.reload();
             } else {
                 alert("Something went wrong. Please try again.");
-            let responseBody = await httpResponse.json();
-            alert(responseBody.detail);
+                let responseBody = await httpResponse.json();
+                alert(responseBody.detail);
             }
         }
             function logOut(){
