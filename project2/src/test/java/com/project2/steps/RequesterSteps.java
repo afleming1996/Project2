@@ -20,7 +20,7 @@ public class RequesterSteps {
 
     @Given("the requester is on the requester page")
     public void the_requester_is_on_the_requester_page() {
-        TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/requester.html");
+        TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/requester.html");
     }
 
     @When("the requester enters their reimbursement request description not exceeding {int} characters")
@@ -29,7 +29,7 @@ public class RequesterSteps {
 }
     @When("the requester enters their reimbursement request amount not exceeding {int}")
     public void the_requester_enters_their_reimbursement_request_amount_not_exceeding(Integer int1) {
-        TestRunner.requester.EnterRequestAmount(5);
+        TestRunner.requester.EnterRequestAmount(500);
 }
     @When("the requester clicks the submit button")
     public void the_requester_clicks_the_submit_button() {
@@ -47,14 +47,14 @@ public class RequesterSteps {
     @Given("the requester is on the requester homepage")
     public void the_requester_is_on_the_requester_homepage() {
 
-        TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/requester.html");
+        TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/requester.html");
 
 
 }
 
     @Then("the requester should see the pending reimbersement requests")
     public void the_requester_should_see_the_pending_reimbersement_requests() {
-        TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/requester.html");
+        TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/requester.html");
 
 }
 
