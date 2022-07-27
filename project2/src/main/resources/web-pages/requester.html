@@ -52,7 +52,9 @@
 </body>
 <script>
 
+
     let baseURL = "http://localhost:8080/requests"
+
     const result = `${localStorage.getItem("username")}`;
     const username = document.getElementById("username");
     username.textContent = result;
@@ -78,17 +80,17 @@
                 let newRow = document.createElement("tr");
                 newRow.innerHTML = `
                     <td id="${request.id}">${request.id}</td>
-                    <td id="amount${request.id}">${request.amount}</td>
                     <td id="requester_reason${request.id}">${request.request_reason}</td>
+                    <td id="amount${request.id}">${request.amount}</td>
                     <td id="requester_status${request.id}">${request.request_status}</td>
                     <td id="status_reason${request.id}">${request.status_reason}</td>          
                     `;
                 let tbody = document.getElementById("tbody");
-                tbody.appendChild(newRow);
 
                 if(request.request_status==="Approved"){
-
-                receivedTotal += request.amount;
+                    tbody.appendChild(newRow);
+                    if(request.request_status==="Approved"){}
+                    receivedTotal += request.amount;
                 } 
                 }
                  

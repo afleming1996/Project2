@@ -127,7 +127,9 @@ public class RequestsTest {
 
     @Test
     public void statusUpdated(){
-        requests updatedRequests = new requests(604, "porkbellies", "personal", 500, "Approved", 
+
+        requests updatedRequests = new requests(690, "porkbellies", "personal", 500, "Approved", 
+
         "Approved", "dodgeball");
         requests result = requestsDao.statusUpdated(updatedRequests);
         Assert.assertEquals("Approved", result.getRequest_status());

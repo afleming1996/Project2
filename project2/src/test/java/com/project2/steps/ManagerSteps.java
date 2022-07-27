@@ -17,7 +17,7 @@ public class ManagerSteps {
     @Given("the manager is on the manager page")
     public void the_manager_is_on_the_manager_page(){
 
-        TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/manager.html");
+        TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/manager.html");
 
         //C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/manager.html
         //"File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/manager.html"
@@ -68,8 +68,9 @@ public class ManagerSteps {
     //Manager rejects a request
     @Given("the manager is still on  the manager homepage")
     public void the_manager_is_still_on_the_manager_homepage() {
-        TestRunner.driver.get("File://C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/manager.html");
+        TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/manager.html");
     }
+
     @When("the manager clicks the deny selection")
     public void the_manager_clicks_the_deny_selection() {
         TestRunner.wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("tablePending")));
