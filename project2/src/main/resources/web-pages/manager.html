@@ -36,8 +36,9 @@
             </tr>
         </tbody>
     </table>
-    <h3>the company has given <span id="total"></span>$ in reimburesments </h3>
-    <h3> <span id="Me"></span> have given <span id="ApproveByMe"></span>$ in reimburesments</h3>
+    
+    <h3><button id="globalbtn" onclick="showGlobalbtn()">Show</button> the company has given <span id="total"></span>$ in reimburesments </h3> 
+    <h3><button id="byMebtn" onclick="showByMebtn()">Show</button> total reimbursement amount have given <span id="ApproveByMe"></span>$  by <span id="Me"></span></h3>
         <br>
     <h3>Denied Requests</h3>
     <table id="tab-denied" style="background-color:#741B52; color:white">
@@ -56,17 +57,20 @@
     <button id="logout" onclick="logOut()">log out</button>
 </body>
 <script>
-     const result = document.getElementById("username");
-     const Me = document.getElementById("Me");
+    let baseURL = "http://localhost:8080/requests/"
+    const result = document.getElementById("username"); 
     result.textContent = `${localStorage.getItem("username")}`;
     Me.textContent =result.textContent ;
     
-    console.log(username);
-    let baseURL = "http://localhost:8080/requests/"
+    ////// Stretch Goals/////
+    let totalPaid =0;
+    let TotalApprovedByMe = 0;
+
+   
     let tbodyPending = document.getElementById("tbody-pending");
     let tbodyDenied = document.getElementById("tbody-denied");
     let tbodyApproved = document.getElementById("tbody-approved");
-    let total = document.getElementById("total");
+  
     async function getAllRequests(){
         let config = {
             method: "GET",
@@ -78,8 +82,7 @@
         if(httpResponse.status === 200){
             const requests = await httpResponse.json();
             console.log(requests)
-            let totalPaid =0;
-            let TotalApprovedByMe = 0;
+           
             for(let request of requests){
                 let newRow = document.createElement("tr");
                 newRow.innerHTML = `
@@ -122,14 +125,15 @@
                     tbodyPending.appendChild(newRow);
                 }
             }
-            console.log(totalPaid)
-            total.innerText = totalPaid;
-            ApproveByMe.innerText=TotalApprovedByMe;
+           
+           
+           
         } else {
 
             console.log("The getAllRequests function does not function.",httpResponse.json().detail);
         }
     }
+   
 
     function addDeniedToTable(id,requester_username,request_reason,amount,status_reason){
         let tbodyId = document.getElementById("tbody-denied")
@@ -164,6 +168,8 @@
         let status_reason = document.getElementById(`status_reason${id}`);
         let amount = document.getElementById(`amount${id}`);
         let newRow = document.createElement(`tr${id}`);
+        
+     
         let requestStatus = {
             requester_username: username.innerText,
             request_reason: reason.innerText,
@@ -171,8 +177,8 @@
             request_status: updatedStatus.value,
             status_reason: status_reason.value,
             manager_username: result.textContent
-        }
-
+            }
+       
         let config = {
             method: "PATCH",
             headers: {"Content-Type":"application/json"},
@@ -184,17 +190,26 @@
         if(httpResponse.status === 200){
             alert(`Status has been changed to ${updatedStatus.value}.`);
             tbodyPending.deleteRow(newRow);
-        //    window.location.reload();
-        } else if(httpResponse.status === 400){
-            alert("Too many Characters.");
+        //   window.location.reload();
+        } else {
+
             console.log("The updateStatus function does not function.")
         }
-
+        
     }
 
     function logOut(){
         window.location.replace("login.html")
     }
 
+    ////////////// Stretch Goals /////////////////
+    function showGlobalbtn(i){
+        let total = document.getElementById("total");
+        total.innerText = totalPaid;
+    }
+    function showByMebtn(i){
+        const Me = document.getElementById("Me");
+        ApproveByMe.innerText=TotalApprovedByMe;
+    }
 </script>
 </html>

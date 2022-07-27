@@ -63,4 +63,12 @@ public class Requester {
     public void clickLogOutBtn(){
         this.logoutButton.click();
     }
+
+
+    /////// Stretch Goals ////////////
+    @FindBy(id = "showbtn")
+    public WebElement showbtn;
+
+    @FindBy(id = "received")
+    public WebElement received;
 }

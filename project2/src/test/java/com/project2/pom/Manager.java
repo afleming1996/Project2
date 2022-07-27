@@ -14,6 +14,7 @@ public class Manager {
         @FindBy(tagName = "button")
         public WebElement updateButton;
 
+  
         @FindBy(id = "logout")
         public WebElement logoutButton;
 
@@ -48,5 +49,13 @@ public class Manager {
         public void clickLogOutBtn(){
             this.logoutButton.click();
         }
-
+//////////////////////// Stretch Goals //////////////////
+        @FindBy(id = "globalbtn")
+        public WebElement globalbtn;
+        @FindBy(id = "byMebtn")
+        public WebElement byMebtn;
+        @FindBy(id = "ApproveByMe")
+        public WebElement ApproveByMe;
+        @FindBy(id = "total")
+        public WebElement global;
 }
