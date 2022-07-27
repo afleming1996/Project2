@@ -16,6 +16,7 @@ public class LoginSteps {
     //Manager Login Steps
     //"File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/login.html"
     //C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/login.html
+    // C:/git/Project2/project2/src/main/resources/web-pages/login.html
     @Given("the manager is on the login page")
     public void the_manager_is_on_the_login_page(){
         
