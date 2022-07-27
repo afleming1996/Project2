@@ -19,9 +19,11 @@ public class ManagerSteps {
 
         TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/manager.html");
 
-        //C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/manager.html
-        //"File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/manager.html"
-        // C:/git/Project2/project2/src/main/resources/web-pages/manager.html
+
+    //File://C:/Users/sain4/Desktop/Project2/project2/src/main/resources/web-pages/requester.html
+    //C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/manager.html
+    //"File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/manager.html"
+    // C:/git/Project2/project2/src/main/resources/web-pages/manager.html
 
     }
 
@@ -37,10 +39,6 @@ public class ManagerSteps {
     }
 
 
-    //File://C:/Users/sain4/Desktop/Project2/project2/src/main/resources/web-pages/requester.html
-    //C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/manager.html
-    //"File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/manager.html"
-    // C:/git/Project2/project2/src/main/resources/web-pages/manager.html
 
     //Manager accepts a request
     @When("the manager clicks the accept selection")
@@ -102,12 +100,12 @@ public class ManagerSteps {
     @When("the manager clicks the show myApprovedreimbursement button")
     public void the_manager_clicks_the_show_myApprovedreimbursement_button() {
         TestRunner.manager.byMebtn.click();
-}
+    }
     
     @Then("the total amount approved reimbursement by manager should be showed")
     public void the_total_amount_approved_reimbursement_by_manager_should_be_showed() {
     Assert.assertEquals("0", TestRunner.manager.ApproveByMe.getText());
-}\
+    }
 
 
 
