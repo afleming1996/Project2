@@ -15,7 +15,12 @@ public class RequesterSteps {
     //File://C:/Users/sain4/Desktop/Project2/project2/src/main/resources/web-pages/requester.html
     //C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/requester.html
     //File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/requester.html
+
+    // C:/git/Project2/project2/src/main/resources/web-pages/requester.html
+
+
     // C:/git/Project2/project2/src/main/resources/web-pages/manager.html
+
     @Given("the requester is on the requester page")
     public void the_requester_is_on_the_requester_page() {
         TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/requester.html");
@@ -44,13 +49,17 @@ public class RequesterSteps {
 
     @Given("the requester is on the requester homepage")
     public void the_requester_is_on_the_requester_homepage() {
+
         TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/requester.html");
+
 
 }
 
     @Then("the requester should see the pending reimbersement requests")
     public void the_requester_should_see_the_pending_reimbersement_requests() {
-        
+
+        TestRunner.driver.get("C:/git/Project2/project2/src/main/resources/web-pages/requester.html");
+
 
 }
 
