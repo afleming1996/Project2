@@ -6,7 +6,7 @@
 <body onload="getAllRequests()">
    
     <h1 style="text-align:center">Determine Reimbursement Status</h1>
-    
+    <h1 id="username"></h1>
     <h3>Pending Requests</h3>
     <table id="tablePending" style="background-color:#741B52; color:white">
         <thead>
@@ -36,7 +36,8 @@
             </tr>
         </tbody>
     </table>
-    <h2>the company has given <span id="total"></span>$ in reimburesments </h1>
+    <h3>the company has given <span id="total"></span>$ in reimburesments </h3>
+    <h3> <span id="Me"></span> have given <span id="ApproveByMe"></span>$ in reimburesments</h3>
         <br>
     <h3>Denied Requests</h3>
     <table id="tab-denied" style="background-color:#741B52; color:white">
@@ -55,6 +56,12 @@
     <button id="logout" onclick="logOut()">log out</button>
 </body>
 <script>
+     const result = document.getElementById("username");
+     const Me = document.getElementById("Me");
+    result.textContent = `${localStorage.getItem("username")}`;
+    Me.textContent =result.textContent ;
+    
+    console.log(username);
     let baseURL = "http://localhost:8080/requests/"
     let tbodyPending = document.getElementById("tbody-pending");
     let tbodyDenied = document.getElementById("tbody-denied");
@@ -72,6 +79,7 @@
             const requests = await httpResponse.json();
             console.log(requests)
             let totalPaid =0;
+            let TotalApprovedByMe = 0;
             for(let request of requests){
                 let newRow = document.createElement("tr");
                 newRow.innerHTML = `
@@ -102,7 +110,11 @@
                 if(request.request_status === "Approved"){
                     addApprovedToTable(request.id,request.requester_username,request.request_reason,request.amount,request.status_reason);
                     totalPaid +=request.amount;
-                    //   tbodyApproved.appendChild(closedRequestRow);
+                    
+                    if(request.manager_username == result.textContent){
+                        TotalApprovedByMe += request.amount;
+                    }
+
                 } else if (request.request_status === "Denied"){
                     addDeniedToTable(request.id,request.requester_username,request.request_reason,request.amount,request.status_reason);
               //  tbodyDenied.appendChild(closedRequestRow);
@@ -112,6 +124,7 @@
             }
             console.log(totalPaid)
             total.innerText = totalPaid;
+            ApproveByMe.innerText=TotalApprovedByMe;
         } else {
 
             console.log("The getAllRequests function does not function.",httpResponse.json().detail);
@@ -157,7 +170,7 @@
             amount: amount.innerText,
             request_status: updatedStatus.value,
             status_reason: status_reason.value,
-            manager_username: "TBD"
+            manager_username: result.textContent
         }
 
         let config = {

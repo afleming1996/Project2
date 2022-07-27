@@ -17,13 +17,15 @@ public class LoginSteps {
     //File://C:/Users/sain4/Desktop/Project2/project2/src/main/resources/web-pages/requester.html
     //"File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/login.html"
     //C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/login.html
-
-    // C:/git/Project2/project2/src/main/resources/web-pages/manager.html
+     // C:/git/Project2/project2/src/main/resources/web-pages/manager.html
 
 
     @Given("the manager is on the login page")
     public void the_manager_is_on_the_login_page(){
-        TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/login.html");
+
+        
+        TestRunner.driver.get("File://C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/login.html");
+      
         TestRunner.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
     @When("the manager enters his correct username")
@@ -61,10 +63,28 @@ public class LoginSteps {
         Assert.assertEquals("Login", title);
     }
     
-    // Employee login Steps
+ 
+    @Given("the manager is on the manager homepage")
+    public void the_manager_is_on_the_manager_homepage() {
+       TestRunner.driver.get("File://C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/manager.html");
+   
+   
+    }
+    @When("the manager clicks the sign out button")
+    public void the_manager_clicks_the_sign_out_button() {
+           TestRunner.manager.clickLogOutBtn();
+    }
+    @Then("the manager should be logged out to the login page")
+    public void the_manager_should_be_logged_out_to_the_login_page() {
+        TestRunner.wait.until(ExpectedConditions.titleIs("Login"));
+        String title = TestRunner.driver.getTitle();
+        Assert.assertEquals("Login", title);
+    }
+
+    //////////////////////////////////////////////////// Employee login Steps /////////////////////////////////////////////////////////
     @Given("the employee is on the login page")
     public void the_employee_is_on_the_login_page() {
-        TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/login.html");
+        TestRunner.driver.get("File://C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/login.html");
     }
     @When("the employee enters his correct username")
     public void the_employee_enters_his_correct_username() {
@@ -84,12 +104,13 @@ public class LoginSteps {
         String title= TestRunner.driver.getTitle();
         Assert.assertEquals("Reimbursement Requests Page", title);
     }
+
     // LogoutSteps
     // Requester Log out
     @Given("the employee is on the requester homepage")
     public void the_employee_is_on_the_requester_homepage() {
 
-        TestRunner.driver.get("File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/requester.html");
+        TestRunner.driver.get("File://C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/requester.html");
 
     }
     @When("the employee clicks the sign out button")
