@@ -127,7 +127,7 @@ public class RequestsTest {
 
     @Test
     public void statusUpdated(){
-        requests updatedRequests = new requests(607, "porkbellies", "personal", 500, "Approved", 
+        requests updatedRequests = new requests(604, "porkbellies", "personal", 500, "Approved", 
         "Approved", "dodgeball");
         requests result = requestsDao.statusUpdated(updatedRequests);
         Assert.assertEquals("Approved", result.getRequest_status());
@@ -142,7 +142,7 @@ public class RequestsTest {
             Assert.fail("invalid request: please try again");
         } catch( InvalidRequests e) {
             assertNotNull(e);
-//this test is now expecting null pointer exception i think so
+        //this test is now expecting null pointer exception i think so
         }
 
     }

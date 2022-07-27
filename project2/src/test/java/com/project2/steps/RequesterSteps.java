@@ -1,5 +1,6 @@
 package com.project2.steps;
 
+import org.junit.Assert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.project2.runner.TestRunner;
@@ -7,6 +8,8 @@ import com.project2.runner.TestRunner;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
+import junit.framework.Test;
 
 public class RequesterSteps {
     //File://C:/Users/sain4/Desktop/Project2/project2/src/main/resources/web-pages/requester.html
@@ -56,5 +59,15 @@ public class RequesterSteps {
 
 }
 
+    ///////// Stretch Goals /////////////
+    @When("the requester clicks the show amount recieved button")
+    public void the_requester_clicks_the_show_amount_recieved_button() {
+       TestRunner.requester.showbtn.click();
+    }
+
+    @Then("the total amount approved reimbursement money showed")
+    public void the_total_amount_approved_reimbursement_money_showed() {
+        Assert.assertEquals("0", TestRunner.requester.received.getText());
+    }
 
 }

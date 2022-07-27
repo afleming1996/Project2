@@ -88,5 +88,28 @@ public class ManagerSteps {
         Assert.assertEquals("Status has been changed to Denied.", alert);
         TestRunner.driver.switchTo().alert().accept();
     }
+
+    ////////////////////////// Stretch Goals /////////////////////////////////////////////
+    @When("the manager clicks the show globalreimbursement button")
+    public void the_manager_clicks_the_show_globalreimbursement_button() {
+        TestRunner.manager.globalbtn.click();
+    }
+    @Then("the global reimbursement company has given should be showed")
+    public void the_global_reimbursement_company_has_given_should_be_showed() {
+        Assert.assertEquals("0", TestRunner.manager.global.getText());
+    }
+
+    @When("the manager clicks the show myApprovedreimbursement button")
+    public void the_manager_clicks_the_show_myApprovedreimbursement_button() {
+        TestRunner.manager.byMebtn.click();
+}
+    
+    @Then("the total amount approved reimbursement by manager should be showed")
+    public void the_total_amount_approved_reimbursement_by_manager_should_be_showed() {
+    Assert.assertEquals("0", TestRunner.manager.ApproveByMe.getText());
+}\
+
+
+
 }
 

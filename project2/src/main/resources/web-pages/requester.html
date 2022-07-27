@@ -34,7 +34,7 @@
                     </tr>
                 </tbody>
             </table>
-            <h3> how much money I have been given in reimburesments: <span id="received"></span>$</h3>
+            <h3> <button id="showbtn" onclick="showbtn()">Show</button>  how much money I have been given in reimburesments: <span id="received"></span>$</h3>
     </div>
     <div class="column" style="background-color:#96D1CD; text-align:center">
         <!-- style="" -->
@@ -48,14 +48,18 @@
         <button id="requestButton" onclick="createRequest()">Submit</button>
     </div>
     <button id="logout" onclick="logOut()">log out</button>
+  
 </body>
 <script>
-   
+    let baseURL = "http://localhost:8080/requests"
     const result = `${localStorage.getItem("username")}`;
     // somewhere here the request or filtering the responseBody will need to take place to only display username's results
-    const received = document.getElementById("received");
+  
 
-    let baseURL = "http://localhost:8080/requests"
+    //// Stretch goals///
+    let receivedTotal = 0;
+   
+    
     async function getMyRequests(){
         let config = {
             method: "GET",
@@ -66,12 +70,7 @@
         
         if(httpResponse.status === 200){
             const requests = await httpResponse.json();
-            console.log(requests)
-            console.log(requests.requester_username)
-
-            let receivedTotal = 0;
             for(let request of requests){
-            
                 if(request.requester_username === result){
                 let newRow = document.createElement("tr");
                 newRow.innerHTML = `
@@ -82,14 +81,14 @@
                     <td id="status_reason${request.id}">${request.status_reason}</td>          
                     `;
                 let tbody = document.getElementById("tbody");
-                if(request.request_status==="Approved"){
-                    tbody.appendChild(newRow);
+                tbody.appendChild(newRow);
+                if(request.request_status==="Approved"){   
                 receivedTotal += request.amount;
                 } 
                 }
                  
             }
-            received.innerText = receivedTotal;
+            
         }else if(httpResponse.status === 400){
             alert("the getMyRequests function does not...function");
         }
@@ -132,7 +131,13 @@
         }
             function logOut(){
         window.location.replace("login.html")
-    
+                
+        }
+
+        ////////////////////////// Stretch Goals //////////////////////////
+        function showbtn(){
+            const received = document.getElementById("received");
+            received.innerText = receivedTotal;
         }
 </script>
 </html>
