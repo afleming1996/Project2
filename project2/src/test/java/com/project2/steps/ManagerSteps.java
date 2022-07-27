@@ -27,6 +27,7 @@ public class ManagerSteps {
    
     //C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/manager.html
     //"File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/manager.html"
+    // C:/git/Project2/project2/src/main/resources/web-pages/manager.html
 
 
     // //Manager Login Steps
