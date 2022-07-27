@@ -30,7 +30,7 @@ public class RequestsTest {
         mockRules = Mockito.mock(BusinessRules.class); // this creates a mock rules object we control
         serviceWithMocks = new RequestsService(mockDao, mockRules);
     }
-     //testing Requests 
+     //testing Request 
     @Test
     public void createRequests()
     {
