@@ -2,15 +2,22 @@
 <html lang="en">
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inconsolata:wght@300&family=Permanent+Marker&display=swap" rel="stylesheet">
+
+
 </head>
-<body>
-    <h1>Please log in to proceed</h1>
-    <h3>Please enter your username:</h3>
-    <input type="text" id="userInput">
-    <h3>Please enter your password:</h3>
-    <input type="password" id="passInput">
-    <br><br>
-    <button onclick="login()" id="btn">Log in</button>
+<body id="body">
+    <form action="" class="form">
+        <div class="box">
+            <h1>LOGIN</h1>
+            <input type="text" id="userInput"placeholder="Username">
+            <input type="password" id="passInput" placeholder="Password">
+            <button onclick="login()" id="btn">Login</button> 
+
+        </div>
+
+    </form>
 </body>
 <script>
  
