@@ -30,6 +30,9 @@ public class Requester {
     @FindBy(id = "logout")
     public WebElement logoutButton;
 
+    @FindBy(id = "username")
+    public WebElement username;
+
     public Alert alert;
 
     public Requester(WebDriver driver){
