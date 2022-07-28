@@ -24,8 +24,7 @@ public class RequestsDAO implements RequestsDAOInterface {
     }
     @Override
     public List<requests> getAllRequests() {
-        HibernateUtil.beginTransaction();
-        
+        HibernateUtil.beginTransaction();      
         List<requests> requestsList = HibernateUtil.getSession().createQuery("from requests",
          requests.class).getResultList();
         HibernateUtil.endTransaction();       
@@ -38,7 +37,6 @@ public class RequestsDAO implements RequestsDAOInterface {
         HibernateUtil.getSession().delete(requestsToBeDeleted);
         return true;
     }
-
 }
     
 

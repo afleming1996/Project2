@@ -37,13 +37,12 @@
             <h3> <button id="showbtn" onclick="showbtn()">Show</button>  how much money I have been given in reimburesments: <span id="received" hidden></span>$</h3>
     </div>
     <div class="column" style="background-color:#96D1CD; text-align:center">
-        <!-- style="" -->
         <h2>New Requests</h2>
         <h3>Please enter a request amount:</h3>
         <input type="number" id="amountInput" max="1000">
         <p>(Requests must not exceed $1000)</p>
         <h3>Please enter a reason for this request:</h3>
-        <input type="text" id="inputReason" maxlength="500"> <!-- styling: fit content with a max width (field extends below once width-limit reached) -->
+        <input type="text" id="inputReason" maxlength="500">
         <p>(Reason must not exceed 500 characters)</p>
         <button id="requestButton" onclick="createRequest()">Submit</button>
     </div>
@@ -51,19 +50,13 @@
   
 </body>
 <script>
-
-
     let baseURL = "http://localhost:8080/requests"
-
     const result = `${localStorage.getItem("username")}`;
     const username = document.getElementById("username");
-    username.textContent = result;
-    // somewhere here the request or filtering the responseBody will need to take place to only display username's results
-  
+    username.textContent = result;  
 
     //// Stretch goals///
     let receivedTotal = 0;
-   
     
     async function getMyRequests(){
         let config = {
@@ -85,6 +78,7 @@
                     <td id="requester_status${request.id}">${request.request_status}</td>
                     <td id="status_reason${request.id}">${request.status_reason}</td>          
                     `;
+
                 let tbody = document.getElementById("tbody");
 
                 if(request.request_status==="Approved"){
@@ -97,6 +91,7 @@
             }
             
         }else if(httpResponse.status === 400){
+
             alert("the getMyRequests function does not...function");
         }
     }
@@ -104,49 +99,48 @@
 
     let request_reason = document.getElementById("inputReason");
     let amount = document.getElementById("amountInput");
-
     async function createRequest(){
-        let submitNewRequest = {
-            
-                requester_username: result,
-                request_reason: request_reason.value,
-                amount: amount.value,
-                request_status: "Pending",
-                status_reason: " ",
-                manager_username: "TBD",
-            };
-            console.log(submitNewRequest)
-            let submitNewRequestJSON = JSON.stringify(submitNewRequest);
-            let config = {
-                method:"POST", 
-                headers:{'Content-Type':"application/json"},
-                body: submitNewRequestJSON,
-            }
-            
-            let httpResponse = await fetch(`${baseURL}`,config);
-
-            if(httpResponse.status === 201){
-                let responseBody = await httpResponse.json();
-                alert(`${responseBody.id} has been successfully submitted.`)
-
-                window.location.reload();
-            } else if(httpResponse.status === 400){
-                alert("You are request is invalid.  Please ensure you are following the request instructions.");
-
-            } else {
-                alert("Something went wrong. Please try again.");
-                let responseBody = await httpResponse.json();
-                alert(responseBody.detail);
-            }
+        let submitNewRequest = {   
+            requester_username: result,
+            request_reason: request_reason.value,
+            amount: amount.value,
+            request_status: "Pending",
+            status_reason: " ",
+            manager_username: "TBD",
         }
-            function logOut(){
+        console.log(submitNewRequest)
+        let submitNewRequestJSON = JSON.stringify(submitNewRequest);
+        let config = {
+            method:"POST", 
+            headers:{'Content-Type':"application/json"},
+            body: submitNewRequestJSON,
+        }
+        
+        let httpResponse = await fetch(`${baseURL}`,config);
+
+        if(httpResponse.status === 201){
+            let responseBody = await httpResponse.json();
+            alert(`${responseBody.id} has been successfully submitted.`)
+            window.location.reload();
+        } else if(httpResponse.status === 400){
+            alert("You are request is invalid.  Please ensure you are following the request instructions.");
+
+        } else {
+            alert("Something went wrong. Please try again.");
+            let responseBody = await httpResponse.json();
+            alert(responseBody.detail);
+        }
+    }
+    function logOut(){
         window.location.replace("login.html")
-        }
+    }
+
 
         ////////////////////////// Stretch Goals //////////////////////////
         function showbtn(){
             const received = document.getElementById("received");
             received.toggleAttribute('hidden');
         }
+
 </script>
 </html>
