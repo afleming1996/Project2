@@ -22,11 +22,11 @@ public class RequesterSteps {
     @Given("the requester is on the requester page")
     public void the_requester_is_on_the_requester_page() {
 
-        TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/requester.html");
+        TestRunner.driver.get("C:/git/Project2/project2/src/main/resources/web-pages/requester.html");
     }
     @Then("the requester should see the pending reimbersement requests")
     public void the_requester_should_see_the_pending_reimbersement_requests() {
-        TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/requester.html");
+        TestRunner.driver.get("C:/git/Project2/project2/src/main/resources/web-pages/requester.html");
     }
 
     // create requests
@@ -82,7 +82,7 @@ public class RequesterSteps {
     @Then("the requester should not see other employee requests")
     public void the_requester_should_not_see_other_employee_requests(){
         String imposterName = TestRunner.driver.findElement(By.id("username")).getText();
-        Assert.assertNotEquals("themagicword", imposterName);
+        Assert.assertNotEquals("Requester3", imposterName);
     }
 
 
