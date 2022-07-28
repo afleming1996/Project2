@@ -3,12 +3,25 @@
 <head>
     <title>Determine Reimbursement Status</title>
 </head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Oswald&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="manager.css">
 <body onload="getAllRequests()">
-   
+<header>
+    <img id="pic" src="Fantastic logo.png" alt="four">
     <h1 style="text-align:center">Determine Reimbursement Status</h1>
+
+    <button id="logout" onclick="logOut()">log out</button>
+</header>
+<div class="table">
+    <h3 style="text-align:center">Pending Requests</h3>
+    <table id="tablePending">
+
     <h1 id="username"></h1>
     <h3>Pending Requests</h3>
     <table id="tablePending" style="background-color:#741B52; color:white">
+
         <thead>
             <tr>
                 <th>Request id</th><th>Employee username</th><th>Reason given</th><th>Requested amount</th><th>Status</th>
@@ -17,16 +30,24 @@
         </thead>
         <tbody id="tbody-pending">
             <tr>
-                <td></td>
+                
             </tr>
         </tbody>
     </table>
+</div>
     <br><br>
+
+<div class="table">
+    <br>
+    <h3 style="text-align:center">Approved Requests</h3>
+    <table id="tab-approved">
+
 
     <h2 style="text-align:center">Closed Requests</h2>
     
     <h3>Approved Requests</h3>
     <table id="tab-approved" style="background-color:#741B52; color:white">
+
         <thead>
             <tr>
                 <th>Request id</th><th>Employee username</th><th>Reason given</th><th>Requested amount</th><th>Reason for status</th>
@@ -34,10 +55,18 @@
         </thead>
         <tbody id="tbody-approved">
             <tr>
-                <td></td>
+                
             </tr>
         </tbody>
     </table>
+
+</div>
+    <h2 style="font-size: 20px;">The company has given <span id="total"></span>$ in reimburesments </h1>
+        <br>
+<div class="table">
+    <h3 style="text-align:center">Denied Requests</h3>
+    <table id="tab-denied">
+
 
     
     <h3><button id="globalbtn" onclick="showGlobalbtn()">Show</button> the company has given <span id="total" hidden></span>$ in reimburesments </h3> 
@@ -46,6 +75,7 @@
 
     <h3>Denied Requests</h3>
     <table id="tab-denied" style="background-color:#741B52; color:white">
+
         <thead>
             <tr>
                 <th>Request id</th><th>Employee username</th><th>Reason given</th><th>Requested amount</th><th>Reason for status</th>
@@ -53,11 +83,13 @@
         </thead>
         <tbody id="tbody-denied">
             <tr>
-                <td></td>
+                
             </tr>
         </tbody>
     </table>
-    <button id="logout" onclick="logOut()">log out</button>
+
+</div>
+
 </body>
 <script>
     let baseURL = "http://localhost:8080/requests/"
@@ -99,7 +131,11 @@
                         </select>
                     </td>
                     <td><input type="text" id="status_reason${request.id}"></td>
-                    <button onclick="updateStatus(${request.id})" id="update_status_button${request.id}">Update</button>`;
+
+                    <td><button onclick="updateStatus(${request.id})" id="update_status_button${request.id}">Update</button></td>
+                `;
+
+
                 let closedRequestRow = document.createElement("tr");
                 closedRequestRow.innerHTML = 
                     `<td style="text-align:right" id="${request.id}">${request.id}</td>
