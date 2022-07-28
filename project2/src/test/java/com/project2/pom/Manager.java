@@ -53,4 +53,10 @@ public class Manager {
         public WebElement ApproveByMe;
         @FindBy(id = "total")
         public WebElement global;
+        public void totalClick(){
+            this.globalbtn.click();
+        }
+        public void ApproveByMeClick(){
+            this.byMebtn.click();
+        }
 }

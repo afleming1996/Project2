@@ -56,4 +56,8 @@ public class Requester {
 
     @FindBy(id = "received")
     public WebElement received;
+
+    public void showbtn(){
+        this.showbtn.click();
+    }
 }
