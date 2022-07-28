@@ -32,20 +32,21 @@ public class RequestsTest {
 
     @Test
     public void createRequests(){
-         requests testRequests= new requests("porkbellies",
-         "personal",500,"Pending","pending","dodgeball");
+         requests testRequests= new requests("Requester1",
+         "test request reason",500,"Pending","test status reason","Manager1");
          requests result = requestsDao.createRequests(testRequests);
          Assert.assertNotNull(result.getId());
     }
     
+    // excessive characters request
     @Test(expected = NullPointerException.class)
     public void createRequestsNegative(){
         String s = "";
         for(int i=0; i<50; i++){ 
             s+= "jjjjjjjjjjjjjjjjjjjjjj";
         } try{
-            requests badTestRequests= new requests("porkbellies",
-            "personal",5000,"Pending",s,"dodgeball");
+            requests badTestRequests= new requests("Requester1",
+            s,500,"Pending","test status reason","Manager1");
             requests result = requestsService.createRequest(badTestRequests);
             Assert.fail("invalid request: please try again");
         } catch( InvalidRequests e) {
@@ -53,15 +54,12 @@ public class RequestsTest {
         }
     }
 
+    // excessive money request
     @Test(expected = NullPointerException.class)
     public void createRequestsNegativeAmount(){
-        String s = "";
-        int a = 10000;
-        for(int i=0; i<50; i++){ 
-            s+= "jjjjjjjjjjjjjjjjjjjjjj";
-        } try{
-            requests badTestRequests= new requests("porkbellies",
-            "personal",a,"Pending",s,"dodgeball");
+        try{
+            requests badTestRequests= new requests("Requester1",
+            "test request reason",10000,"Pending","test status reason","Manager1");
             requests result = requestsService.createRequest(badTestRequests);
             Assert.fail("invalid request: please try again");
         } catch( InvalidRequests e) {
@@ -85,10 +83,11 @@ public class RequestsTest {
         }
     }
 
+    // manager tests
     @Test
     public void statusUpdated(){
-        requests updatedRequests = new requests(816, "porkbellies", "personal", 500, "Approved", 
-        "Approved", "dodgeball");
+        requests updatedRequests = new requests(1, "Requester1", "test request reason", 500, "Approved", 
+        "Approved", "Manager1");
         requests result = requestsDao.statusUpdated(updatedRequests);
         Assert.assertEquals("Approved", result.getRequest_status());
     }
@@ -96,8 +95,8 @@ public class RequestsTest {
     @Test(expected = NullPointerException.class)
     public void statusUpdatesNegative(){
         try{
-            requests badTestRequests= new requests("porkbellies",
-            "personal",5000,"Pending","oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo00000000000000000000000000000000000000000000000000000000000000000000000000000000000lllllllllllllllllllllllloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo","dodgeball");
+            requests badTestRequests= new requests("Requester1",
+            "test request reason",500,"Pending","oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo00000000000000000000000000000000000000000000000000000000000000000000000000000000000lllllllllllllllllllllllloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo","dodgeball");
             requests result = requestsService.serviceUpdateRequests(badTestRequests);
             Assert.fail("invalid request: please try again");
         } catch( InvalidRequests e) {

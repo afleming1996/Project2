@@ -24,13 +24,13 @@ public class EmployeesTest {
 
     @Test
     public void CheckUserCridential(){
-        List<employees> employees = employeeDAO.CheckUserCridential("porkbellies", "password");
+        List<employees> employees = employeeDAO.CheckUserCridential("Requester1", "password");
         Assert.assertNotNull(employees);
     }
     
     @Test
     public void CheckUserCridentialNegative(){
-        List<employees> employees = employeeDAO.CheckUserCridential("porkd", "d");
+        List<employees> employees = employeeDAO.CheckUserCridential("porkbellies", "d");
         Assert.assertTrue(employees.size()==0);
     }
 }

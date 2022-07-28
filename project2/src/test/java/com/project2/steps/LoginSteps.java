@@ -24,7 +24,7 @@ public class LoginSteps {
     }
     @When("the manager enters his correct username")
     public void the_manager_enters_his_correct_username() {
-        TestRunner.login.enterUsername("mana");
+        TestRunner.login.enterUsername("Manager1");
     }
     @When("the manager enters his correct password")
     public void the_manager_enters_his_correct_password() {
@@ -61,11 +61,10 @@ public class LoginSteps {
     @Given("the employee is on the login page")
     public void the_employee_is_on_the_login_page() {
         TestRunner.driver.get("C:/git/Project2/project2/src/main/resources/web-pages/login.html");
-
     }
     @When("the employee enters his correct username")
     public void the_employee_enters_his_correct_username() {
-        TestRunner.login.enterUsername("themeditationking");
+        TestRunner.login.enterUsername("Requester1");
     }
     @When("the employee enters his correct password")
     public void the_employee_enters_his_correct_password() {
