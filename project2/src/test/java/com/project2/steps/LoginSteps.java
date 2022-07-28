@@ -14,11 +14,13 @@ import io.cucumber.java.en.When;
 public class LoginSteps {
     @Given("the manager is on the login page")
     public void the_manager_is_on_the_login_page(){
+
         //File://C:/Users/sain4/Desktop/Project2/project2/src/main/resources/web-pages/requester.html
         //"File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/login.html"
         //C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/login.html
         // C:/git/Project2/project2/src/main/resources/web-pages/manager.html
         TestRunner.driver.get("C:/git/Project2/project2/src/main/resources/web-pages/login.html");        
+
     }
     @When("the manager enters his correct username")
     public void the_manager_enters_his_correct_username() {
@@ -59,6 +61,7 @@ public class LoginSteps {
     @Given("the employee is on the login page")
     public void the_employee_is_on_the_login_page() {
         TestRunner.driver.get("C:/git/Project2/project2/src/main/resources/web-pages/login.html");
+
     }
     @When("the employee enters his correct username")
     public void the_employee_enters_his_correct_username() {
