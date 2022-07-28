@@ -27,7 +27,5 @@ public class EmployeesDAO implements EmployeesDAOInterface {
         List<employees> employeesList = query.getResultList();
         HibernateUtil.endTransaction();
         return employeesList;
-    }
-
-    
+    } 
 }

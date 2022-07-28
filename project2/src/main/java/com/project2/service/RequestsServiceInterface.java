@@ -8,20 +8,12 @@ public interface RequestsServiceInterface {
     //manager
     boolean statusReason(requests statusReason);
 
-
-
-
     //requester/employee
     boolean requestReason(requests requestReason);
-
     boolean requestAmount(requests requestAmount);
-
     List<requests> getMyRequests();
 
     //both
-   // boolean uniqueUsername(requests uniqueUsername);
-
     requests serviceUpdateRequests(requests requestToBeUpdated);
-    
     requests createRequest(requests newRequest);
 }

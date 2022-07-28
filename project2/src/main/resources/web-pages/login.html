@@ -3,8 +3,7 @@
 <head>
     <title>Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inconsolata:wght@300&family=Permanent+Marker&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="login.css">
 </head>
 <body id="body">
     <div class="form">
@@ -13,18 +12,16 @@
             <input type="text" id="userInput"placeholder="Username">
             <input type="password" id="passInput" placeholder="Password">
             <button onclick="login()" id="btn">Login</button> 
-
         </div>
-
     </div>
 </body>
 <script>
     let input = document.getElementById("passInput");
-        input.addEventListener("keypress", function(event){
-         if(event.key === "Enter"){
-             login();
-         }
-     });
+    input.addEventListener("keypress", function(event){
+        if(event.key === "Enter"){
+            login();
+        }
+    });
     let baseURL = "http://localhost:8080/employees"
     const    usernameInput = document.getElementById("userInput");
     const    passwordInput = document.getElementById("passInput");
@@ -36,25 +33,19 @@
 
         // Working on a method in MAIN to handling the Username and Password
         let httpResponse = await fetch(`${baseURL}`,config);
-        //console.log(httpResponse)
         if(httpResponse.status === 200){
             let responseBody = await httpResponse.json();
-            //console.log(responseBody)
             for(let i of responseBody){
-              
                 if(usernameInput.value === i.username && passwordInput.value === i.user_password){
                     if(i.employee_role === "Manager"){
-
                         localStorage.setItem("username",usernameInput.value)
-
                         window.location.href = "manager.html"
                     } else {
                         localStorage.setItem("username",usernameInput.value)
                         window.location.href = "requester.html"
                     }   
                 } 
-            }
-           
+            }   
         } else {
             let responseBody = await httpResponse.json();
             alert(responseBody.detail);

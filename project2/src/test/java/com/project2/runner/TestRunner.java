@@ -22,14 +22,11 @@ public class TestRunner {
 
     public static WebDriver driver;
     public static WebDriverWait wait;
-    
 
     public static Login login;
     public static Manager manager;
     public static Requester requester;
     
-   
-
     @BeforeClass
     public static void setup(){
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
@@ -38,19 +35,15 @@ public class TestRunner {
         manager=new Manager(driver);
         requester=new Requester(driver);
 
-        wait=new WebDriverWait(driver, 50);
-        driver.manage().timeouts().implicitlyWait(100, TimeUnit.SECONDS);
-
-
+        wait=new WebDriverWait(driver, 2);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         
     }
+
     @AfterClass
     public static void teardown(){
         driver.quit();
     }
-    
-
-    
 }
 
     
