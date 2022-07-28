@@ -14,7 +14,7 @@
     <h1 style="text-align:center">Determine Reimbursement Status</h1>
     <h1 id="username"></h1>
     <h3>Pending Requests</h3>
-    <table id="tablePending" style="background-color:#741B52; color:white">
+    <table id="tablePending" style="color:white">
         <thead>
             <tr>
                 <th>Request id</th><th>Employee username</th><th>Reason given</th><th>Requested amount</th><th>Status</th>
@@ -28,7 +28,7 @@
     <h2 style="text-align:center">Closed Requests</h2>
     
     <h3>Approved Requests</h3>
-    <table id="tab-approved" style="background-color:#741B52; color:white">
+    <table id="tab-approved" style="color:white">
         <thead>
             <tr>
                 <th>Request id</th><th>Employee username</th><th>Reason given</th><th>Requested amount</th><th>Reason for status</th>
@@ -43,7 +43,7 @@
         <br>
 
     <h3>Denied Requests</h3>
-    <table id="tab-denied" style="background-color:#741B52; color:white">
+    <table id="tab-denied" style="color:white">
         <thead>
             <tr>
                 <th>Request id</th><th>Employee username</th><th>Reason given</th><th>Requested amount</th><th>Reason for status</th>
@@ -178,7 +178,7 @@
         if(httpResponse.status === 200){
             alert(`Status has been changed to ${updatedStatus.value}.`);
             tbodyPending.deleteRow(newRow);
-        //   window.location.reload();
+            // window.location.reload();
         } else if(httpResponse.status === 400){
             alert(`Too many Characters.`);
             console.log("The updateStatus function does not function.")

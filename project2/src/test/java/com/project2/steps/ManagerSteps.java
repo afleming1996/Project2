@@ -22,7 +22,7 @@ public class ManagerSteps {
         //"File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/manager.html"
         // C:/git/Project2/project2/src/main/resources/web-pages/manager.html
 
-        TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/manager.html");
+        TestRunner.driver.get("C:/git/Project2/project2/src/main/resources/web-pages/manager.html");
 
     }
     @Then("the manager should see the pending reimbersement requests")
