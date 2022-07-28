@@ -3,25 +3,24 @@
 <head>
     <title>Reimbursement Requests Page</title>
     <style>
-        .column {
-        float: left;
-        width: 50%;
-        }
+        
     
-        .row:after {
-        content: "";
-        display: table;
-        clear: both;
-        }
+        
     </style>
 </head>
 </head>
 <link rel="stylesheet" href="requester.css">
 <body>
-    <h1 style="text-align:center">Reimbursement Requests Page</h1>
+    <header>
+        <img id="pic" src="Fantastic logo.png" alt="four">
+        <h1 style="text-align:center">Reimbursement Requests Page</h1>
+        <button id="logout" onclick="logOut()">log out</button>
+    </header>
+<div id="both">
     <div class="row">
-        <div class="column" style="background-color:#96D1CD">
-            <h2 style="text-align:center"><span id="username"></span> Requests</h2>
+
+            <h2 style="text-align:center;">My Requests</h2>
+
             <table>
                 <thead>
                     <tr>
@@ -30,13 +29,16 @@
                 </thead>
                 <tbody id="tbody">
                     <tr>
-                        <td></td>
                     </tr>
                 </tbody>
             </table>
-            <h3> <button id="showbtn" onclick="showbtn()">Show</button>  how much money I have been given in reimburesments: <span id="received" hidden></span>$</h3>
+
+            <h3> Total Reimbursement Amount Given: <span id="received"></span>$</h3>
     </div>
-    <div class="column" style="background-color:#96D1CD; text-align:center">
+    <div class="column" style="    background-color: rgba(64, 34, 34, 0.3);
+    ; text-align:center">
+        <!-- style="" -->
+
         <h2>New Requests</h2>
         <h3>Please enter a request amount:</h3>
         <input type="number" id="amountInput" max="1000">
@@ -46,8 +48,10 @@
         <p>(Reason must not exceed 500 characters)</p>
         <button id="requestButton" onclick="createRequest()">Submit</button>
     </div>
-    <button id="logout" onclick="logOut()">log out</button>
-  
+
+
+</div>
+
 </body>
 <script>
     let baseURL = "http://localhost:8080/requests"
@@ -138,7 +142,7 @@
 
         ////////////////////////// Stretch Goals //////////////////////////
         function showbtn(){
-            const received = document.getElementById("received");
+            let received = document.getElementById("received");
             received.toggleAttribute('hidden');
         }
 

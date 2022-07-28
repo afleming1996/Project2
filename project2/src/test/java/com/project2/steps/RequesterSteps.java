@@ -89,11 +89,13 @@ public class RequesterSteps {
     ///////// Stretch Goals /////////////
     @When("the requester clicks the show amount recieved button")
     public void the_requester_clicks_the_show_amount_recieved_button() {
-       TestRunner.requester.showbtn.click();
+       TestRunner.requester.showbtn();
     }
     @Then("the total amount approved reimbursement money showed")
     public void the_total_amount_approved_reimbursement_money_showed() {
+
         Assert.assertEquals("", TestRunner.requester.received.getText());
+
     }
 
 }
