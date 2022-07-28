@@ -22,11 +22,11 @@ public class RequesterSteps {
     @Given("the requester is on the requester page")
     public void the_requester_is_on_the_requester_page() {
 
-        TestRunner.driver.get("File://C:/git/Project2/project2/src/main/resources/web-pages/requester.html");
+        TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/requester.html");
     }
     @Then("the requester should see the pending reimbersement requests")
     public void the_requester_should_see_the_pending_reimbersement_requests() {
-        TestRunner.driver.get("File://C:/git/Project2/project2/src/main/resources/web-pages/requester.html");
+        TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/requester.html");
     }
 
     // create requests
@@ -89,11 +89,14 @@ public class RequesterSteps {
     ///////// Stretch Goals /////////////
     @When("the requester clicks the show amount recieved button")
     public void the_requester_clicks_the_show_amount_recieved_button() {
-       TestRunner.requester.showbtn.click();
+       TestRunner.requester.showbtn();
     }
     @Then("the total amount approved reimbursement money showed")
     public void the_total_amount_approved_reimbursement_money_showed() {
-        Assert.assertEquals("0", TestRunner.requester.received.getText());
+       
+        Assert.assertEquals("", TestRunner.requester.received.getText());
+        // TestRunner.wait.until(ExpectedConditions.visibilityOf(TestRunner.requester.received));
+        // Assert.assertTrue(TestRunner.requester.showbtn.isDisplayed());
     }
 
 }
