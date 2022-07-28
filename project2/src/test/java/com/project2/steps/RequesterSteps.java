@@ -17,7 +17,6 @@ public class RequesterSteps {
     //C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/requester.html
     //File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/requester.html
     // C:/git/Project2/project2/src/main/resources/web-pages/requester.html
-    // C:/git/Project2/project2/src/main/resources/web-pages/manager.html
 
     // view requests
     @Given("the requester is on the requester page")
@@ -28,7 +27,6 @@ public class RequesterSteps {
     @Then("the requester should see the pending reimbersement requests")
     public void the_requester_should_see_the_pending_reimbersement_requests() {
         TestRunner.driver.get("File://C:/git/Project2/project2/src/main/resources/web-pages/requester.html");
-
     }
 
     // create requests
@@ -41,7 +39,6 @@ public class RequesterSteps {
 
         TestRunner.requester.EnterRequestAmount(5);
     }
-
     @When("the requester clicks the submit button")
     public void the_requester_clicks_the_submit_button() {
         TestRunner.requester.clickButton();
@@ -81,22 +78,19 @@ public class RequesterSteps {
         TestRunner.driver.switchTo().alert().accept();
     }
 
-
-    // see only their requests
+    // user requests only
     @Then("the requester should not see other employee requests")
     public void the_requester_should_not_see_other_employee_requests(){
         String imposterName = TestRunner.driver.findElement(By.id("username")).getText();
         Assert.assertNotEquals("themagicword", imposterName);
     }
 
- 
 
     ///////// Stretch Goals /////////////
     @When("the requester clicks the show amount recieved button")
     public void the_requester_clicks_the_show_amount_recieved_button() {
        TestRunner.requester.showbtn.click();
     }
-
     @Then("the total amount approved reimbursement money showed")
     public void the_total_amount_approved_reimbursement_money_showed() {
         Assert.assertEquals("0", TestRunner.requester.received.getText());

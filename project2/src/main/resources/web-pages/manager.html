@@ -22,7 +22,9 @@
         </tbody>
     </table>
     <br><br>
+
     <h2 style="text-align:center">Closed Requests</h2>
+    
     <h3>Approved Requests</h3>
     <table id="tab-approved" style="background-color:#741B52; color:white">
         <thead>
@@ -36,10 +38,10 @@
             </tr>
         </tbody>
     </table>
-    
     <h3><button id="globalbtn" onclick="showGlobalbtn()">Show</button> the company has given <span id="total"></span>$ in reimburesments </h3> 
     <h3><button id="byMebtn" onclick="showByMebtn()">Show</button> total reimbursement amount have given <span id="ApproveByMe"></span>$  by <span id="Me"></span></h3>
-        <br>
+    <br><br>
+
     <h3>Denied Requests</h3>
     <table id="tab-denied" style="background-color:#741B52; color:white">
         <thead>
@@ -53,7 +55,6 @@
             </tr>
         </tbody>
     </table>
-
     <button id="logout" onclick="logOut()">log out</button>
 </body>
 <script>
@@ -62,11 +63,11 @@
     result.textContent = `${localStorage.getItem("username")}`;
     Me.textContent =result.textContent ;
     
+
     ////// Stretch Goals/////
     let totalPaid =0;
     let TotalApprovedByMe = 0;
 
-   
     let tbodyPending = document.getElementById("tbody-pending");
     let tbodyDenied = document.getElementById("tbody-denied");
     let tbodyApproved = document.getElementById("tbody-approved");
@@ -76,17 +77,15 @@
             method: "GET",
             headers:{"Content-Type":"application/json"},
         }
-
         let httpResponse = await fetch(`${baseURL}`,config);
-        // need styling to auto-fit content to length for reason input field
         if(httpResponse.status === 200){
             const requests = await httpResponse.json();
             console.log(requests)
            
             for(let request of requests){
                 let newRow = document.createElement("tr");
-                newRow.innerHTML = `
-                    <td style="text-align:right" id="${request.id}">${request.id}</td>
+                newRow.innerHTML = 
+                    `<td style="text-align:right" id="${request.id}">${request.id}</td>
                     <td style="text-align:center" id="requester${request.id}">${request.requester_username}</td>
                     <td id="requester_reason${request.id}">${request.request_reason}</td>
                     <td style="text-align:center" id="amount${request.id}">${request.amount}</td>
@@ -98,43 +97,30 @@
                         </select>
                     </td>
                     <td><input type="text" id="status_reason${request.id}"></td>
-                    <button onclick="updateStatus(${request.id})" id="update_status_button${request.id}">Update</button>
-                `;
-
+                    <button onclick="updateStatus(${request.id})" id="update_status_button${request.id}">Update</button>`;
                 let closedRequestRow = document.createElement("tr");
-                closedRequestRow.innerHTML = `
-                    <td style="text-align:right" id="${request.id}">${request.id}</td>
+                closedRequestRow.innerHTML = 
+                    `<td style="text-align:right" id="${request.id}">${request.id}</td>
                     <td style="text-align:center" id="requester${request.id}">${request.requester_username}</td>
                     <td id="requester_reason${request.id}">${request.request_reason}</td>
                     <td style="text-align:center" id="amount${request.id}">${request.amount}</td>
-                    <td id="status_reason${request.id}">${request.status_reason}</td>
-                `;
-                
+                    <td id="status_reason${request.id}">${request.status_reason}</td>`;
                 if(request.request_status === "Approved"){
                     addApprovedToTable(request.id,request.requester_username,request.request_reason,request.amount,request.status_reason);
                     totalPaid +=request.amount;
-                    
                     if(request.manager_username == result.textContent){
                         TotalApprovedByMe += request.amount;
                     }
-
                 } else if (request.request_status === "Denied"){
                     addDeniedToTable(request.id,request.requester_username,request.request_reason,request.amount,request.status_reason);
-              //  tbodyDenied.appendChild(closedRequestRow);
                 } else {
                     tbodyPending.appendChild(newRow);
                 }
-            }
-           
-           
-           
+            }   
         } else {
-
             console.log("The getAllRequests function does not function.",httpResponse.json().detail);
         }
     }
-   
-
     function addDeniedToTable(id,requester_username,request_reason,amount,status_reason){
         let tbodyId = document.getElementById("tbody-denied")
         let closedRequestRow = document.createElement("tr");
@@ -146,21 +132,18 @@
                     <td id="status_reason${id}">${status_reason}</td>
                 `;
         tbodyDenied.appendChild(closedRequestRow);        
-    };
+    }
     function addApprovedToTable(id,requester_username,request_reason,amount,status_reason){
         let tbodyId = document.getElementById("tbody-denied")
         let closedRequestRow = document.createElement("tr");
-                closedRequestRow.innerHTML = `
-                    <td style="text-align:right" id="${id}">${id}</td>
+                closedRequestRow.innerHTML = 
+                    `<td style="text-align:right" id="${id}">${id}</td>
                     <td style="text-align:center" id="requester${id}">${requester_username}</td>
                     <td id="requester_reason${id}">${request_reason}</td>
                     <td style="text-align:center" id="amount${id}">${amount}</td>
-                    <td id="status_reason${id}">${status_reason}</td>
-                `;
+                    <td id="status_reason${id}">${status_reason}</td>`;
         tbodyApproved.appendChild(closedRequestRow);        
-    };
-
-
+    }
     async function updateStatus(id){
         let updatedStatus = document.getElementById(`status${id}`); 
         let username = document.getElementById(`requester${id}`);
@@ -198,10 +181,10 @@
         }
         
     }
-
     function logOut(){
         window.location.replace("login.html")
     }
+
 
     ////////////// Stretch Goals /////////////////
     function showGlobalbtn(i){
