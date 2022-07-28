@@ -28,5 +28,12 @@ Feature: Employees should be able to login and out of their accounts
         When    the employee clicks the sign out button
         Then    the employee should be logged out to the login page
 
+    Scenario: As an employee I dont want to be logged in if I give invalid credentials
+    
+        Given   the employee is on the login page
+        When    the employee enters an incorrect username
+        When    the employee enters an incorrect password
+        When    the employee clicks the login button
+        Then    the employee should not be logged in
 
    

@@ -96,6 +96,23 @@ public class LoginSteps {
         String title = TestRunner.driver.getTitle();
         Assert.assertEquals("Login", title);
     }
+
+    // employee log in with wrong username
+    @When("the employee enters an incorrect username")
+    public void the_employee_enters_an_incorrect_username() {
+        TestRunner.login.enterUsername("Requester4");
+    }
+    @When("the employee enters an incorrect password")
+    public void the_employee_enters_an_incorrect_password() {
+        TestRunner.login.enterPassword("password");
+    }
+    @Then("the employee should not be logged in")
+    public void the_employee_should_not_be_logged_in() {
+        TestRunner.wait.until(ExpectedConditions.titleIs("Login"));
+        String title = TestRunner.driver.getTitle();
+        Assert.assertEquals("Login", title);
+    }
+
 }
     
 

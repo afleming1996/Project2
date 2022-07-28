@@ -1,0 +1,109 @@
+Feature: Employees should be able to login and out of their accounts
+
+    Scenario: As an manager I want to sign in so I can view my custom homepage
+
+        Given   the manager is on the login page
+        When    the manager enters his correct username
+        When    the manager enters his correct password
+        When    the manager clicks the login button
+        Then    the manager should be logged in the manager page
+
+    Scenario: As an requester I want to sign in so I can view my custom homepage
+
+        Given   the employee is on the login page
+        When    the employee enters his correct username
+        When    the employee enters his correct password
+        When    the employee clicks the login button
+        Then    the employee should be logged in the requester page
+
+    Scenario: As a manager I want to sign out so I can prevent others from accessing my information
+
+        Given   the manager is on the manager homepage
+        When    the manager clicks the sign out button
+        Then    the manager should be logged out to the login page
+
+    Scenario: As a requester I want to sign out so I can prevent others from accessing my information
+
+        Given   the employee is on the requester homepage
+        When    the employee clicks the sign out button
+        Then    the employee should be logged out to the login page
+
+
+
+
+
+Feature: Managers should be able to update the status of reimbursement requests 
+
+    Scenario: As a manager I want to be able to view reimbursement requests so I can start addressing them
+
+        Given   the manager is on the manager homepage
+        Then    the manager should see the pending reimbersement requests
+
+    Scenario: As a manager I want to be able to approve reimbusement requests so the company knowns whether to pay out or not
+
+        Given   the manager is on the manager homepage
+        When    the manager clicks the approve selection
+        When    the manager enters a reason not exceeding 500 characters
+        When    the manager clicks the submit button
+        Then    the manager should have approved the reimbursement request
+
+    Scenario: As a manager I want to be able to deny reimbusement requests so the company knowns whether to pay out or not
+
+        Given   the manager is on the manager homepage
+        When    the manager clicks the deny selection
+        When    the manager enters a reason not exceeding 500 characters
+        When    the manager clicks the submit button for Deny
+        Then    the manager should have denied the reimbursement request
+
+    Scenario: As a manager I view global reimbursement statistics so I can see how much money the company has given in reimburesments
+        Given   the manager is on the manager homepage 
+        When    the manager clicks the show globalreimbursement button
+        Then    the global reimbursement company has given should be showed
+
+    Scenario: As a manager I view my reimbursement statistics so I can see how much money I have given in reimburesments
+        Given   the manager is on the manager homepage 
+        When    the manager clicks the show myApprovedreimbursement button
+        Then    the total amount approved reimbursement by manager should be showed
+
+    Scenario: As a manager I don't want to be able to exceed 500 characters in the reason
+
+        Given   the manager is on the manager homepage
+        When    the manager enters a reason exceeding 500 characters
+        When    the manager clicks the submit button for negative test
+        Then    the manager should see an error message
+
+
+
+
+    Feature: Requesters should be able to create a reimbursement request
+
+    Scenario: As a requester I want to view previous reimbursement requests so I can see whether to expect money back or not
+
+        Given   the requester is on the requester page
+        Then    the requester should see the pending reimbersement requests
+
+    Scenario: As an requester I want to create a reimbursement request so I can get money back I sepent for the company
+
+        Given   the requester is on the requester page
+        When    the requester enters their reimbursement request description not exceeding 500 characters
+        When    the requester enters their reimbursement request amount not exceeding 1000
+        When    the requester clicks the submit button
+        Then    the requester should have recieved an alert of created reimbursement request
+
+    Scenario: As an requester I want to view my reimbursement statistics so I can see how much money I have been given in reimburesments
+        Given   the requester is on the requester page
+        When    the requester clicks the show amount recieved button
+        Then    the total amount approved reimbursement money showed
+
+    Scenario: As a requester I don't don't want to submit request reasons exceeding 500 characters
+        Given   the requester is on the requester page
+        When    the requester enters their reimbursement request description not exceeding 500 characters
+        When    the requester clicks the submit button
+        Then    the requester should have recieved an alert of created reimbursement request
+
+    Scenario: As a requester I don't don't want to submit request amounts exceeding 1000 dollars
+        Given   the requester is on the requester page
+        When    the requester enters their reimbursement request amount not exceeding 1000
+        When    the requester clicks the submit button
+        Then    the requester should have recieved an alert of created reimbursement request
+    
