@@ -34,7 +34,7 @@
                     </tr>
                 </tbody>
             </table>
-            <h3> <button id="showbtn" onclick="showbtn()">Show</button>  how much money I have been given in reimburesments: <span id="received"></span>$</h3>
+            <h3> <button id="showbtn" onclick="showbtn()">Show</button>  how much money I have been given in reimburesments: <span id="received" hidden></span>$</h3>
     </div>
     <div class="column" style="background-color:#96D1CD; text-align:center">
         <h2>New Requests</h2>
@@ -78,15 +78,20 @@
                     <td id="requester_status${request.id}">${request.request_status}</td>
                     <td id="status_reason${request.id}">${request.status_reason}</td>          
                     `;
-                    let tbody = document.getElementById("tbody");
-                    if(request.request_status==="Approved"){
-                        tbody.appendChild(newRow);
-                        if(request.request_status==="Approved"){}
-                        receivedTotal += request.amount;
-                    } 
-                }   
-            } 
-        } else if(httpResponse.status === 400){
+
+                let tbody = document.getElementById("tbody");
+
+                if(request.request_status==="Approved"){
+                    tbody.appendChild(newRow);
+                    if(request.request_status==="Approved"){}
+                    receivedTotal += request.amount;
+                } 
+                }
+                received.innerText = receivedTotal;
+            }
+            
+        }else if(httpResponse.status === 400){
+
             alert("the getMyRequests function does not...function");
         }
     }
@@ -131,10 +136,11 @@
     }
 
 
-    ////////////////////////// Stretch Goals //////////////////////////
-    function showbtn(){
-        const received = document.getElementById("received");
-        received.innerText = receivedTotal;
-    }
+        ////////////////////////// Stretch Goals //////////////////////////
+        function showbtn(){
+            const received = document.getElementById("received");
+            received.toggleAttribute('hidden');
+        }
+
 </script>
 </html>
