@@ -15,17 +15,16 @@
     <button id="logout" onclick="logOut()">log out</button>
 </header>
 <div class="table">
-    <h3 style="text-align:center">Pending Requests</h3>
     <table id="tablePending">
 
     <h1 id="username"></h1>
-    <h3>Pending Requests</h3>
-    <table id="tablePending" style="background-color:#741B52; color:white">
+    <h3 style="text-align: center;">Pending Requests</h3>
+    <table id="tablePending" style=" color:white">
 
         <thead>
             <tr>
                 <th>Request id</th><th>Employee username</th><th>Reason given</th><th>Requested amount</th><th>Status</th>
-                <th title="Reason must not exceed 500 characters." onmouseover="style.color='aquamarine'" onmouseleave="style.color='white'">Reason for approval/denial*</th>
+                <th title="Reason must not exceed 500 characters.">Reason for approval/denial*</th>
             </tr>
         </thead>
         <tbody id="tbody-pending">
@@ -39,14 +38,12 @@
 
 <div class="table">
     <br>
-    <h3 style="text-align:center">Approved Requests</h3>
     <table id="tab-approved">
 
 
-    <h2 style="text-align:center">Closed Requests</h2>
     
-    <h3>Approved Requests</h3>
-    <table id="tab-approved" style="background-color:#741B52; color:white">
+    <h3 style="text-align: center;">Approved Requests</h3>
+    <table id="tab-approved" style=" color:white">
 
         <thead>
             <tr>
@@ -64,17 +61,15 @@
     <h2 style="font-size: 20px;">The company has given <span id="total"></span>$ in reimburesments </h1>
         <br>
 <div class="table">
-    <h3 style="text-align:center">Denied Requests</h3>
     <table id="tab-denied">
 
 
     
-    <h3><button id="globalbtn" onclick="showGlobalbtn()">Show</button> the company has given <span id="total" hidden></span>$ in reimburesments </h3> 
     <h3><button id="byMebtn" onclick="showByMebtn()">Show</button> total reimbursement amount have given <span id="ApproveByMe" hidden></span>$  by <span id="Me"></span></h3>
         <br>
 
-    <h3>Denied Requests</h3>
-    <table id="tab-denied" style="background-color:#741B52; color:white">
+    <h3 style="text-align: center;">Denied Requests</h3>
+    <table id="tab-denied" style=" color:white">
 
         <thead>
             <tr>
