@@ -3,14 +3,8 @@
 <head>
     <title>Determine Reimbursement Status</title>
 </head>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Oswald&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="manager.css">
 <body onload="getAllRequests()">
-<header>
-        <img id="pic" src="Fantastic logo.png" alt="four">   
-</header>
+   
     <h1 style="text-align:center">Determine Reimbursement Status</h1>
     <h1 id="username"></h1>
     <h3>Pending Requests</h3>
@@ -21,7 +15,11 @@
                 <th title="Reason must not exceed 500 characters." onmouseover="style.color='aquamarine'" onmouseleave="style.color='white'">Reason for approval/denial*</th>
             </tr>
         </thead>
-        <tbody id="tbody-pending">   </tbody>
+        <tbody id="tbody-pending">
+            <tr>
+                <td></td>
+            </tr>
+        </tbody>
     </table>
     <br><br>
 
@@ -34,7 +32,11 @@
                 <th>Request id</th><th>Employee username</th><th>Reason given</th><th>Requested amount</th><th>Reason for status</th>
             </tr>
         </thead>
-        <tbody id="tbody-approved"></tbody>
+        <tbody id="tbody-approved">
+            <tr>
+                <td></td>
+            </tr>
+        </tbody>
     </table>
 
     
@@ -49,7 +51,11 @@
                 <th>Request id</th><th>Employee username</th><th>Reason given</th><th>Requested amount</th><th>Reason for status</th>
             </tr>
         </thead>
-        <tbody id="tbody-denied">       </tbody>
+        <tbody id="tbody-denied">
+            <tr>
+                <td></td>
+            </tr>
+        </tbody>
     </table>
     <button id="logout" onclick="logOut()">log out</button>
 </body>
