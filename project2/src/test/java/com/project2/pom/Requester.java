@@ -1,18 +1,11 @@
 package com.project2.pom;
 
-
-
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-
-
-
-
 
 public class Requester {
 
@@ -34,33 +27,33 @@ public class Requester {
 
     public Requester(WebDriver driver){
         this.driver= driver;
-
-        // the page factory is provided by with selenium
         PageFactory.initElements(driver, this);
     } 
 
-
     //methods
-
     public void EnterReimbursementDescription(String text){
         this.reimbursementDescription.sendKeys(text);
     }
-
     public void EnterRequestAmount(int number ){
         this.requestAmount.sendKeys(String.valueOf(number));
     }
-
     public void alert(){
         this.alert = this.driver.switchTo().alert();
         Assert.assertTrue(alert.getText().contains("testing"));
         alert.accept();    
     }
-
     public void clickButton(){
         this.button.click();
     }
-
     public void clickLogOutBtn(){
         this.logoutButton.click();
     }
+
+
+    /////// Stretch Goals ////////////
+    @FindBy(id = "showbtn")
+    public WebElement showbtn;
+
+    @FindBy(id = "received")
+    public WebElement received;
 }

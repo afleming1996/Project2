@@ -18,7 +18,9 @@
     </header>
 <div id="both">
     <div class="row">
+
             <h2 style="text-align:center;">My Requests</h2>
+
             <table>
                 <thead>
                     <tr>
@@ -30,30 +32,36 @@
                     </tr>
                 </tbody>
             </table>
+
             <h3> Total Reimbursement Amount Given: <span id="received"></span>$</h3>
     </div>
     <div class="column" style="    background-color: rgba(64, 34, 34, 0.3);
     ; text-align:center">
         <!-- style="" -->
+
         <h2>New Requests</h2>
         <h3>Please enter a request amount:</h3>
         <input type="number" id="amountInput" max="1000">
         <p>(Requests must not exceed $1000)</p>
         <h3>Please enter a reason for this request:</h3>
-        <input type="text" id="inputReason" maxlength="500"> <!-- styling: fit content with a max width (field extends below once width-limit reached) -->
+        <input type="text" id="inputReason" maxlength="500">
         <p>(Reason must not exceed 500 characters)</p>
         <button id="requestButton" onclick="createRequest()">Submit</button>
     </div>
 
+
 </div>
+
 </body>
 <script>
-   
-    const result = `${localStorage.getItem("username")}`;
-    // somewhere here the request or filtering the responseBody will need to take place to only display username's results
-    const received = document.getElementById("received");
-
     let baseURL = "http://localhost:8080/requests"
+    const result = `${localStorage.getItem("username")}`;
+    const username = document.getElementById("username");
+    username.textContent = result;  
+
+    //// Stretch goals///
+    let receivedTotal = 0;
+    
     async function getMyRequests(){
         let config = {
             method: "GET",
@@ -64,12 +72,7 @@
         
         if(httpResponse.status === 200){
             const requests = await httpResponse.json();
-            console.log(requests)
-            console.log(requests.requester_username)
-
-            let receivedTotal = 0;
             for(let request of requests){
-            
                 if(request.requester_username === result){
                 let newRow = document.createElement("tr");
                 newRow.innerHTML = `
@@ -79,16 +82,20 @@
                     <td id="requester_status${request.id}">${request.request_status}</td>
                     <td id="status_reason${request.id}">${request.status_reason}</td>          
                     `;
+
                 let tbody = document.getElementById("tbody");
+
                 if(request.request_status==="Approved"){
                     tbody.appendChild(newRow);
-                receivedTotal += request.amount;
+                    if(request.request_status==="Approved"){}
+                    receivedTotal += request.amount;
                 } 
                 }
-                 
+                received.innerText = receivedTotal;
             }
-            received.innerText = receivedTotal;
+            
         }else if(httpResponse.status === 400){
+
             alert("the getMyRequests function does not...function");
         }
     }
@@ -96,41 +103,48 @@
 
     let request_reason = document.getElementById("inputReason");
     let amount = document.getElementById("amountInput");
-
     async function createRequest(){
-        let submitNewRequest = {
-            
-                requester_username: result,
-                request_reason: request_reason.value,
-                amount: amount.value,
-                request_status: "Pending",
-                status_reason: " ",
-                manager_username: "TBD",
-            };
-            console.log(submitNewRequest)
-            let submitNewRequestJSON = JSON.stringify(submitNewRequest);
-            let config = {
-                method:"POST", 
-                headers:{'Content-Type':"application/json"},
-                body: submitNewRequestJSON,
-            }
-            
-            let httpResponse = await fetch(`${baseURL}`,config);
+        let submitNewRequest = {   
+            requester_username: result,
+            request_reason: request_reason.value,
+            amount: amount.value,
+            request_status: "Pending",
+            status_reason: " ",
+            manager_username: "Manager1",
+        }
+        console.log(submitNewRequest)
+        let submitNewRequestJSON = JSON.stringify(submitNewRequest);
+        let config = {
+            method:"POST", 
+            headers:{'Content-Type':"application/json"},
+            body: submitNewRequestJSON,
+        }
+        
+        let httpResponse = await fetch(`${baseURL}`,config);
 
+        if(httpResponse.status === 201){
+            let responseBody = await httpResponse.json();
+            alert(`${responseBody.id} has been successfully submitted.`)
+            window.location.reload();
+        } else if(httpResponse.status === 400){
+            alert("You are request is invalid.  Please ensure you are following the request instructions.");
 
-            if(httpResponse.status === 201){
-                let responseBody = await httpResponse.json();
-                alert(`${responseBody.id} has been successfully submitted.`)
-                window.location.reload();
-            } else {
-                alert("Something went wrong. Please try again.");
+        } else {
+            alert("Something went wrong. Please try again.");
             let responseBody = await httpResponse.json();
             alert(responseBody.detail);
-            }
         }
-            function logOut(){
+    }
+    function logOut(){
         window.location.replace("login.html")
-    
+    }
+
+
+        ////////////////////////// Stretch Goals //////////////////////////
+        function showbtn(){
+            const received = document.getElementById("received");
+            received.toggleAttribute('hidden');
         }
+
 </script>
 </html>

@@ -11,11 +11,17 @@
 <header>
     <img id="pic" src="Fantastic logo.png" alt="four">
     <h1 style="text-align:center">Determine Reimbursement Status</h1>
+
     <button id="logout" onclick="logOut()">log out</button>
 </header>
 <div class="table">
     <h3 style="text-align:center">Pending Requests</h3>
     <table id="tablePending">
+
+    <h1 id="username"></h1>
+    <h3>Pending Requests</h3>
+    <table id="tablePending" style="background-color:#741B52; color:white">
+
         <thead>
             <tr>
                 <th>Request id</th><th>Employee username</th><th>Reason given</th><th>Requested amount</th><th>Status</th>
@@ -30,10 +36,18 @@
     </table>
 </div>
     <br><br>
+
 <div class="table">
     <br>
     <h3 style="text-align:center">Approved Requests</h3>
     <table id="tab-approved">
+
+
+    <h2 style="text-align:center">Closed Requests</h2>
+    
+    <h3>Approved Requests</h3>
+    <table id="tab-approved" style="background-color:#741B52; color:white">
+
         <thead>
             <tr>
                 <th>Request id</th><th>Employee username</th><th>Reason given</th><th>Requested amount</th><th>Reason for status</th>
@@ -45,12 +59,23 @@
             </tr>
         </tbody>
     </table>
+
 </div>
     <h2 style="font-size: 20px;">The company has given <span id="total"></span>$ in reimburesments </h1>
         <br>
 <div class="table">
     <h3 style="text-align:center">Denied Requests</h3>
     <table id="tab-denied">
+
+
+    
+    <h3><button id="globalbtn" onclick="showGlobalbtn()">Show</button> the company has given <span id="total" hidden></span>$ in reimburesments </h3> 
+    <h3><button id="byMebtn" onclick="showByMebtn()">Show</button> total reimbursement amount have given <span id="ApproveByMe" hidden></span>$  by <span id="Me"></span></h3>
+        <br>
+
+    <h3>Denied Requests</h3>
+    <table id="tab-denied" style="background-color:#741B52; color:white">
+
         <thead>
             <tr>
                 <th>Request id</th><th>Employee username</th><th>Reason given</th><th>Requested amount</th><th>Reason for status</th>
@@ -62,30 +87,39 @@
             </tr>
         </tbody>
     </table>
+
 </div>
+
 </body>
 <script>
     let baseURL = "http://localhost:8080/requests/"
+    const result = document.getElementById("username"); 
+    result.textContent = `${localStorage.getItem("username")}`;
+    Me.textContent =result.textContent ;
+    
+
+    ////// Stretch Goals/////
+    let totalPaid =0;
+    let TotalApprovedByMe = 0;
+
     let tbodyPending = document.getElementById("tbody-pending");
     let tbodyDenied = document.getElementById("tbody-denied");
     let tbodyApproved = document.getElementById("tbody-approved");
-    let total = document.getElementById("total");
+  
     async function getAllRequests(){
         let config = {
             method: "GET",
             headers:{"Content-Type":"application/json"},
         }
-
         let httpResponse = await fetch(`${baseURL}`,config);
-        // need styling to auto-fit content to length for reason input field
         if(httpResponse.status === 200){
             const requests = await httpResponse.json();
             console.log(requests)
-            let totalPaid =0;
+           
             for(let request of requests){
                 let newRow = document.createElement("tr");
-                newRow.innerHTML = `
-                    <td style="text-align:right" id="${request.id}">${request.id}</td>
+                newRow.innerHTML = 
+                    `<td style="text-align:right" id="${request.id}">${request.id}</td>
                     <td style="text-align:center" id="requester${request.id}">${request.requester_username}</td>
                     <td id="requester_reason${request.id}">${request.request_reason}</td>
                     <td style="text-align:center" id="amount${request.id}">${request.amount}</td>
@@ -97,37 +131,43 @@
                         </select>
                     </td>
                     <td><input type="text" id="status_reason${request.id}"></td>
+
                     <td><button onclick="updateStatus(${request.id})" id="update_status_button${request.id}">Update</button></td>
                 `;
 
+
                 let closedRequestRow = document.createElement("tr");
-                closedRequestRow.innerHTML = `
-                    <td style="text-align:right" id="${request.id}">${request.id}</td>
+                closedRequestRow.innerHTML = 
+                    `<td style="text-align:right" id="${request.id}">${request.id}</td>
                     <td style="text-align:center" id="requester${request.id}">${request.requester_username}</td>
                     <td id="requester_reason${request.id}">${request.request_reason}</td>
                     <td style="text-align:center" id="amount${request.id}">${request.amount}</td>
-                    <td id="status_reason${request.id}">${request.status_reason}</td>
-                `;
-                
+                    <td id="status_reason${request.id}">${request.status_reason}</td>`;
                 if(request.request_status === "Approved"){
                     addApprovedToTable(request.id,request.requester_username,request.request_reason,request.amount,request.status_reason);
                     totalPaid +=request.amount;
-                    //   tbodyApproved.appendChild(closedRequestRow);
+                    if(request.manager_username == result.textContent){
+                        TotalApprovedByMe += request.amount;
+                    }
                 } else if (request.request_status === "Denied"){
                     addDeniedToTable(request.id,request.requester_username,request.request_reason,request.amount,request.status_reason);
-              //  tbodyDenied.appendChild(closedRequestRow);
                 } else {
                     tbodyPending.appendChild(newRow);
                 }
-            }
-            console.log(totalPaid)
-            total.innerText = totalPaid;
-        } else {
 
+                total.innerText = totalPaid;
+                total.value = totalPaid;
+                ApproveByMe.innerText=TotalApprovedByMe;
+                ApproveByMe.value =TotalApprovedByMe;
+            }
+           
+           
+           
+
+        } else {
             console.log("The getAllRequests function does not function.",httpResponse.json().detail);
         }
     }
-
     function addDeniedToTable(id,requester_username,request_reason,amount,status_reason){
         let tbodyId = document.getElementById("tbody-denied")
         let closedRequestRow = document.createElement("tr");
@@ -139,21 +179,18 @@
                     <td id="status_reason${id}">${status_reason}</td>
                 `;
         tbodyDenied.appendChild(closedRequestRow);        
-    };
+    }
     function addApprovedToTable(id,requester_username,request_reason,amount,status_reason){
         let tbodyId = document.getElementById("tbody-denied")
         let closedRequestRow = document.createElement("tr");
-                closedRequestRow.innerHTML = `
-                    <td style="text-align:right" id="${id}">${id}</td>
+                closedRequestRow.innerHTML = 
+                    `<td style="text-align:right" id="${id}">${id}</td>
                     <td style="text-align:center" id="requester${id}">${requester_username}</td>
                     <td id="requester_reason${id}">${request_reason}</td>
                     <td style="text-align:center" id="amount${id}">${amount}</td>
-                    <td id="status_reason${id}">${status_reason}</td>
-                `;
+                    <td id="status_reason${id}">${status_reason}</td>`;
         tbodyApproved.appendChild(closedRequestRow);        
-    };
-
-
+    }
     async function updateStatus(id){
         let updatedStatus = document.getElementById(`status${id}`); 
         let username = document.getElementById(`requester${id}`);
@@ -161,15 +198,17 @@
         let status_reason = document.getElementById(`status_reason${id}`);
         let amount = document.getElementById(`amount${id}`);
         let newRow = document.createElement(`tr${id}`);
+        
+     
         let requestStatus = {
             requester_username: username.innerText,
             request_reason: reason.innerText,
             amount: amount.innerText,
             request_status: updatedStatus.value,
             status_reason: status_reason.value,
-            manager_username: "TBD"
-        }
-
+            manager_username: result.textContent
+            }
+       
         let config = {
             method: "PATCH",
             headers: {"Content-Type":"application/json"},
@@ -181,16 +220,28 @@
         if(httpResponse.status === 200){
             alert(`Status has been changed to ${updatedStatus.value}.`);
             tbodyPending.deleteRow(newRow);
-        //    window.location.reload();
-        } else {
+        //   window.location.reload();
+        } else if(httpResponse.status === 400){
+            alert(`Too many Characters.`);
             console.log("The updateStatus function does not function.")
         }
-
+        
     }
-
     function logOut(){
         window.location.replace("login.html")
     }
 
+
+    ////////////// Stretch Goals /////////////////
+    function showGlobalbtn(){
+        let total = document.getElementById("total");
+        let globalbtn = document.getElementById("globalbtn")
+        total.toggleAttribute('hidden')
+         
+    }
+    function showByMebtn(){
+        const Me = document.getElementById("ApproveByMe");
+        Me.toggleAttribute('hidden')
+    }
 </script>
 </html>

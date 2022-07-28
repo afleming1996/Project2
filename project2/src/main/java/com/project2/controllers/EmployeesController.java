@@ -12,8 +12,6 @@ import com.project2.service.EmployeesServiceInterface;
 import io.javalin.http.Handler;
 
 public class EmployeesController {
-
- 
     private EmployeesServiceInterface employeesService;
 
     public EmployeesController(EmployeesServiceInterface employeesService)
@@ -23,7 +21,7 @@ public class EmployeesController {
     }
 
     private Gson gson;
-  //This is for the Login Page to load all employees information
+    //This is for the Login Page to load all employees information
     //So that it will compare the user input to database
     public Handler getAllEmployees = ctx -> { 
         List<employees> employees = this.employeesService.getAllEmployees();

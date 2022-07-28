@@ -21,114 +21,73 @@ public class RequestsTest {
     public static RequestsDAOInterface mockDao;
     public static BusinessRules mockRules;
     public static RequestsServiceInterface serviceWithMocks;
+    
     @BeforeClass
     public static void setup(){
-       
         requestsDao = new RequestsDAO();
-
-        mockDao = Mockito.mock(RequestsDAO.class); // this creates a mock dao object we can control
-        mockRules = Mockito.mock(BusinessRules.class); // this creates a mock rules object we control
+        mockDao = Mockito.mock(RequestsDAO.class); 
+        mockRules = Mockito.mock(BusinessRules.class); 
         serviceWithMocks = new RequestsService(mockDao, mockRules);
     }
-     //testing Requests 
+
     @Test
-    public void createRequests()
-    {
-         requests testRequests= new requests("porkbellies",
-         "personal",500,"Pending","pending","dodgeball");
+    public void createRequests(){
+         requests testRequests= new requests("Requester1",
+         "test request reason",500,"Pending","test status reason","Manager1");
          requests result = requestsDao.createRequests(testRequests);
          Assert.assertNotNull(result.getId());
     }
     
+    // excessive characters request
     @Test(expected = NullPointerException.class)
     public void createRequestsNegative(){
-
-
         String s = "";
         for(int i=0; i<50; i++){ 
             s+= "jjjjjjjjjjjjjjjjjjjjjj";
-
-        }
-         try{
-            requests badTestRequests= new requests("porkbellies",
-            "personal",5000,"Pending",s,"dodgeball");
+        } try{
+            requests badTestRequests= new requests("Requester1",
+            s,500,"Pending","test status reason","Manager1");
             requests result = requestsService.createRequest(badTestRequests);
             Assert.fail("invalid request: please try again");
         } catch( InvalidRequests e) {
             assertNotNull(e);
-//this test is now expecting null pointer exception i think so
         }
     }
 
+    // excessive money request
     @Test(expected = NullPointerException.class)
     public void createRequestsNegativeAmount(){
-        String s = "";
-        int a = 10000;
-        for(int i=0; i<50; i++){ 
-            s+= "jjjjjjjjjjjjjjjjjjjjjj";
-
-        }
-         try{
-            requests badTestRequests= new requests("porkbellies",
-            "personal",a,"Pending",s,"dodgeball");
+        try{
+            requests badTestRequests= new requests("Requester1",
+            "test request reason",10000,"Pending","test status reason","Manager1");
             requests result = requestsService.createRequest(badTestRequests);
             Assert.fail("invalid request: please try again");
         } catch( InvalidRequests e) {
             assertNotNull(e);
-//this test is now expecting null pointer exception i think so
         }
     }
 
-
-
-
-     // Test Get all requests
-     @Test
-     public void getAllRequests()
-     {
-         List<requests> requestsList = requestsDao.getAllRequests();
-         Assert.assertTrue(requestsList.size()>=2);
-     }
-
-
-     @Test
-     public void getAllRequestsNegative(){
-
-    try {
+    @Test
+    public void getAllRequests(){
         List<requests> requestsList = requestsDao.getAllRequests();
-         Assert.assertTrue(requestsList.size()>=2);
-    } catch (InvalidRequests e) {
-        assertNotNull(e);
+        Assert.assertTrue(requestsList.size()>=2);
     }
-     }
-    
-    //  @Test
-    //  public void removeRequest()
-    //  {
-    //     requests requestsToBeDeleted = new requests(8, "Quyen6","personal", 500,"pending", 
-    //     "pending", "Quyen");
-    //     boolean result = requestsDao.removeRequest(requestsToBeDeleted);
-    //     Assert.assertTrue(result);
-    // }
-
-    // @Test(expected = NullPointerException.class)
-    // public void removeRequestsNegative(){
-    //     try{
-    //         requests badTestRequests= new requests("porkbellies",
-    //         "personal",500,"Pending","Pending","dodgeball");
-    //         boolean result = requestsService.requestReason(badTestRequests);
-    //         Assert.fail("invalid request: please try again");
-    //     } catch( InvalidRequests e) {
-    //         assertNotNull(e);
-    //     //this test is now expecting null pointer exception i think so.
-    //     }
-
-    // }
 
     @Test
+    public void getAllRequestsNegative(){
+        try {
+        List<requests> requestsList = requestsDao.getAllRequests();
+         Assert.assertTrue(requestsList.size()>=2);
+        } catch (InvalidRequests e) {
+        assertNotNull(e);
+        }
+    }
+
+    // manager tests
+    @Test
     public void statusUpdated(){
-        requests updatedRequests = new requests(4, "porkbellies", "personal", 500, "Approved", 
-        "Approved", "dodgeball");
+        requests updatedRequests = new requests(1, "Requester1", "test request reason", 500, "Approved", 
+        "Approved", "Manager1");
         requests result = requestsDao.statusUpdated(updatedRequests);
         Assert.assertEquals("Approved", result.getRequest_status());
     }
@@ -136,16 +95,12 @@ public class RequestsTest {
     @Test(expected = NullPointerException.class)
     public void statusUpdatesNegative(){
         try{
-            requests badTestRequests= new requests("porkbellies",
-            "personal",5000,"Pending","oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo00000000000000000000000000000000000000000000000000000000000000000000000000000000000lllllllllllllllllllllllloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo","dodgeball");
+            requests badTestRequests= new requests("Requester1",
+            "test request reason",500,"Pending","oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo00000000000000000000000000000000000000000000000000000000000000000000000000000000000lllllllllllllllllllllllloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo","dodgeball");
             requests result = requestsService.serviceUpdateRequests(badTestRequests);
             Assert.fail("invalid request: please try again");
         } catch( InvalidRequests e) {
             assertNotNull(e);
-//this test is now expecting null pointer exception i think so
         }
-
     }
-
-
 }

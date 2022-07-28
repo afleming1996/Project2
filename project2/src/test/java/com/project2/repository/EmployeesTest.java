@@ -10,6 +10,7 @@ import com.project2.entities.employees;
 
 public class EmployeesTest {
     public static EmployeesDAOInterface employeeDAO;
+    
     @BeforeClass
     public static void setup(){
         employeeDAO = new EmployeesDAO();
@@ -21,20 +22,15 @@ public class EmployeesTest {
         Assert.assertTrue(employeesList.size()>=2);
     }
 
-    @Test //positive test
-    public void CheckUserCridential()
-    {
-        List<employees> employees = employeeDAO.CheckUserCridential("porkbellies", "password");
+    @Test
+    public void CheckUserCridential(){
+        List<employees> employees = employeeDAO.CheckUserCridential("Requester1", "password");
         Assert.assertNotNull(employees);
     }
     
-   
-    @Test //positive test
-    public void CheckUserCridentialNegative()
-    {
-        List<employees> employees = employeeDAO.CheckUserCridential("porkd", "d");
+    @Test
+    public void CheckUserCridentialNegative(){
+        List<employees> employees = employeeDAO.CheckUserCridential("porkbellies", "d");
         Assert.assertTrue(employees.size()==0);
     }
-
-
 }

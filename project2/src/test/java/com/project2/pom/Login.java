@@ -21,24 +21,17 @@ public class Login {
 
     public Login(WebDriver driver){
         this.driver= driver;
-
-        // the page factory is provided by with selenium
         PageFactory.initElements(driver, this);
     }   
 
-
     //methods
-
     public void enterUsername(String username){
         this.usernameInput.sendKeys(username);
     }
-
     public void enterPassword(String password){
         this.passwordInput.sendKeys(password);
     }
-
     public void ClickloginButton(){
         this.loginButton.click();
     }
-    
 }
