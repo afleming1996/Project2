@@ -93,10 +93,9 @@ public class RequesterSteps {
     }
     @Then("the total amount approved reimbursement money showed")
     public void the_total_amount_approved_reimbursement_money_showed() {
-       
+
         Assert.assertEquals("", TestRunner.requester.received.getText());
-        // TestRunner.wait.until(ExpectedConditions.visibilityOf(TestRunner.requester.received));
-        // Assert.assertTrue(TestRunner.requester.showbtn.isDisplayed());
+
     }
 
 }

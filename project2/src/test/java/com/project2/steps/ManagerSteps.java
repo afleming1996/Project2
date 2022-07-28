@@ -18,10 +18,12 @@ public class ManagerSteps {
 
     public void the_manager_is_on_the_manager_page(){ 
         //File://C:/Users/sain4/Desktop/Project2/project2/src/main/resources/web-pages/requester.html
-        //C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/manager.html
+        //C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/
         //"File://C:/Users/aflem/OneDrive/Desktop/Project2/project2/src/main/resources/web-pages/manager.html"
         // C:/git/Project2/project2/src/main/resources/web-pages/manager.html
+
         TestRunner.driver.get("C:/Users/Tkoo/Desktop/Revature_VisualCode/Project2/Project2/project2/src/main/resources/web-pages/manager.html");
+
     }
     @Then("the manager should see the pending reimbersement requests")
     public void the_manager_should_see_the_pending_reimbersement_requests() {
@@ -97,8 +99,10 @@ public class ManagerSteps {
         TestRunner.manager.totalClick();
     }
     @Then("the global reimbursement company has given should be showed")
+
     public void the_global_reimbursement_company_has_given_should_be_showed() 
     {TestRunner.wait.until(ExpectedConditions.visibilityOf(TestRunner.manager.global));
+
         Assert.assertTrue(TestRunner.manager.global.isDisplayed());
     }
 
@@ -109,7 +113,9 @@ public class ManagerSteps {
     @Then("the total amount approved reimbursement by manager should be showed")
     public void the_total_amount_approved_reimbursement_by_manager_should_be_showed() {
         TestRunner.wait.until(ExpectedConditions.visibilityOf(TestRunner.manager.ApproveByMe));
+
     Assert.assertTrue(TestRunner.manager.ApproveByMe.isDisplayed());
+
     }
 }
 

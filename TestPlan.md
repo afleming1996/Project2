@@ -2,7 +2,7 @@
 
 ## Employee Reimbursement System
 
-### Technologies to be use
+### Technologies to be used
 - Java
 - Maven
 - JavaScript
@@ -26,37 +26,37 @@
     - Positive Unit tests
         - employee enters correct credentials
             - method: employeeLogin()
-    <!-- - Negative Unit tests
+    - Negative Unit tests
         - employee enters incorrect username || password
             - method: incorrectLogin()
     - Service tests
-        - N/A -->
+        - N/A
 
 
-<!-- - As an employee I want to sign out so I can prevent others from accessing my information
+- As an employee I want to sign out so I can prevent others from accessing my information
     - Positive Unit tests
         - manager clicks sign out button
             - method: managerSignOut()
         - requestor clicks sign out button
             - method: requesterSignOut()
-    - Negative Unit tests
+    <!-- - Negative Unit tests
         - manager clicks sign out button
             - method: managerNotSignOut()
         - requester clicks sign out button
-            - method: requesterNotSignOut()
+            - method: requesterNotSignOut() -->
     - Service tests
-        - N/A -->
+        - N/A
 
 
-<!-- - As a manager I want to be able to view reimbursement requests so I can start addressing them
+- As a manager I want to be able to view reimbursement requests so I can start addressing them
     - Positive Unit tests
         - manager views reimbursement requests
             - method: requestTableVisible()
-    - Negative Unit tests
+    <!-- - Negative Unit tests
         - manager views reimbursement requests
-             - method: requestTableNotVisible()
+             - method: requestTableNotVisible() -->
     - Service tests
-        - N/A -->
+        - N/A
 
 
 - As a manager I want to be able to approve/deny reimbursement requests so the company know whether to pay out or not 
@@ -64,19 +64,19 @@
         - manager update reimbursement requests status
             - method: statusUpdated()
             - method: getAllRequests()
-    <!-- - Negative Unit tests
+    - Negative Unit tests
         - manager update reimbursement requests status
-            - method: statusNotUpdated() -->
+            - method: statusNotUpdated()
     - Service tests
         - manager gives reason for status
             - method: statusReason()
 
 
 - As a requester I want to be able to view the status of reimbursement requests so I can see how much money I have been reimbursed
-    <!-- - Positive Unit tests
+    - Positive Unit tests
         - requester views status of reimbursement requests
             - method: myRequestVisible()
-    - Negative Unit tests
+    <!-- - Negative Unit tests
         - requester views reimbursement requests
              - method: myRequestNotVisible() -->
     - Service tests
@@ -88,14 +88,13 @@
     - Positive Unit tests
         - requester creates reimbursement request
             - method: createRequest()
-    <!-- - Negative Unit tests
+    - Negative Unit tests
         - requester creates reimbursement request
-            - method: requestNotCreated() -->
+            - method: requestNotCreated()
     - Service tests
         - requestor gives reason for request
             - method: requestReason()
         - requestor enters amount 
             - method: requestAmount()
-
 
 ## 
