@@ -29,48 +29,48 @@ public class RequestsServiceTests {
 
     @Test
     public void statusReasonPositiveTest(){ 
-        requests goodStatusRequest = new requests("porkbellies",
-                "personal",500,"Pending","pending","dodgeball");
+        requests goodStatusRequest = new requests("Requester2",
+                "test request reason",500,"Pending","test status reason","Manager2");
         boolean result = businessRules.statusReason(goodStatusRequest);
         Assert.assertTrue(result);
     }
 
     @Test 
     public void statusReasonNegativeTest(){
-        requests badStatusRequest = new requests("porkbellies",
-                "personal",500,"Pending","Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus","dodgeball");
+        requests badStatusRequest = new requests("Requester2",
+                "test request reason",500,"Pending","Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus","Manager2");
         boolean result = businessRules.statusReason(badStatusRequest);
         Assert.assertFalse(result);
     }
 
     @Test
     public void requestReasonPositiveTest(){ 
-        requests goodRequestReason = new requests("porkbellies",
-                "personal",500,"Pending","pending","dodgeball");
+        requests goodRequestReason = new requests("Requester2",
+                "test request reason",500,"Pending","test status reason","Manager2");
         boolean result = businessRules.requestReason(goodRequestReason);
         Assert.assertTrue(result);
     }
 
     @Test
     public void requestReasonNegativeTest(){ 
-        requests badRequestReason = new requests("porkbellies",
-            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus",500,"Pending","pending","dodgeball");
+        requests badRequestReason = new requests("Requester2",
+            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus",500,"Pending","test status reason","Manager2");
         boolean result = businessRules.requestReason(badRequestReason);
         Assert.assertFalse(result);
     }
 
     @Test
     public void requestAmountPositiveTest(){ 
-        requests goodRequestAmount = new requests("porkbellies",
-                "personal",500,"Pending","pending","dodgeball");
+        requests goodRequestAmount = new requests("Requester2",
+                "test request reason",500,"Pending","test status reason","Manager2");
         boolean result = businessRules.requestAmount(goodRequestAmount);
         Assert.assertTrue(result);
     }
 
     @Test
     public void requestAmountNegativeTest(){ 
-        requests badRequestAmount = new requests("porkbellies",
-            "personal",1001,"Pending","pending","dodgeball");
+        requests badRequestAmount = new requests("Requester2",
+            "test request reason",1001,"Pending","test status reason","Manager2");
         boolean result = businessRules.requestAmount(badRequestAmount);
         Assert.assertFalse(result);
         }
